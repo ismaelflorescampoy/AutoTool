@@ -106,6 +106,19 @@ public class Main {
         }
     }
     
+    public static void solveCodeChefMXENVSUB() {
+        Scanner scn = new Scanner(System.in);
+
+        long T = scn.nextLong(); 
+        while (T-- > 0) {
+            long N = scn.nextLong();
+            long sum = (N * (N + 1)) / 2;
+            if (sum % 2 == 1)
+                N--;
+            System.out.println(N);
+        }
+    }
+    
     /**
      * Code to solve codeChef problem
      */
@@ -116,6 +129,7 @@ public class Main {
         CODECHEF_FUNCTIONS.put("LUCKYFR", Main.class.getDeclaredMethod("solveCodeChefLUCKYFR"));
         CODECHEF_FUNCTIONS.put("AVG", Main.class.getDeclaredMethod("solveCodeChefAVG"));
         CODECHEF_FUNCTIONS.put("MAXFUN", Main.class.getDeclaredMethod("solveCodeChefMAXFUN"));
+        CODECHEF_FUNCTIONS.put("MXENVSUB", Main.class.getDeclaredMethod("solveCodeChefMXENVSUB"));
         
         if (args.length != 2) {
             // with 'T' test cases
