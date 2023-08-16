@@ -41,6 +41,70 @@ public class Main {
             System.out.println(p[N - 1]);
         }
     }
+
+    public static void solveCodeChefLUCKYFR() {
+        Scanner scn = new Scanner(System.in);
+
+        long T = scn.nextLong(); 
+        while (T-- > 0) {
+            String S = scn.next();
+            long count4s = 0;
+            for (int i = 0; i < S.length(); i++) {
+                if (S.charAt(i) == '4')
+                    count4s++;
+            }
+            System.out.println(count4s);
+        }
+    }
+
+    public static void solveCodeChefAVG() {
+        Scanner scn = new Scanner(System.in);
+
+        long T = scn.nextLong(); 
+        while (T-- > 0) {
+            long N = scn.nextLong();
+            long K = scn.nextLong();
+            long V = scn.nextLong();
+            long sum = 0;
+            for (long i = 0; i < N; i++)
+                sum += scn.nextLong();
+            // (sum + K * n) / (K + N) = V
+            long remain = V * (K + N) - sum;
+            System.out.println(((remain % K) != 0 || remain <= 0) ? -1 : remain / K);
+        }
+    }
+
+    public static void solveCodeChefMAXFUN() {
+        Scanner scn = new Scanner(System.in);
+
+        long T = scn.nextLong(); 
+        while (T-- > 0) {
+            long N = scn.nextLong() - 3;
+            long Ax = scn.nextLong();
+            long Ay = scn.nextLong();
+            long Az = scn.nextLong();
+            long actual = Math.abs(Ax - Ay) + Math.abs(Ax - Az) + Math.abs(Ay - Az);
+            for (long i = 0; i < N; i++) {
+                long Ai = scn.nextLong();
+                long nActual = Math.abs(Ai - Ay) + Math.abs(Ai - Az) + Math.abs(Ay - Az);
+                if (nActual > actual) {
+                    actual = nActual;
+                    Ax = Ai;
+                }
+                nActual = Math.abs(Ax - Ai) + Math.abs(Ax - Az) + Math.abs(Ai - Az);
+                if (nActual > actual) {
+                    actual = nActual;
+                    Ay = Ai;
+                }
+                nActual = Math.abs(Ax - Ay) + Math.abs(Ax - Ai) + Math.abs(Ay - Ai);
+                if (nActual > actual) {
+                    actual = nActual;
+                    Az = Ai;
+                }
+            }
+            System.out.println(actual);
+        }
+    }
     
     /**
      * Code to solve codeChef problem
@@ -49,6 +113,9 @@ public class Main {
         
         //Added solutions
         CODECHEF_FUNCTIONS.put("XOREQUAL", Main.class.getDeclaredMethod("solveCodeChefXOREQUAL"));
+        CODECHEF_FUNCTIONS.put("LUCKYFR", Main.class.getDeclaredMethod("solveCodeChefLUCKYFR"));
+        CODECHEF_FUNCTIONS.put("AVG", Main.class.getDeclaredMethod("solveCodeChefAVG"));
+        CODECHEF_FUNCTIONS.put("MAXFUN", Main.class.getDeclaredMethod("solveCodeChefMAXFUN"));
         
         if (args.length != 2) {
             // with 'T' test cases
