@@ -3,6 +3,7 @@ import java.lang.reflect.*;
 import java.time.*;
 import java.time.format.*;
 import java.util.*;
+import utilities.CodeChef;
 
 /**
  *
@@ -26,131 +27,34 @@ public class Main {
 
     public static final HashMap<String, Method> CODECHEF_FUNCTIONS = new HashMap<>();
     
-    public static void solveCodeChefXOREQUAL() {
-        Scanner scn = new Scanner(System.in);
-
-        // Precalculate all 2^N [0 <= N < 100000]
-        long[] p = new long [100000];
-        p[0] = 1;
-        for (int i = 1; i < 100000; i++)
-            p[i] = (p[i - 1] * 2) % 1000000007;
-
-        long T = scn.nextLong(); 
-        while (T-- > 0) {
-            int N = scn.nextInt();
-            System.out.println(p[N - 1]);
-        }
-    }
-
-    public static void solveCodeChefLUCKYFR() {
-        Scanner scn = new Scanner(System.in);
-
-        long T = scn.nextLong(); 
-        while (T-- > 0) {
-            String S = scn.next();
-            long count4s = 0;
-            for (int i = 0; i < S.length(); i++) {
-                if (S.charAt(i) == '4')
-                    count4s++;
-            }
-            System.out.println(count4s);
-        }
-    }
-
-    public static void solveCodeChefAVG() {
-        Scanner scn = new Scanner(System.in);
-
-        long T = scn.nextLong(); 
-        while (T-- > 0) {
-            long N = scn.nextLong();
-            long K = scn.nextLong();
-            long V = scn.nextLong();
-            long sum = 0;
-            for (long i = 0; i < N; i++)
-                sum += scn.nextLong();
-            // (sum + K * n) / (K + N) = V
-            long remain = V * (K + N) - sum;
-            System.out.println(((remain % K) != 0 || remain <= 0) ? -1 : remain / K);
-        }
-    }
-
-    public static void solveCodeChefMAXFUN() {
-        Scanner scn = new Scanner(System.in);
-
-        long T = scn.nextLong(); 
-        while (T-- > 0) {
-            long N = scn.nextLong() - 3;
-            long Ax = scn.nextLong();
-            long Ay = scn.nextLong();
-            long Az = scn.nextLong();
-            long actual = Math.abs(Ax - Ay) + Math.abs(Ax - Az) + Math.abs(Ay - Az);
-            for (long i = 0; i < N; i++) {
-                long Ai = scn.nextLong();
-                long nActual = Math.abs(Ai - Ay) + Math.abs(Ai - Az) + Math.abs(Ay - Az);
-                if (nActual > actual) {
-                    actual = nActual;
-                    Ax = Ai;
-                }
-                nActual = Math.abs(Ax - Ai) + Math.abs(Ax - Az) + Math.abs(Ai - Az);
-                if (nActual > actual) {
-                    actual = nActual;
-                    Ay = Ai;
-                }
-                nActual = Math.abs(Ax - Ay) + Math.abs(Ax - Ai) + Math.abs(Ay - Ai);
-                if (nActual > actual) {
-                    actual = nActual;
-                    Az = Ai;
-                }
-            }
-            System.out.println(actual);
-        }
-    }
-    
-    public static void solveCodeChefMXENVSUB() {
-        Scanner scn = new Scanner(System.in);
-
-        long T = scn.nextLong(); 
-        while (T-- > 0) {
-            long N = scn.nextLong();
-            long sum = (N * (N + 1)) / 2;
-            if (sum % 2 == 1)
-                N--;
-            System.out.println(N);
-        }
-    }
-    
     /**
      * Code to solve codeChef problem
      */
     public static void solveCodeChef(String[] args) throws Exception {
         
         //Added solutions
-        CODECHEF_FUNCTIONS.put("XOREQUAL", Main.class.getDeclaredMethod("solveCodeChefXOREQUAL"));
-        CODECHEF_FUNCTIONS.put("LUCKYFR", Main.class.getDeclaredMethod("solveCodeChefLUCKYFR"));
-        CODECHEF_FUNCTIONS.put("AVG", Main.class.getDeclaredMethod("solveCodeChefAVG"));
-        CODECHEF_FUNCTIONS.put("MAXFUN", Main.class.getDeclaredMethod("solveCodeChefMAXFUN"));
-        CODECHEF_FUNCTIONS.put("MXENVSUB", Main.class.getDeclaredMethod("solveCodeChefMXENVSUB"));
+        CODECHEF_FUNCTIONS.put("XOREQUAL", CodeChef.class.getDeclaredMethod("solveCodeChefXOREQUAL"));
+        CODECHEF_FUNCTIONS.put("LUCKYFR", CodeChef.class.getDeclaredMethod("solveCodeChefLUCKYFR"));
+        CODECHEF_FUNCTIONS.put("AVG", CodeChef.class.getDeclaredMethod("solveCodeChefAVG"));
+        CODECHEF_FUNCTIONS.put("MAXFUN", CodeChef.class.getDeclaredMethod("solveCodeChefMAXFUN"));
+        CODECHEF_FUNCTIONS.put("MXENVSUB", CodeChef.class.getDeclaredMethod("solveCodeChefMXENVSUB"));
+        CODECHEF_FUNCTIONS.put("POPCORN", CodeChef.class.getDeclaredMethod("solveCodeChefPOPCORN"));
+        CODECHEF_FUNCTIONS.put("FRGAME", CodeChef.class.getDeclaredMethod("solveCodeChefFRGAME"));
+        CODECHEF_FUNCTIONS.put("BALLBOX", CodeChef.class.getDeclaredMethod("solveCodeChefBALLBOX"));
+        CODECHEF_FUNCTIONS.put("KEPLERSLAW", CodeChef.class.getDeclaredMethod("solveCodeChefKEPLERSLAW"));
         
-        if (args.length != 2) {
-            // with 'T' test cases
+        String problem = "";
+        if (args.length < 2) {
+            System.out.println("Enter 'CodeChef' code problem to solve :");
             Scanner scn = new Scanner(System.in);
-            long T = scn.nextLong(); 
-            // long T = 1;
-            long[] p = new long [100000];
-            p[0] = 1;
-            for (int i = 1; i < 100000; i++)
-                p[i] = (p[i - 1] * 2) % 1000000007;
-            while (T-- > 0) {
-                int N = scn.nextInt();
-                System.out.println(p[N - 1]);
-            }
+            problem = scn.next();
         }
-        else {
-            if (!CODECHEF_FUNCTIONS.containsKey(args[1]))
-                System.out.println("Error: solution for CodeChef problem '" + args[1] + "' not found!");
-            else
-                CODECHEF_FUNCTIONS.get(args[1]).invoke(null);
-        }
+        else
+            problem = args[1];
+        if (!CODECHEF_FUNCTIONS.containsKey(problem))
+            System.out.println("Error: solution for CodeChef problem '" + problem + "' not found!");
+        else
+            CODECHEF_FUNCTIONS.get(problem).invoke(null);
     }
 
     public static HashMap<String, String> initialiceCountries() {
@@ -300,14 +204,18 @@ public class Main {
     public static void main (String[] args) throws java.lang.Exception
     {
         System.setOut(new PrintStream(System.out, true, "UTF8"));
-        if (args.length == 0)
-            System.out.println("Error: No tool defined. First param must be 'SpaceXStorm' or 'CodeChef'");
-        else {
-            switch (args[0]) {
-                case "SpaceXStorm" -> doSpaceXStormTask(args);
-                case "CodeChef" -> solveCodeChef(args);
-                default -> System.out.println("Error: Unknown task " + args[0]);
-            }
+        String tool = "";
+        if (args.length == 0) {
+            System.out.println("Error: No tool defined. Please, select tool 'SpaceXStorm' or 'CodeChef':");
+            Scanner scn = new Scanner(System.in);
+            tool = scn.next();
+        }
+        else
+            tool = args[0];
+        switch (tool) {
+            case "SpaceXStorm" -> doSpaceXStormTask(args);
+            case "CodeChef" -> solveCodeChef(args);
+            default -> System.out.println("Error: Unknown task " + tool);
         }
     }
 }
