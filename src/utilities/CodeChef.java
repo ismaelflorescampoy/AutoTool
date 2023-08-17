@@ -7,6 +7,39 @@ import java.util.*;
  * @author ismael.flores
  */
 public class CodeChef {
+    public static void solveCodeChefONP() {
+        Scanner scn = new Scanner(System.in);
+
+        long T = scn.nextLong(); 
+        while (T-- > 0) {
+            String S = scn.next();
+            Stack<String> val = new Stack<>();
+            Stack<Character> op = new Stack<>();
+            for (char c : S.toCharArray()) {
+                switch (c) {
+                    case '(':
+                        break;
+                    case '*':
+                    case '-':
+                    case '+':
+                    case '/':
+                    case '^':
+                        op.push(c);
+                        break;
+                    case ')':
+                        String polish = val.pop();
+                        polish = val.pop() + polish + op.pop();
+                        val.push(polish);
+                        break;
+                    default:
+                        val.push(Character.toString(c));
+                        break;
+                }
+            }
+            System.out.println(val.pop());
+        }
+    }
+    
     public static void solveCodeChefXOREQUAL() {
         Scanner scn = new Scanner(System.in);
 

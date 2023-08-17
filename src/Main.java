@@ -52,6 +52,7 @@ public class Main {
         CODECHEF_FUNCTIONS.put("FRGAME", CodeChef.class.getDeclaredMethod("solveCodeChefFRGAME"));
         CODECHEF_FUNCTIONS.put("BALLBOX", CodeChef.class.getDeclaredMethod("solveCodeChefBALLBOX"));
         CODECHEF_FUNCTIONS.put("KEPLERSLAW", CodeChef.class.getDeclaredMethod("solveCodeChefKEPLERSLAW"));
+        CODECHEF_FUNCTIONS.put("ONP", CodeChef.class.getDeclaredMethod("solveCodeChefONP"));
         
         String problem = getOption(args, 2, "Enter 'CodeChef' code problem to solve :");
         if (!CODECHEF_FUNCTIONS.containsKey(problem))
