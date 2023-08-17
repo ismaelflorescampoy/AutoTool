@@ -27,6 +27,16 @@ public class Main {
 
     public static final HashMap<String, Method> CODECHEF_FUNCTIONS = new HashMap<>();
     
+    public static String getOption(String[] args, int min_length, String ask_question) {
+        if (args.length < min_length) {
+            System.out.println(ask_question);
+            Scanner scn = new Scanner(System.in);
+            return scn.hasNextLine() ? scn.nextLine() : "";
+        }
+        else
+            return args[min_length - 1];
+    }
+    
     /**
      * Code to solve codeChef problem
      */
@@ -43,14 +53,7 @@ public class Main {
         CODECHEF_FUNCTIONS.put("BALLBOX", CodeChef.class.getDeclaredMethod("solveCodeChefBALLBOX"));
         CODECHEF_FUNCTIONS.put("KEPLERSLAW", CodeChef.class.getDeclaredMethod("solveCodeChefKEPLERSLAW"));
         
-        String problem = "";
-        if (args.length < 2) {
-            System.out.println("Enter 'CodeChef' code problem to solve :");
-            Scanner scn = new Scanner(System.in);
-            problem = scn.next();
-        }
-        else
-            problem = args[1];
+        String problem = getOption(args, 2, "Enter 'CodeChef' code problem to solve :");
         if (!CODECHEF_FUNCTIONS.containsKey(problem))
             System.out.println("Error: solution for CodeChef problem '" + problem + "' not found!");
         else
@@ -155,63 +158,57 @@ public class Main {
     }
 
     public static void doLiveDescription(String[] args) {
-        if (args.length <= 2)
-            System.out.println("Error: Missing launch time in UTC format");
-        else {
-          
+        String UTCStr = getOption(args, 3, "Error: No UTC launch time defined for SpaceXStorm LiveDescription task. Please, write UTC time in format 'dd/MM/yyyy HH:mm:ss' :");
+        
 //            for (String zona : ZoneId.getAvailableZoneIds())
 //                System.out.println(zona);
 
-            DateTimeFormatter input_formatter = DateTimeFormatter.ofPattern(INPUT_FORMAT);
-            DateTimeFormatter output_formatter = DateTimeFormatter.ofPattern(OUTPUT_FORMAT);
-            ZonedDateTime utc = ZonedDateTime.parse(args[2], input_formatter.withZone(ZoneId.of("UTC")));
-            HashMap<String, String> countries = initialiceCountries();
-            HashMap<String, ZonedDateTime> dates = new HashMap<>();
-            dates.put("UTC", utc);
-//            System.out.println("La fecha UTC a considerar es : " + args[2] + " (" + utc.format(output_formatter) + ")");
-            for (String country : countries.keySet()) {
-                ZoneId local_zone_id = ZoneId.of(countries.get(country));
-                ZonedDateTime local = utc.withZoneSameInstant(local_zone_id);
-                dates.put(country, local);
-            }
-            TreeMap<String, ZonedDateTime> ordered_dates = order(dates);
-            TreeMap<LocalDateTime, String> grouped_dates = new TreeMap<>();
-            for (String country : ordered_dates.descendingKeySet()) {
-                ZonedDateTime zdt = ordered_dates.get(country);
-//                System.out.println(country + " está en la zona " + zdt.getZone().toString() + " y la fecha local es: " + zdt.format(output_formatter));
-                String grouped_string = grouped_dates.get(zdt.toLocalDateTime());
-                if (grouped_string == null)
-                    grouped_dates.put(zdt.toLocalDateTime(), country);
-                else
-                    grouped_dates.put(zdt.toLocalDateTime(), grouped_string + ", " + country);
-            }
-            for (LocalDateTime ldt : grouped_dates.descendingKeySet())
-                System.out.println(get_clock_icon(ldt) + " " + ldt.format(output_formatter) + " \u2192 " + grouped_dates.get(ldt));
+        DateTimeFormatter input_formatter = DateTimeFormatter.ofPattern(INPUT_FORMAT);
+        DateTimeFormatter output_formatter = DateTimeFormatter.ofPattern(OUTPUT_FORMAT);
+        ZonedDateTime utc = null;
+        try {
+            utc = ZonedDateTime.parse(UTCStr, input_formatter.withZone(ZoneId.of("UTC")));
         }
+        catch (Exception e) {
+            System.out.println("Error: '" + UTCStr + "' is not a valid UTC date and time.");
+            return;
+        }
+        HashMap<String, String> countries = initialiceCountries();
+        HashMap<String, ZonedDateTime> dates = new HashMap<>();
+        dates.put("UTC", utc);
+//            System.out.println("La fecha UTC a considerar es : " + args[2] + " (" + utc.format(output_formatter) + ")");
+        for (String country : countries.keySet()) {
+            ZoneId local_zone_id = ZoneId.of(countries.get(country));
+            ZonedDateTime local = utc.withZoneSameInstant(local_zone_id);
+            dates.put(country, local);
+        }
+        TreeMap<String, ZonedDateTime> ordered_dates = order(dates);
+        TreeMap<LocalDateTime, String> grouped_dates = new TreeMap<>();
+        for (String country : ordered_dates.descendingKeySet()) {
+            ZonedDateTime zdt = ordered_dates.get(country);
+//                System.out.println(country + " está en la zona " + zdt.getZone().toString() + " y la fecha local es: " + zdt.format(output_formatter));
+            String grouped_string = grouped_dates.get(zdt.toLocalDateTime());
+            if (grouped_string == null)
+                grouped_dates.put(zdt.toLocalDateTime(), country);
+            else
+                grouped_dates.put(zdt.toLocalDateTime(), grouped_string + ", " + country);
+        }
+        for (LocalDateTime ldt : grouped_dates.descendingKeySet())
+            System.out.println(get_clock_icon(ldt) + " " + ldt.format(output_formatter) + " \u2192 " + grouped_dates.get(ldt));
     }
     
     public static void doSpaceXStormTask(String[] args) {
-        if (args.length > 1) {
-            switch (args[1]) {
-                case "LiveDescription" -> doLiveDescription(args);
-                default -> System.out.println("Error: Unknown SpaceXStorm task '" + args[1] + "'. Options: LiveDescription");
-            }
+        String task = getOption(args, 2, "Error: No task defined for SpaceXStorm. Please, select 'LiveDescription':");
+        switch (task) {
+            case "LiveDescription" -> doLiveDescription(args);
+            default -> System.out.println("Error: Unknown SpaceXStorm task '" + task + "'. Options: LiveDescription");
         }
-        else
-            System.out.println("Error: SpaceXStorm task needs extra parameters. Options: LiveDescription");
     }
-    
+  
     public static void main (String[] args) throws java.lang.Exception
     {
         System.setOut(new PrintStream(System.out, true, "UTF8"));
-        String tool = "";
-        if (args.length == 0) {
-            System.out.println("Error: No tool defined. Please, select tool 'SpaceXStorm' or 'CodeChef':");
-            Scanner scn = new Scanner(System.in);
-            tool = scn.next();
-        }
-        else
-            tool = args[0];
+        String tool = getOption(args, 1, "Error: No tool defined. Please, select tool 'SpaceXStorm' or 'CodeChef':");
         switch (tool) {
             case "SpaceXStorm" -> doSpaceXStormTask(args);
             case "CodeChef" -> solveCodeChef(args);
