@@ -197,6 +197,17 @@ public class Main {
         return clock_string;
     }
 
+    private static TreeMap<String, ZonedDateTime> getOrderedDates(ZonedDateTime utc, HashMap<String, String> countries) {
+        HashMap<String, ZonedDateTime> dates = new HashMap<>();
+        dates.put("UTC", utc);
+        for (String country : countries.keySet()) {
+            ZoneId local_zone_id = ZoneId.of(countries.get(country));
+            ZonedDateTime local = utc.withZoneSameInstant(local_zone_id);
+            dates.put(country, local);
+        }
+        return order(dates);
+    }
+
     public static void doLiveDescription(String[] args) {
         String UTCStr = getOption(args, 3, "Error: No UTC launch time defined for SpaceXStorm LiveDescription task. Please, write UTC time in format 'dd/MM/yyyy HH:mm:ss' :");
         
@@ -214,15 +225,7 @@ public class Main {
             return;
         }
         HashMap<String, String> countries = initializeCountriesFromFile("countries.txt", ';');
-        HashMap<String, ZonedDateTime> dates = new HashMap<>();
-        dates.put("UTC", utc);
-//            System.out.println("La fecha UTC a considerar es : " + args[2] + " (" + utc.format(output_formatter) + ")");
-        for (String country : countries.keySet()) {
-            ZoneId local_zone_id = ZoneId.of(countries.get(country));
-            ZonedDateTime local = utc.withZoneSameInstant(local_zone_id);
-            dates.put(country, local);
-        }
-        TreeMap<String, ZonedDateTime> ordered_dates = order(dates);
+        TreeMap<String, ZonedDateTime> ordered_dates = getOrderedDates(utc, countries);
         TreeMap<LocalDateTime, String> grouped_dates = new TreeMap<>();
         for (String country : ordered_dates.descendingKeySet()) {
             ZonedDateTime zdt = ordered_dates.get(country);
