@@ -37,10 +37,9 @@ public class Main {
     public static String getOption(String[] args, int min_length, String ask_question) {
         if (args.length < min_length) {
             System.out.println(ask_question);
-            Scanner scn = new Scanner(System.in);
-            String option = scn.hasNextLine() ? scn.nextLine() : "";
-            scn.close();
-            return option;
+            try (Scanner scn = new Scanner(System.in)) {
+                return scn.hasNextLine() ? scn.nextLine() : "";
+            }
         }
         else
             return args[min_length - 1];
@@ -68,6 +67,31 @@ public class Main {
             System.out.println("Error: solution for CodeChef problem '" + problem + "' not found!");
         else
             CODECHEF_FUNCTIONS.get(problem).invoke(null);
+    }
+    
+    /**
+     * Initialize countries from file
+     * @param fileName file to read countries from
+     * @param splitCharacter character to split file lines
+     * @return HashMap with countries and their timezones
+     */
+    public static HashMap<String, String> initializeCountriesFromFile(String fileName, char splitCharacter) {
+        HashMap<String, String> zonasHorarias = new HashMap<>();
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(fileName));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(Character.toString(splitCharacter));
+                if (parts.length == 2)
+                    zonasHorarias.put(parts[0], parts[1]);
+            }
+            reader.close();
+        }
+        catch (Exception e) {
+            System.out.println("File " + fileName + "not found. Creating list of countries hardcoded. Error: " + e.getMessage());
+            zonasHorarias = initialiceCountries();
+        }
+        return zonasHorarias;
     }
 
     public static HashMap<String, String> initialiceCountries() {
@@ -105,6 +129,11 @@ public class Main {
         return zonasHorarias;
     }
 
+    /**
+     * Order a HashMap by values
+     * @param dates HashMap to order
+     * @return TreeMap with ordered values
+     */
     public static TreeMap<String, ZonedDateTime> order(HashMap<String, ZonedDateTime> dates) {
         TreeMap<String, ZonedDateTime> sorted = new TreeMap<>(new Comparator<String>() {
             @Override public int compare(String o1, String o2) {
@@ -184,7 +213,7 @@ public class Main {
             System.out.println("Error: '" + UTCStr + "' is not a valid UTC date and time.");
             return;
         }
-        HashMap<String, String> countries = initialiceCountries();
+        HashMap<String, String> countries = initializeCountriesFromFile("countries.txt", ';');
         HashMap<String, ZonedDateTime> dates = new HashMap<>();
         dates.put("UTC", utc);
 //            System.out.println("La fecha UTC a considerar es : " + args[2] + " (" + utc.format(output_formatter) + ")");
@@ -215,6 +244,7 @@ public class Main {
             default -> System.out.println("Error: Unknown SpaceXStorm task '" + task + "'. Options: LiveDescription");
         }
     }
+
     /**
      * @param args the command line arguments
      * @throws java.lang.Exception
