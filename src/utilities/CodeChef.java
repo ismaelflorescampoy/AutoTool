@@ -1,7 +1,6 @@
 package utilities;
 
 import java.util.*;
-
 /**
  *
  * @author ismael.flores
@@ -9,7 +8,6 @@ import java.util.*;
 public class CodeChef {
     public static void solveCodeChefONP() {
         Scanner scn = new Scanner(System.in);
-
         long T = scn.nextLong(); 
         while (T-- > 0) {
             String S = scn.next();
@@ -38,6 +36,7 @@ public class CodeChef {
             }
             System.out.println(val.pop());
         }
+        scn.close();
     }
     
     public static void solveCodeChefXOREQUAL() {
@@ -54,6 +53,7 @@ public class CodeChef {
             int N = scn.nextInt();
             System.out.println(p[N - 1]);
         }
+        scn.close();
     }
 
     public static void solveCodeChefLUCKYFR() {
@@ -69,6 +69,7 @@ public class CodeChef {
             }
             System.out.println(count4s);
         }
+        scn.close();
     }
 
     public static void solveCodeChefAVG() {
@@ -86,6 +87,7 @@ public class CodeChef {
             long remain = V * (K + N) - sum;
             System.out.println(((remain % K) != 0 || remain <= 0) ? -1 : remain / K);
         }
+        scn.close();
     }
 
     public static void solveCodeChefMAXFUN() {
@@ -118,6 +120,7 @@ public class CodeChef {
             }
             System.out.println(actual);
         }
+        scn.close();
     }
     
     public static void solveCodeChefMXENVSUB() {
@@ -131,6 +134,7 @@ public class CodeChef {
                 N--;
             System.out.println(N);
         }
+        scn.close();
     }
     
     public static void solveCodeChefPOPCORN() {
@@ -145,6 +149,7 @@ public class CodeChef {
             long C2 = scn.nextLong();
             System.out.println(Math.max(C1 + C2, Math.max(A1 + A2, B1 + B2)));
         }
+        scn.close();
     }
 
     public static void solveCodeChefFRGAME() {
@@ -165,6 +170,7 @@ public class CodeChef {
                 B = B + D;
             System.out.println(A >= B ? "N" : "S");
         }
+        scn.close();
     }    
     
     public static void solveCodeChefBALLBOX() {
@@ -176,6 +182,7 @@ public class CodeChef {
             long min = K * (K + 1) / 2;
             System.out.println(N >= min ? "YES" : "NO");
         }        
+        scn.close();
     }
     
     public static void solveCodeChefKEPLERSLAW() {
@@ -189,5 +196,6 @@ public class CodeChef {
             boolean keplerok = (R2 * R2 * R2) * (T1 * T1) == (R1 * R1 * R1) * (T2 * T2);
             System.out.println(keplerok ? "YES" : "NO");
         }        
+        scn.close();
     }    
 }

@@ -13,11 +13,11 @@ import utilities.CodeChef;
  * 
  * 1.- CodeChef solver
  * 
- *   1.a.- java -jar .\HelloWorld.jar CodeChef
+ *   1.a.- java -jar .\HelloWorld.jar CodeChef [problem code]
  * 
  * 2.- SpaceXStorm tool
  * 
- *   2.a.- java .jar .\HelloWorls.jar SpaceXStorm LiveDescription "dd/MM/yyyy HH:mm:ss"
+ *   2.a.- java -jar .\HelloWorls.jar SpaceXStorm LiveDescription "dd/MM/yyyy HH:mm:ss"
  * 
  */
 public class Main {
@@ -27,11 +27,20 @@ public class Main {
 
     public static final HashMap<String, Method> CODECHEF_FUNCTIONS = new HashMap<>();
     
+    /**
+     * Get an option either from command line or from user input
+     * @param args command line arguments
+     * @param min_length minimum number of arguments to get (if less, ask for user input)
+     * @param ask_question question to ask to user if needed
+     * @return option selected by user or through command line
+     */
     public static String getOption(String[] args, int min_length, String ask_question) {
         if (args.length < min_length) {
             System.out.println(ask_question);
             Scanner scn = new Scanner(System.in);
-            return scn.hasNextLine() ? scn.nextLine() : "";
+            String option = scn.hasNextLine() ? scn.nextLine() : "";
+            scn.close();
+            return option;
         }
         else
             return args[min_length - 1];
@@ -99,6 +108,7 @@ public class Main {
     public static TreeMap<String, ZonedDateTime> order(HashMap<String, ZonedDateTime> dates) {
         TreeMap<String, ZonedDateTime> sorted = new TreeMap<>(new Comparator<String>() {
             @Override public int compare(String o1, String o2) {
+                // If dates are equal, sort by country name
                 if (dates.get(o1).compareTo(dates.get(o2)) == 0)
                     return o1.compareTo(o2);
                 return dates.get(o1).compareTo(dates.get(o2));
@@ -125,7 +135,7 @@ public class Main {
     U+1F55E	🕞	Tres y media
     U+1F55F	🕟	Cuatro y media
     U+1F560	🕠	Cinco y media
-    U+1F561	?	Seis y media
+    U+1F561	🕡	Seis y media
     U+1F562	🕢	Siete y media
     U+1F563	🕣	Ocho y media
     U+1F564	🕤	Nueve y media
@@ -205,7 +215,10 @@ public class Main {
             default -> System.out.println("Error: Unknown SpaceXStorm task '" + task + "'. Options: LiveDescription");
         }
     }
-  
+    /**
+     * @param args the command line arguments
+     * @throws java.lang.Exception
+     */
     public static void main (String[] args) throws java.lang.Exception
     {
         System.setOut(new PrintStream(System.out, true, "UTF8"));
