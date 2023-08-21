@@ -94,6 +94,10 @@ public class Main {
         return zonasHorarias;
     }
 
+    /**
+     * Initialize countries and its timezones
+     * @return HashMap with countries and their timezones
+     */
     public static HashMap<String, String> initialiceCountries() {
         HashMap<String, String> zonasHorarias = new HashMap<>();
         
@@ -147,31 +151,36 @@ public class Main {
         return sorted;
     }
 
-    /*
-    U+1F550	🕐	Uno en punto
-    U+1F551	🕑	Dos en punto
-    U+1F553	🕓	Cuatro en punto
-    U+1F554	🕔	Cinco en punto
-    U+1F555	🕕	Seis en punto
-    U+1F556	🕖	Siete en punto
-    U+1F557	🕗	Ocho en punto
-    U+1F558	🕘	Nueve en punto
-    U+1F559	🕙	Diez en punto
-    U+1F55A	🕚	Once en punto
-    U+1F55B	🕛	Doce en punto
-    U+1F55C	🕜	Uno y media
-    U+1F55D	🕝	Dos y media
-    U+1F55E	🕞	Tres y media
-    U+1F55F	🕟	Cuatro y media
-    U+1F560	🕠	Cinco y media
-    U+1F561	🕡	Seis y media
-    U+1F562	🕢	Siete y media
-    U+1F563	🕣	Ocho y media
-    U+1F564	🕤	Nueve y media
-    U+1F565	🕥	Diez y media
-    U+1F566	🕦	Once y media
-    U+1F567	🕧	Doce y media        
-    */
+    /**
+     * Get clock icon for a given date. These are icons for each hour:
+     * 
+     * U+1F550	🕐	Uno en punto
+     * U+1F551	🕑	Dos en punto
+     * U+1F553	🕓	Cuatro en punto
+     * U+1F554	🕔	Cinco en punto
+     * U+1F555	🕕	Seis en punto
+     * U+1F556	🕖	Siete en punto
+     * U+1F557	🕗	Ocho en punto
+     * U+1F558	🕘	Nueve en punto
+     * U+1F559	🕙	Diez en punto
+     * U+1F55A	🕚	Once en punto
+     * U+1F55B	🕛	Doce en punto
+     * U+1F55C	🕜	Uno y media
+     * U+1F55D	🕝	Dos y media
+     * U+1F55E	🕞	Tres y media
+     * U+1F55F	🕟	Cuatro y media
+     * U+1F560	🕠	Cinco y media
+     * U+1F561	🕡	Seis y media
+     * U+1F562	🕢	Siete y media
+     * U+1F563	🕣	Ocho y media
+     * U+1F564	🕤	Nueve y media
+     * U+1F565	🕥	Diez y media
+     * U+1F566	🕦	Once y media
+     * U+1F567	🕧	Doce y media
+     * 
+     * @param ldt date to get clock icon for
+     * @return clock icon
+     */
     public static String get_clock_icon(LocalDateTime ldt) {
         String clock_string = "";
         for (int i = 0; i < 12; i++) {
@@ -197,6 +206,12 @@ public class Main {
         return clock_string;
     }
 
+    /**
+     * Get ordered dates for a launch
+     * @param utc UTC launch date and time
+     * @param countries HashMap with countries and their timezones
+     * @return TreeMap with ordered launch dates for each country
+     */
     private static TreeMap<String, ZonedDateTime> getOrderedDates(ZonedDateTime utc, HashMap<String, String> countries) {
         HashMap<String, ZonedDateTime> dates = new HashMap<>();
         dates.put("UTC", utc);
@@ -240,6 +255,10 @@ public class Main {
             System.out.println(get_clock_icon(ldt) + " " + ldt.format(output_formatter) + " \u2192 " + grouped_dates.get(ldt));
     }
     
+    /**
+     * Do a SpaceXStorm task
+     * @param args command line arguments
+     */
     public static void doSpaceXStormTask(String[] args) {
         String task = getOption(args, 2, "Error: No task defined for SpaceXStorm. Please, select 'LiveDescription':");
         switch (task) {
@@ -249,6 +268,7 @@ public class Main {
     }
 
     /**
+     * Main function checks command line arguments (or user input option) and calls the corresponding function
      * @param args the command line arguments
      * @throws java.lang.Exception
      */
