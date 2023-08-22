@@ -7,6 +7,22 @@ import java.util.*;
  */
 public class CodeChef {
 
+    /**
+     * @brief Check if a year is leap
+     * @param y Year
+     * @return true if the year is leap, false otherwise
+     */
+    private static boolean isLeapYear(int y) {
+        return (y % 4 == 0 && y % 100 != 0) || (y % 400 == 0);
+    }
+
+    /**
+     * @brief Check if a date is valid
+     * @param d Day
+     * @param m Month
+     * @param y Year
+     * @return true if the date is valid, false otherwise
+     */
     private static boolean isValid(int d, int m, int y) {
         if (d < 1 || d > 31 || m < 1 || m > 12 || y > 2099)
             return false;
@@ -21,10 +37,6 @@ public class CodeChef {
                 return false;
         }
         return true;
-    }
-
-    private static boolean isLeapYear(int y) {
-        return (y % 4 == 0 && y % 100 != 0) || (y % 400 == 0);
     }
 
     /*

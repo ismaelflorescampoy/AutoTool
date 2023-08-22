@@ -45,7 +45,8 @@ public class Main {
     }
     
     /**
-     * Code to solve codeChef problem
+     * Code to solve codeChef problems
+     * @param args command line arguments
      */
     public static void solveCodeChef(String[] args) throws Exception {
         
@@ -224,6 +225,10 @@ public class Main {
         return order(dates);
     }
 
+    /*
+     * Do a SpaceXStorm LiveDescription task
+     * @param args command line arguments
+     */
     public static void doLiveDescription(String[] args) {
         String UTCStr = getOption(args, 3, "Error: No UTC launch time defined for SpaceXStorm LiveDescription task. Please, write UTC time in format 'dd/MM/yyyy HH:mm:ss' :");
         
