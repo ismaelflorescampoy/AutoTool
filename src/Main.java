@@ -24,6 +24,7 @@ public class Main {
 
     public static final String INPUT_FORMAT = "dd/MM/yyyy HH:mm:ss";
     public static final String OUTPUT_FORMAT = "dd/MM HH:mm";
+    public static Scanner scn = new Scanner(System.in);
 
     public static final HashMap<String, Method> CODECHEF_FUNCTIONS = new HashMap<>();
     
@@ -37,9 +38,7 @@ public class Main {
     public static String getOption(String[] args, int min_length, String ask_question) {
         if (args.length < min_length) {
             System.out.println(ask_question);
-            try (Scanner scn = new Scanner(System.in)) {
-                return scn.hasNextLine() ? scn.nextLine() : "";
-            }
+            return scn.hasNextLine() ? scn.nextLine() : "";
         }
         else
             return args[min_length - 1];
@@ -61,6 +60,8 @@ public class Main {
         CODECHEF_FUNCTIONS.put("BALLBOX", CodeChef.class.getDeclaredMethod("solveCodeChefBALLBOX"));
         CODECHEF_FUNCTIONS.put("KEPLERSLAW", CodeChef.class.getDeclaredMethod("solveCodeChefKEPLERSLAW"));
         CODECHEF_FUNCTIONS.put("ONP", CodeChef.class.getDeclaredMethod("solveCodeChefONP"));
+        CODECHEF_FUNCTIONS.put("DDMMORMMDD", CodeChef.class.getDeclaredMethod("solveCodeChefDDMMORMMDD"));
+        CODECHEF_FUNCTIONS.put("DARLIG", CodeChef.class.getDeclaredMethod("solveCodeChefDARLIG"));
         
         String problem = getOption(args, 2, "Enter 'CodeChef' code problem to solve :");
         if (!CODECHEF_FUNCTIONS.containsKey(problem))

@@ -6,6 +6,100 @@ import java.util.*;
  * @author ismael.flores
  */
 public class CodeChef {
+
+    private static boolean isValid(int d, int m, int y) {
+        if (d < 1 || d > 31 || m < 1 || m > 12 || y > 2099)
+            return false;
+        if (m == 2) {
+            if (d > 29)
+                return false;
+            if (d == 29 && !isLeapYear(y))
+                return false;
+        }
+        if (m == 4 || m == 6 || m == 9 || m == 11) {
+            if (d > 30)
+                return false;
+        }
+        return true;
+    }
+
+    private static boolean isLeapYear(int y) {
+        return (y % 4 == 0 && y % 100 != 0) || (y % 400 == 0);
+    }
+
+    /*
+     * Tonmoy has a special torch. The torch has 4 levels numbered 1 to 4 and 2 states ("On" and "Off"). 
+     * Levels 1, 2, and 3 correspond to the "On" state while level 4 corresponds to the "Off" state.
+     * The levels of the torch can be changed as:
+     * 
+     * Level 1 changes to level 2.
+     * Level 2 changes to level 3.
+     * Level 3 changes to level 4.
+     * Level 4 changes to level 1.
+     * 
+     * Given the initial state as KK and the number of changes made in the levels as N, find the final state of the torch. 
+     * If the final state cannot be determined, print "Ambiguous" instead.
+     * 
+     * Input Format:
+     * First line will contain T, the number of test cases. Then the test cases follow.
+     * Each test case contains of a single line of input, two integers N, K - the number of changes made in the levels and initial state of the torch. 
+     * Here, K = 0 denotes "Off" state while K = 1 denotes "On" state.
+     * 
+     * Output Format:
+     * For each test case, output in a single line, the final state of the torch, i.e. "On" or "Off". 
+     * If the final state cannot be determined, print "Ambiguous" instead.
+     * You may print each character of the string in uppercase or lowercase (for example, the strings "On", "ON", "on" and "oN" will all be treated as identical).
+     * 
+     * Constraints
+     * 1 <= T <= 10^5 
+     * 0 <= N <= 10^9
+     * 0 <= K <= 1
+     */
+    public static void solveCodeChefDARLIG() {
+        Scanner scn = new Scanner(System.in);
+        long T = scn.nextLong(); 
+        while (T-- > 0) {
+            long N = scn.nextLong();
+            int K = scn.nextInt();
+            if (K == 0)
+                K = (N % 4 == 0) ? 0 : 1;
+            else
+                K = (N % 4 == 0) ? 1 : -1;
+            switch (K) {
+                case 0:
+                    System.out.println("Off");
+                    break;
+                case 1:
+                    System.out.println("On");
+                    break;
+                default:
+                    System.out.println("Ambiguous");
+                    break;
+            }
+        }
+        scn.close();
+    }
+
+    public static void solveCodeChefDDMMORMMDD() {
+        Scanner scn = new Scanner(System.in);
+        long T = scn.nextLong(); 
+        while (T-- > 0) {
+            String S = scn.next();
+            int D = Integer.parseInt(S.substring(0, 2));
+            int M = Integer.parseInt(S.substring(3, 5));
+            int Y = Integer.parseInt(S.substring(6, 10));
+            boolean validDDMMYYY = isValid(D, M, Y);
+            boolean validMMDDYYY = isValid(M, D, Y);
+            if (validDDMMYYY && validMMDDYYY)
+                System.out.println("BOTH");
+            else if (validDDMMYYY)
+                System.out.println("DD/MM/YYYY");
+            else if (validMMDDYYY)
+                System.out.println("MM/DD/YYYY");
+        }
+        scn.close();
+    }
+
     public static void solveCodeChefONP() {
         Scanner scn = new Scanner(System.in);
         long T = scn.nextLong(); 
