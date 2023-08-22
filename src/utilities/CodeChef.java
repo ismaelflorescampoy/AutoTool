@@ -2,7 +2,7 @@ package utilities;
 
 import java.util.*;
 /**
- *
+ * @class CodeChef
  * @author ismael.flores
  */
 public class CodeChef {
