@@ -39,6 +39,42 @@ public class CodeChef {
         return true;
     }
 
+    /*
+     * Chef is going on a road trip and needs to apply for inter-district and inter-state travel e-passes. 
+     * It takes A minutes to fill each inter-district e-pass application and B minutes for each inter-state e-pass application.
+     * His journey is given to you as a binary string S of length N where 0 denotes crossing from one district to another district 
+     * (which needs an inter-district e-pass), and a 1 denotes crossing from one state to another (which needs an inter-state e-pass).
+     * Find the total time Chef has to spend on filling the various forms.
+     * 
+     * Input Format:
+     * The first line of the input contains a single integer T denoting the number of test cases. The description of T test cases follows.
+     * Each test case contains two lines of input. First line contains three space separated integers N, A and B.
+     * Second line contains the string S.
+     * 
+     * Output Format:
+     * For each testcase, output in a single line the total time Chef has to spend on filling the various forms for his journey.
+     * 
+     * Constraints:
+     * 1 <= T <= 10^2
+     * 1 <= N, A, B <= 10^2
+     * Si is '0' or '1'
+     */
+    public static void solveCodeChefTRAVELPS() {
+        Scanner scn = new Scanner(System.in);
+        long T = scn.nextLong(); 
+        while (T-- > 0) {
+            long N = scn.nextLong();
+            long A = scn.nextLong();
+            long B = scn.nextLong();
+            String S = scn.next();
+            long count = 0;
+            for (char c : S.toCharArray())
+                count += (c == '0') ? A : B;
+            System.out.println(count);
+        }
+        scn.close();
+    }
+
     /* 
      * Chef is playing Need For Speed. Currently, 
      * his car is running on a straight road with a velocity U metres per second and approaching a 90 degrees turn which is S metres away from him.
