@@ -63,7 +63,7 @@ public class CodeChef {
         Scanner scn = new Scanner(System.in);
         long T = scn.nextLong(); 
         while (T-- > 0) {
-            long N = scn.nextLong();
+            scn.nextLong();
             long A = scn.nextLong();
             long B = scn.nextLong();
             String S = scn.next();
