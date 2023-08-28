@@ -40,6 +40,69 @@ public class CodeChef {
     }
 
     /*
+    * CodeChef offers a feature called streak count. A streak is maintained if you solve at least one problem daily.
+    * Om and Addy actively maintain their streaks on CodeChef. Over a span of N consecutive days, 
+    * you have observed the count of problems solved by each of them.
+    * Your task is to determine the maximum streak achieved by Om and Addy and find who had the longer maximum streak.
+    
+    * Input Format:
+    * The first line of input will contain a single integer T, denoting the number of test cases.
+    * Each test case consists of multiple lines of input.
+    * The first line of each test case contains an integer N denoting the number of days.
+    * The second line of each test case contains N space-separated integers, 
+    * the ith of which is Ai, representing the problems solved by Om on the ith day.
+    * The third line of each test case contains NN space-separated integers, 
+    * the ith of which is Bi, representing the problems solved by Addy on the ith day.
+    * 
+    * Output Format:
+    * For each test case, output:
+    * OM, if Om has longer maximum streak than Addy;
+    * ADDY, if Addy has longer maximum streak than Om;
+    * DRAW, if both have equal maximum streak.
+    *
+    * You may print each character in uppercase or lowercase. For example, OM, om, Om, and oM, are all considered the same.
+    * 
+    * Constraints:
+    * 1 <= T <= 10^5
+    * 1 <= N <= 10^5
+    * 0 <= Ai, Bi <= 10^9
+    * 
+    * The sum of N over all test cases won't exceed 6*10^5
+    */
+    public static void solveCodeChefCS2023_STK() {
+        Scanner scn = new Scanner(System.in);
+        long T = scn.nextLong(); 
+        while (T-- > 0) {
+            long N = scn.nextLong();
+            int streakA = 0;
+            int streakB = 0;
+            int maxStreakA = 0;
+            int maxStreakB = 0;
+            for (long i = 0; i < N; i++) {
+                if (scn.nextLong() > 0)
+                    streakA++;
+                else
+                    streakA = 0;
+                maxStreakA = Math.max(maxStreakA, streakA);
+            }
+            for (long i = 0; i < N; i++) {
+                if (scn.nextLong() > 0)
+                    streakB++;
+                else
+                    streakB = 0;
+                maxStreakB = Math.max(maxStreakB, streakB);
+            }
+            if (maxStreakA > maxStreakB)
+                System.out.println("OM");
+            else if (maxStreakA < maxStreakB)
+                System.out.println("ADDY");
+            else
+                System.out.println("DRAW");
+        }
+        scn.close();
+    }
+
+    /*
      * Chef is going on a road trip and needs to apply for inter-district and inter-state travel e-passes. 
      * It takes A minutes to fill each inter-district e-pass application and B minutes for each inter-state e-pass application.
      * His journey is given to you as a binary string S of length N where 0 denotes crossing from one district to another district 
