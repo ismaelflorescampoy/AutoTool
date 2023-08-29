@@ -24,6 +24,8 @@ public class Main {
 
     public static final String INPUT_FORMAT = "dd/MM/yyyy HH:mm:ss";
     public static final String OUTPUT_FORMAT = "dd/MM HH:mm";
+    public static boolean HAS_FLAG = true;
+    public static boolean HAS_NAME = true;
     public static Scanner scn = new Scanner(System.in);
 
     public static final HashMap<String, Method> CODECHEF_FUNCTIONS = new HashMap<>();
@@ -75,35 +77,80 @@ public class Main {
     }
     
     /**
-     * Initialize countries from file
+     * Initialize countries from file. The file contains lines with country name and timezone separated by a character 'splitCharacter' (usually ';')
      * @param fileName file to read countries from
      * @param splitCharacter character to split file lines
      * @return HashMap with countries and their timezones
      */
-    public static HashMap<String, String> initializeCountriesFromFile(String fileName, char splitCharacter) {
+    public static HashMap<String, String> initializeCountriesTimeZonesFromFile(String fileName, char splitCharacter) {
         HashMap<String, String> zonasHorarias = new HashMap<>();
+        zonasHorarias.put("UTC", "UTC");
         try {
             BufferedReader reader = new BufferedReader(new FileReader(fileName));
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(Character.toString(splitCharacter));
-                if (parts.length == 2)
+                if (parts.length >= 2)
                     zonasHorarias.put(parts[0], parts[1]);
             }
             reader.close();
         }
         catch (Exception e) {
-            System.out.println("File " + fileName + "not found. Creating list of countries hardcoded. Error: " + e.getMessage());
-            zonasHorarias = initialiceCountries();
+            System.out.println("File " + fileName + "not found. Creating list of countries and time zones hardcoded. Error: " + e.getMessage());
+            zonasHorarias = initialiceCountriesTimeZones();
         }
         return zonasHorarias;
     }
 
     /**
-     * Initialize countries and its timezones
+     * Initialize countries flags from file. The file contains lines with country name, timezone and flag separated by a character 'splitCharacter' (usually ';')
+     * @param fileName file to read countries from
+     * @param splitCharacter character to split file lines
+     * @return HashMap with countries and their flags
+     */
+    public static HashMap<String, String> initializeCountriesFlagsFromFile(String fileName, char splitCharacter) {
+        HashMap<String, String> countriesFlags = new HashMap<>();
+        countriesFlags.put("UTC", "\uD83D\uDE80"); // Rocket: \uD83D\uDE80
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(fileName));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(Character.toString(splitCharacter));
+                if (parts.length >= 3)
+                    countriesFlags.put(parts[0], parts[2]);
+            }
+            reader.close();
+        }
+        catch (Exception e) {
+            System.out.println("File " + fileName + "not found. Creating list of countries and flags hardcoded. Error: " + e.getMessage());
+            countriesFlags = initialiceCountriesFlags();
+        }
+        return countriesFlags;
+    }        
+
+    /**
+     * Order a HashMap by values
+     * @param dates HashMap to order
+     * @return TreeMap with ordered values
+     */
+    public static TreeMap<String, ZonedDateTime> order(HashMap<String, ZonedDateTime> dates) {
+        TreeMap<String, ZonedDateTime> sorted = new TreeMap<>(new Comparator<String>() {
+            @Override public int compare(String o1, String o2) {
+                // If dates are equal, sort by country name
+                if (dates.get(o1).compareTo(dates.get(o2)) == 0)
+                    return o1.compareTo(o2);
+                return dates.get(o1).compareTo(dates.get(o2));
+            }
+        });
+        sorted.putAll(dates);
+        return sorted;
+    }
+
+    /**
+     * Initialize countries and its timezones (hardcoded)
      * @return HashMap with countries and their timezones
      */
-    public static HashMap<String, String> initialiceCountries() {
+    public static HashMap<String, String> initialiceCountriesTimeZones() {
         HashMap<String, String> zonasHorarias = new HashMap<>();
         
         zonasHorarias.put("Nueva Zelanda", "Pacific/Auckland");
@@ -139,21 +186,40 @@ public class Main {
     }
 
     /**
-     * Order a HashMap by values
-     * @param dates HashMap to order
-     * @return TreeMap with ordered values
+     * Initialize countries and its flags (hardcoded)
+     * @return HashMap with countries and their flags
      */
-    public static TreeMap<String, ZonedDateTime> order(HashMap<String, ZonedDateTime> dates) {
-        TreeMap<String, ZonedDateTime> sorted = new TreeMap<>(new Comparator<String>() {
-            @Override public int compare(String o1, String o2) {
-                // If dates are equal, sort by country name
-                if (dates.get(o1).compareTo(dates.get(o2)) == 0)
-                    return o1.compareTo(o2);
-                return dates.get(o1).compareTo(dates.get(o2));
-            }
-        });
-        sorted.putAll(dates);
-        return sorted;
+    private static HashMap<String, String> initialiceCountriesFlags() {
+        HashMap<String, String> flags = new HashMap<>();
+        flags.put("Nueva Zelanda", "\uD83C\uDDF3\uD83C\uDDFF");
+        flags.put("Corea del Sur", "\uD83C\uDDF0\uD83C\uDDF7");
+        flags.put("Japón", "\uD83C\uDDEF\uD83C\uDDF5");
+        flags.put("Islas Canarias", "\uD83C\uDDEE\uD83C\uDDE8");
+        flags.put("Argentina", "\uD83C\uDDE6\uD83C\uDDF7");
+        flags.put("Uruguay", "\uD83C\uDDFA\uD83C\uDDFE");
+        flags.put("Brasil", "\uD83C\uDDE7\uD83C\uDDF7");
+        flags.put("Chile", "\uD83C\uDDE8\uD83C\uDDF1");
+        flags.put("Paraguay", "\uD83C\uDDF5\uD83C\uDDFE");
+        flags.put("Venezuela", "\uD83C\uDDFB\uD83C\uDDEA");
+        flags.put("República Dominicana", "\uD83C\uDDE9\uD83C\uDDF4");
+        flags.put("Bolivia", "\uD83C\uDDE7\uD83C\uDDF4");
+        flags.put("Puerto Rico", "\uD83C\uDDF5\uD83C\uDDF7");
+        flags.put("Florida", "\uD83C\uDDFA\uD83C\uDDF8"); // Ola: \uD83C\uDF0B
+        flags.put("New York", "\uD83C\uDDFA\uD83C\uDDF8");  // Estatua de la libertad: \uD83D\uDDFD
+        flags.put("Cuba", "\uD83C\uDDE8\uD83C\uDDFA");
+        flags.put("Panamá", "\uD83C\uDDF5\uD83C\uDDF8");
+        flags.put("Perú", "\uD83C\uDDF5\uD83C\uDDEA");
+        flags.put("Colombia", "\uD83C\uDDE8\uD83C\uDDF4");
+        flags.put("Ecuador", "\uD83C\uDDEA\uD83C\uDDE8");
+        flags.put("México", "\uD83C\uDDF2\uD83C\uDDFD");
+        flags.put("Costa Rica", "\uD83C\uDDE8\uD83C\uDDF7");
+        flags.put("Honduras", "\uD83C\uDDED\uD83C\uDDF3");
+        flags.put("El Salvador", "\uD83C\uDDF8\uD83C\uDDFB");
+        flags.put("Nicaragua", "\uD83C\uDDF3\uD83C\uDDEE");
+        flags.put("Guatemala", "\uD83C\uDDEC\uD83C\uDDF9");
+        flags.put("California", "\uD83C\uDDFA\uD83C\uDDF8"); // Palmera: \uD83C\uDF34
+        flags.put("España", "\uD83C\uDDEA\uD83C\uDDF8");
+        return flags;
     }
 
     /**
@@ -186,7 +252,7 @@ public class Main {
      * @param ldt date to get clock icon for
      * @return clock icon
      */
-    public static String get_clock_icon(LocalDateTime ldt) {
+    private static String getClockIcon(LocalDateTime ldt) {
         String clock_string = "";
         for (int i = 0; i < 12; i++) {
             if (ldt.isAfter(LocalDateTime.of(ldt.getYear(), ldt.getMonth(), ldt.getDayOfMonth(), i, 45)) &&
@@ -219,7 +285,6 @@ public class Main {
      */
     private static TreeMap<String, ZonedDateTime> getOrderedDates(ZonedDateTime utc, HashMap<String, String> countries) {
         HashMap<String, ZonedDateTime> dates = new HashMap<>();
-        dates.put("UTC", utc);
         for (String country : countries.keySet()) {
             ZoneId local_zone_id = ZoneId.of(countries.get(country));
             ZonedDateTime local = utc.withZoneSameInstant(local_zone_id);
@@ -228,13 +293,61 @@ public class Main {
         return order(dates);
     }
 
+    /**
+     * Get country string (name plus flag) depending on whether country has name and/or flag
+     * @param hasName true if country has name
+     * @param hasFlag true if country has flag
+     * @param countryNameString country name
+     * @return country string
+     */
+    private static String getCountryString(boolean hasName, boolean hasFlag, String countryNameString, HashMap<String, String> countriesAndFlags) {
+        String country_string = "";
+        if (!hasFlag)
+            country_string += countryNameString;
+        else if (hasName)
+            country_string += (countryNameString + " " + countriesAndFlags.get(countryNameString));
+        else
+            country_string += countriesAndFlags.get(countryNameString);
+        return country_string;
+    }
+
+    /*
+     * Update format for country text. Initialice HAS_NAME and HAS_FLAG variables
+     * @param format String with format definition to update
+     * @return void
+     */
+    private static void updateFormat(String format) {
+        switch (format) {
+            case "only_text" -> {
+                HAS_NAME = true;
+                HAS_FLAG = false;
+            }
+            case "only_flag" -> {
+                HAS_NAME = false;
+                HAS_FLAG = true;
+            }
+            case "text_and_flag" -> {
+                HAS_NAME = true;
+                HAS_FLAG = true;
+            }
+            default -> {
+                HAS_NAME = true;
+                HAS_FLAG = false;
+            }
+        }
+    }
+
     /*
      * Do a SpaceXStorm LiveDescription task
      * @param args command line arguments
      */
     public static void doLiveDescription(String[] args) {
         String UTCStr = getOption(args, 3, "Error: No UTC launch time defined for SpaceXStorm LiveDescription task. Please, write UTC time in format 'dd/MM/yyyy HH:mm:ss' :");
-        
+
+        String format = getOption(args, 4, "No format defined for country text in SpaceXStorm LiveDescription task. Available options are 'only_text', 'only_flag' and 'text_and_flag' (default is 'only_text'):");
+
+        updateFormat(format);
+
 //            for (String zona : ZoneId.getAvailableZoneIds())
 //                System.out.println(zona);
 
@@ -248,20 +361,20 @@ public class Main {
             System.out.println("Error: '" + UTCStr + "' is not a valid UTC date and time.");
             return;
         }
-        HashMap<String, String> countries = initializeCountriesFromFile("countries.txt", ';');
-        TreeMap<String, ZonedDateTime> ordered_dates = getOrderedDates(utc, countries);
+        HashMap<String, String> countriesAndTimeZones = initializeCountriesTimeZonesFromFile("countries.txt", ';');
+        HashMap<String, String> countriesAndFlags = initializeCountriesFlagsFromFile("countries.txt", ';');
+        TreeMap<String, ZonedDateTime> ordered_dates = getOrderedDates(utc, countriesAndTimeZones);
         TreeMap<LocalDateTime, String> grouped_dates = new TreeMap<>();
         for (String country : ordered_dates.descendingKeySet()) {
             ZonedDateTime zdt = ordered_dates.get(country);
-//                System.out.println(country + " está en la zona " + zdt.getZone().toString() + " y la fecha local es: " + zdt.format(output_formatter));
             String grouped_string = grouped_dates.get(zdt.toLocalDateTime());
             if (grouped_string == null)
-                grouped_dates.put(zdt.toLocalDateTime(), country);
+                grouped_dates.put(zdt.toLocalDateTime(), getCountryString(HAS_NAME, HAS_FLAG, country, countriesAndFlags));
             else
-                grouped_dates.put(zdt.toLocalDateTime(), grouped_string + ", " + country);
+                grouped_dates.put(zdt.toLocalDateTime(), grouped_string + ", " + getCountryString(HAS_NAME, HAS_FLAG, country, countriesAndFlags));
         }
         for (LocalDateTime ldt : grouped_dates.descendingKeySet())
-            System.out.println(get_clock_icon(ldt) + " " + ldt.format(output_formatter) + " \u2192 " + grouped_dates.get(ldt));
+            System.out.println(getClockIcon(ldt) + " " + ldt.format(output_formatter) + " \u2192 " + grouped_dates.get(ldt));
     }
     
     /**
