@@ -439,4 +439,46 @@ public class CodeChef {
         }        
         scn.close();
     }    
+
+    /*
+     * Finally, a COVID vaccine is out on the market and the Chefland government has asked you to form a plan to distribute it to the public as soon as possible. 
+     * There are a total of NN people with ages a1, a2, ..., aN.
+     * There is only one hospital where vaccination is done and it is only possible to vaccinate up to DD people per day. 
+     * Anyone whose age is >= 80 or <= 9 is considered to be at risk. 
+     * On each day, you may not vaccinate both a person who is at risk and a person who is not at risk. 
+     * Find the smallest number of days needed to vaccinate everyone.
+     * 
+     * Input:
+     * The first line of the input contains a single integer T denoting the number of test cases. The description of T test cases follows.
+     * The first line of each test case contains two space-separated integers N and D.
+     * The second line contains NN space-separated integers a1, a2, ..., aN.
+     * 
+     * Output:
+     * For each test case, print a single line containing one integer ― the smallest required number of days.
+     * 
+     * Constraints:
+     * 1 <= T <= 10
+     * 1 <= N <= 10^4
+     * 1 <= D <= 10^5
+     * 1 <= ai <= 100 for each valid i
+     */
+    public static void solveCodeChefVACCINE2() {
+        Scanner scn = new Scanner(System.in);
+        long T = scn.nextLong(); 
+        while (T-- > 0) {
+            long N = scn.nextLong();
+            long D = scn.nextLong();
+            long atRisk = 0;
+            for (long i = 0; i < N; i++) {
+                long A = scn.nextLong();
+                if (A >= 80 || A <= 9)
+                    atRisk++;
+            }
+            long atNoRisk = N - atRisk;
+            long daysAtRisk = atRisk / D + (atRisk % D == 0 ? 0 : 1);
+            long daysAtNoRisk = atNoRisk / D + (atNoRisk % D == 0 ? 0 : 1);
+            System.out.println(daysAtRisk + daysAtNoRisk);
+        }        
+        scn.close();
+    }    
 }
