@@ -23,7 +23,6 @@ import utilities.LiveDescription;
  */
 public class Main {
 
-    public static final String OUTPUT_FORMAT = "dd/MM HH:mm";
     public static Scanner scn = new Scanner(System.in);
 
     public static final HashMap<String, Method> CODECHEF_FUNCTIONS = new HashMap<>();
@@ -81,21 +80,18 @@ public class Main {
     public static void doLiveDescription(String[] args) {
         String UTCStr = getOption(args, 3, "Error: No UTC launch time defined for SpaceXStorm LiveDescription task. Please, write UTC time in format 'dd/MM/yyyy HH:mm:ss' :");
 
-        String format = getOption(args, 4, "No format defined for country text in SpaceXStorm LiveDescription task. Available options are 'only_text', 'only_flag' and 'text_and_flag' (default is 'only_text'):");
+        String countryTextFormat = getOption(args, 4, "No format defined for country text in SpaceXStorm LiveDescription task. Available options are 'only_text', 'only_flag' and 'text_and_flag' (default is 'only_text'):");
 
         LiveDescription liveDescription = new LiveDescription();
-        liveDescription.setUTC(UTCStr);
-        liveDescription.setFormat(format);
+        if (!liveDescription.setUTC(UTCStr))
+            return;
+        liveDescription.setCountryTextFormat(countryTextFormat);
 
 //            for (String zona : ZoneId.getAvailableZoneIds())
 //                System.out.println(zona);
 
-        DateTimeFormatter output_formatter = DateTimeFormatter.ofPattern(OUTPUT_FORMAT);
-
         liveDescription.initializeCountriesInfoFromFile("countries.txt", ';');
-        TreeMap<LocalDateTime, String> grouped_dates = liveDescription.getOrderedGroupedDates();
-        for (LocalDateTime ldt : grouped_dates.descendingKeySet())
-            System.out.println(liveDescription.getClockIcon(ldt) + " " + ldt.format(output_formatter) + " \u2192 " + grouped_dates.get(ldt));
+        liveDescription.writeLiveDescription("\u2192", true);
     }
     
     /**

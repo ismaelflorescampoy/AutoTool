@@ -15,7 +15,8 @@ import java.util.TreeMap;
  * @author ismael.flores
  **/
 public class LiveDescription {
-    private static final String INPUT_FORMAT = "dd/MM/yyyy HH:mm:ss";
+    private static final String DATE_TIME_INPUT_FORMAT = "dd/MM/yyyy HH:mm:ss";
+    private static final String OUTPUT_FORMAT = "dd/MM HH:mm";
 
     private HashMap<String, String> countriesTimeZones = new HashMap<>();
     private TreeMap<String, ZonedDateTime> orderedCountriesByDatetime = null;
@@ -54,9 +55,9 @@ public class LiveDescription {
      * U+1F567	🕧	Doce y media
      * 
      * @param ldt date to get clock icon for
-     * @return clock icon
+     * @return clock icon (unicode string)
      */
-    public String getClockIcon(LocalDateTime ldt) {
+    private String getClockIcon(LocalDateTime ldt) {
         String clock_string = "";
         for (int i = 0; i < 12; i++) {
             if (ldt.isAfter(LocalDateTime.of(ldt.getYear(), ldt.getMonth(), ldt.getDayOfMonth(), i, 45)) &&
@@ -79,6 +80,22 @@ public class LiveDescription {
                 clock_string = "\uD83D" + Character.toString(0xDD5C + (i == 0 ? 11 : i - 1));
         }
         return clock_string;
+    }
+
+    /**
+     * Write live description for a launch
+     * @param arrow arrow to show
+     * @param showClock whether to show clock icon or not
+     */
+    public void writeLiveDescription(String arrow, boolean showClock) {
+        DateTimeFormatter output_formatter = DateTimeFormatter.ofPattern(OUTPUT_FORMAT);
+        TreeMap<LocalDateTime, String> grouped_dates = getOrderedGroupedDates();
+        for (LocalDateTime ldt : grouped_dates.descendingKeySet()) {
+            String clock_string = "";
+            if (showClock)
+                clock_string = getClockIcon(ldt) + " ";
+            System.out.println(clock_string + ldt.format(output_formatter) + " " + arrow + " " + grouped_dates.get(ldt));
+        }
     }
 
     /**
@@ -117,7 +134,6 @@ public class LiveDescription {
 
     /**
      * Initialize countries and its flags (hardcoded)
-     * @return HashMap with countries and their flags
      */
     private void initialiceCountriesFlags() {
         countriesFlags.put("Nueva Zelanda", "\uD83C\uDDF3\uD83C\uDDFF");
@@ -153,9 +169,8 @@ public class LiveDescription {
     /**
      * Update format for country text. Initialice 'hasName' and 'hasFlag' variables
      * @param format String with format definition to update. Posible values: "only_flag", "only_text", "text_and_flag"
-     * @return void
      **/
-   public void setFormat(String format) {
+   public void setCountryTextFormat(String format) {
         if (format.equals("only_flag")) {
             hasFlag = true;
             hasText = false;
@@ -170,32 +185,19 @@ public class LiveDescription {
 
     /*
      * Initialize UTC date and time
+     * @param UTCStr UTC date and time in format "dd/MM/yyyy HH:mm:ss" (DATE_TIME_INPUT_FORMAT)
+     * @return boolean True if UTC date and time is valid, false otherwise
      */
-    public void setUTC(String UTCStr) {
+    public boolean setUTC(String UTCStr) {
         try {
-            DateTimeFormatter input_formatter = DateTimeFormatter.ofPattern(INPUT_FORMAT);
+            DateTimeFormatter input_formatter = DateTimeFormatter.ofPattern(DATE_TIME_INPUT_FORMAT);
             utc = ZonedDateTime.parse(UTCStr, input_formatter.withZone(ZoneId.of("UTC")));
+            return true;
         }
         catch (Exception e) {
             System.out.println("Error: '" + UTCStr + "' is not a valid UTC date and time.");
-            return;
+            return false;
         }
-    }
-
-    /**
-     * Get if country flag must be shown
-     * @return boolean True if country flag must be shown, false otherwise
-     **/
-    public boolean getHasFlag() {
-        return hasFlag;
-    }
-
-    /**
-     * Get if country text must be shown
-     * @return boolean True if country text must be shown, false otherwise
-     **/
-    public boolean getHasText() {
-        return hasText;
     }
 
     /**
@@ -239,7 +241,11 @@ public class LiveDescription {
         orderedCountriesByDatetime.putAll(dates);
     }
 
-    public TreeMap<LocalDateTime, String> getOrderedGroupedDates() {
+    /**
+     * Get ordered and grouped dates for a launch
+     * @return TreeMap with dates and countries grouped by date
+     */
+    private TreeMap<LocalDateTime, String> getOrderedGroupedDates() {
         TreeMap<LocalDateTime, String> grouped_dates = new TreeMap<>();
         for (String country : orderedCountriesByDatetime.descendingKeySet()) {
             ZonedDateTime zdt = orderedCountriesByDatetime.get(country);
