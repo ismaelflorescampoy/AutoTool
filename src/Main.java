@@ -64,6 +64,10 @@ public class Main {
         CODECHEF_FUNCTIONS.put("TRAVELPS", CodeChef.class.getDeclaredMethod("solveCodeChefTRAVELPS"));
         CODECHEF_FUNCTIONS.put("CS2023_STK", CodeChef.class.getDeclaredMethod("solveCodeChefCS2023_STK"));
         CODECHEF_FUNCTIONS.put("VACCINE2", CodeChef.class.getDeclaredMethod("solveCodeChefVACCINE2"));
+        CODECHEF_FUNCTIONS.put("NEWCC", CodeChef.class.getDeclaredMethod("solveCodeChefNEWCC"));
+        CODECHEF_FUNCTIONS.put("AMBIDEXTROUS", CodeChef.class.getDeclaredMethod("solveCodeChefAMBIDEXTROUS"));
+        CODECHEF_FUNCTIONS.put("KDELI", CodeChef.class.getDeclaredMethod("solveCodeChefKDELI"));
+        CODECHEF_FUNCTIONS.put("CC_COPY", CodeChef.class.getDeclaredMethod("solveCodeChefCC_COPY"));
         
         String problem = getOption(args, 2, "Enter 'CodeChef' code problem to solve :");
         if (!CODECHEF_FUNCTIONS.containsKey(problem))

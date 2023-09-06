@@ -480,5 +480,112 @@ public class CodeChef {
             System.out.println(daysAtRisk + daysAtNoRisk);
         }        
         scn.close();
-    }    
+    }
+    
+    public static void solveCodeChefNEWCC() {
+        Scanner scn = new Scanner(System.in);
+        long X = scn.nextLong();
+        long Y = scn.nextLong();
+        if (X < Y)             
+            System.out.println("Old");
+        else if (X > Y)
+            System.out.println("New");
+        else
+            System.out.println("Same");
+        scn.close();
+    }
+
+    public static void solveCodeChefAMBIDEXTROUS() {
+        Scanner scn = new Scanner(System.in);
+        long T = scn.nextLong(); 
+        while (T-- > 0) {
+            long L = scn.nextLong();
+            long R = scn.nextLong();
+            long M = scn.nextLong();
+            long satisfaction = M / L + (M % L != 0 ? 1 : 0) + M / R;
+            System.out.println(satisfaction);
+        }        
+        scn.close();
+    }
+
+    public static void solveCodeChefKDELI() {
+        Scanner scn = new Scanner(System.in);
+        long T = scn.nextLong(); 
+        while (T-- > 0) {
+            ArrayList<Long> deliciouness = new ArrayList<>();
+            long N = scn.nextLong();
+            long K = scn.nextLong();
+            long L = scn.nextLong();
+            for (int i = 0; i < N; i++)
+                deliciouness.add(scn.nextLong());
+            Collections.sort(deliciouness);
+            Collections.reverse(deliciouness);
+            long buy = 0;
+            for (int i = 0; i < N; i++) {
+                if (i % K == L - 1)
+                    buy += deliciouness.get(i);
+            }
+            System.out.println(buy);            
+        }
+        scn.close();
+    }
+
+    private static boolean fits(int lenght, HashMap<Character, Integer> f1, HashMap<Character, Integer> f2) {
+        boolean fits = true;
+        for (Character c : f1.keySet()) {
+            int chars_to_put = f1.get(c);
+            int free_spaces = lenght - (f2.containsKey(c) ? f2.get(c) : 0);
+            if (chars_to_put > free_spaces)
+                fits = false;
+        }
+        return fits;
+    }
+
+    private static HashMap<Character, Integer> getFrequencyMap(String S) {
+        HashMap<Character, Integer> frequencyMap = new HashMap<>();
+        for (int i = 0; i < S.length(); i++) {
+            char character = S.charAt(i);
+            if (frequencyMap.containsKey(character))
+                frequencyMap.put(character, frequencyMap.get(character) + 1);
+            else
+                frequencyMap.put(character, 1);
+        }        
+        return frequencyMap;
+    }
+    
+    public static void solveCodeChefCC_COPY() {
+        String codechef = "codechef";
+        ArrayList<HashMap<Character, Integer>> fMapsCodechef = new ArrayList<>();
+        for (int k = 0; k < codechef.length(); k++)
+            fMapsCodechef.add(getFrequencyMap(codechef.substring(k)));
+        fMapsCodechef.add(new HashMap<>());
+        Scanner scn = new Scanner(System.in);
+        long T = scn.nextLong(); 
+        while (T-- > 0) {
+            String S = scn.next();
+            String anagram = "";
+            HashMap<String, HashMap<Character, Integer>> fMapsS = new HashMap<>();
+            for (int i = 0; i < codechef.length(); i++) {
+                for (int j = 0; j < S.length(); j++) {
+                    if (codechef.charAt(i) != S.charAt(j)) {
+                        String S1 = S.substring(j + 1);
+                        HashMap<Character, Integer> f2 = null;
+                        if (fMapsS.containsKey(S1))
+                            f2 = fMapsS.get(S1);
+                        else {
+                            f2 = getFrequencyMap(S1);
+                            fMapsS.put(S1, f2);
+                        }
+                        if (fits(codechef.length() - i - 1, fMapsCodechef.get(i + 1), f2)) {
+                            anagram += S.charAt(j);
+                            S = S.substring(0, j) + S.substring(j + 1);
+                            j = S.length();
+                        }
+                    }
+                }
+            }
+            System.out.println(anagram.length() == codechef.length() ? anagram : -1);
+        }
+        scn.close();        
+    }
 }
