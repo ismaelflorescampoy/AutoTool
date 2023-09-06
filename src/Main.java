@@ -17,6 +17,7 @@ import utilities.LiveDescription;
  * 2.- SpaceXStorm tool
  * 
  *   2.a.- java -jar .\HelloWorls.jar SpaceXStorm LiveDescription "dd/MM/yyyy HH:mm:ss" [format]
+ *         Example: SpaceXStorm LiveDescription "08/09/2023 23:45:00" only_text
  * 
  */
 public class Main {
@@ -68,6 +69,7 @@ public class Main {
         CODECHEF_FUNCTIONS.put("AMBIDEXTROUS", CodeChef.class.getDeclaredMethod("solveCodeChefAMBIDEXTROUS"));
         CODECHEF_FUNCTIONS.put("KDELI", CodeChef.class.getDeclaredMethod("solveCodeChefKDELI"));
         CODECHEF_FUNCTIONS.put("CC_COPY", CodeChef.class.getDeclaredMethod("solveCodeChefCC_COPY"));
+        CODECHEF_FUNCTIONS.put("BROKPHON", CodeChef.class.getDeclaredMethod("solveCodeChefBROKPHON"));
         
         String problem = getOption(args, 2, "Enter 'CodeChef' code problem to solve :");
         if (!CODECHEF_FUNCTIONS.containsKey(problem))

@@ -588,4 +588,41 @@ public class CodeChef {
         }
         scn.close();        
     }
+
+    private static boolean posibleMishear(long first, long second, long third) {
+        boolean mishear = false;
+        if (second != Long.MIN_VALUE) {
+            if (first != second && first != Long.MIN_VALUE)
+                mishear = true;
+            else if (third != second && third != Long.MIN_VALUE)
+                mishear = true;
+        }
+        return mishear;
+    }
+    
+    public static void solveCodeChefBROKPHON() {
+        Scanner scn = new Scanner(System.in);
+        long T = scn.nextLong(); 
+        while (T-- > 0) {
+            long N = scn.nextLong();
+            long first = Long.MIN_VALUE;
+            long second = Long.MIN_VALUE;
+            long third = Long.MIN_VALUE;
+            long count = 0;
+            for (long i = 0; i < N; i++) {
+                first = second;
+                second = third;
+                third = scn.nextLong();
+                if (posibleMishear(first, second, third))
+                    count++;
+            }
+            first = second;
+            second = third;
+            third = Long.MIN_VALUE;
+            if (posibleMishear(first, second, third))
+                count++;
+            System.out.println(count);
+        }        
+        scn.close();
+    }
 }
