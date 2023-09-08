@@ -70,6 +70,7 @@ public class Main {
         CODECHEF_FUNCTIONS.put("KDELI", CodeChef.class.getDeclaredMethod("solveCodeChefKDELI"));
         CODECHEF_FUNCTIONS.put("CC_COPY", CodeChef.class.getDeclaredMethod("solveCodeChefCC_COPY"));
         CODECHEF_FUNCTIONS.put("BROKPHON", CodeChef.class.getDeclaredMethod("solveCodeChefBROKPHON"));
+        CODECHEF_FUNCTIONS.put("LUCKYSEVEN", CodeChef.class.getDeclaredMethod("solveCodeChefLUCKYSEVEN"));
         
         String problem = getOption(args, 2, "Enter 'CodeChef' code problem to solve :");
         if (!CODECHEF_FUNCTIONS.containsKey(problem))
