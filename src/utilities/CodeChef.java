@@ -41,6 +41,7 @@ public class CodeChef {
     }
 
     /*
+    * Problem:
     * CodeChef offers a feature called streak count. A streak is maintained if you solve at least one problem daily.
     * Om and Addy actively maintain their streaks on CodeChef. Over a span of N consecutive days, 
     * you have observed the count of problems solved by each of them.
@@ -104,6 +105,7 @@ public class CodeChef {
     }
 
     /*
+     * Problem:
      * Chef is going on a road trip and needs to apply for inter-district and inter-state travel e-passes. 
      * It takes A minutes to fill each inter-district e-pass application and B minutes for each inter-state e-pass application.
      * His journey is given to you as a binary string S of length N where 0 denotes crossing from one district to another district 
@@ -140,6 +142,7 @@ public class CodeChef {
     }
 
     /* 
+     * Problem:
      * Chef is playing Need For Speed. Currently, 
      * his car is running on a straight road with a velocity U metres per second and approaching a 90 degrees turn which is S metres away from him.
      * To successfully cross the turn, velocity of the car when entering the turn must not exceed V metres per second.
@@ -175,6 +178,7 @@ public class CodeChef {
     }
 
     /*
+     * Problem:
      * Tonmoy has a special torch. The torch has 4 levels numbered 1 to 4 and 2 states ("On" and "Off"). 
      * Levels 1, 2, and 3 correspond to the "On" state while level 4 corresponds to the "Off" state.
      * The levels of the torch can be changed as:
@@ -441,6 +445,7 @@ public class CodeChef {
     }    
 
     /*
+     * Problem:
      * Finally, a COVID vaccine is out on the market and the Chefland government has asked you to form a plan to distribute it to the public as soon as possible. 
      * There are a total of NN people with ages a1, a2, ..., aN.
      * There is only one hospital where vaccination is done and it is only possible to vaccinate up to DD people per day. 
@@ -648,6 +653,85 @@ public class CodeChef {
         Scanner scn = new Scanner(System.in);
         String S = scn.next();
         System.out.println(S.charAt(6));
+        scn.close();
+    }
+
+    /*
+     * Problem:
+     * Chef is playing a certain video game that requires him to collect Monsters, and use them to fight against other Monsters.
+     * Chef's favorite Monster has an attack stat of X, and is fighting against another monster whose health stat is H.
+     * The fight proceeds in turns: each turn, Chef's Monster does X damage to its opponent.
+     * However, Chef's Monster has the ability Slow Start, which halves its attack for the first five turns.
+     * That is, for the first five turns, the damage done to the opponent is X/2 and not X.
+     * How many turns will Chef's Monster take to defeat the opponent (i.e, do at least H damage to it)?
+     *
+     * Input Format:
+     * The first line of input will contain a single integer T, denoting the number of test cases.
+     * Each test case consists of a single line of input, containing two space-separated integers X and H, that is, 
+     * Chef's Monster's attack, and the opponent's health.
+     *
+     * Output Format:
+     * For each test case, output on a new line the number of turns required for the opponent to be defeated.
+     * 
+     * Constraints:
+     * 1 <= T <= 10^4
+     * 1 <= X, H <= 1000
+     * X is even
+     */
+    public static void solveCodeChefSLOWSTART() {
+        Scanner scn = new Scanner(System.in);
+        long T = scn.nextLong(); 
+        while (T-- > 0) {
+            long X = scn.nextLong();
+            long H = scn.nextLong();
+            long X2 = X / 2;
+            long halves = 5 * X2;
+            if (H <= halves)
+                System.out.println(H / X2 + (H % X2 == 0 ? 0 : 1));
+            else {
+                H -= halves;
+                System.out.println(5 + H / X + (H % X == 0 ? 0 : 1));
+            }
+        }
+        scn.close();
+    }
+
+    /*
+     * Problem:
+     * Chef is playing a card game with his friend Rick Sanchez. He recently won against Rick's grandson Morty; 
+     * however, Rick is not as easy to beat. The rules of this game are as follows:
+     * - The power of a positive integer is the sum of digits of that integer. For example, the power of 13 is 1 + 3 = 4.
+     * - Chef and Rick receive randomly generated positive integers. For each player, let's call the integer he received final power.
+     * - The goal of each player is to generate a positive integer such that its power (defined above) is equal to his final power.
+     * - The player who generated the integer with fewer digits wins the game. If both have the same number of digits, then Rick cheats and wins the game.
+     *
+     * You are given the final power of Chef Pc and the final power of Rick Pr. 
+     * Assuming that both players play optimally, find the winner of the game and the number of digits of the integer he generates.
+     *
+     * Input:
+     * The first line of the input contains a single integer T denoting the number of test cases. The description of T test cases follows.
+     * The first and only line of each test case contains two space-separated integers Pc and Pr.
+     *
+     * Output:
+     * For each test case, print a single line containing two space-separated integers. 
+     * The first of these integers should be either 0 if Chef wins or 1 if Rick wins. 
+     * The second integer should be the number of digits of the integer generated by the winner.
+     * 
+     * Constraints:
+     *
+     * 1 <= T <= 10^5
+     * 1 <= Pc, Pr <= 10^6
+     */
+    public static void solveCodeChefCRDGAME3() {
+        Scanner scn = new Scanner(System.in);
+        long T = scn.nextLong(); 
+        while (T-- > 0) {
+            long Pc = scn.nextLong();
+            long Pr = scn.nextLong();
+            long Pcd = Pc / 9 + (Pc % 9 == 0 ? 0 : 1);
+            long Prd = Pr / 9 + (Pr % 9 == 0 ? 0 : 1);
+            System.out.println((Pcd < Prd ? 0 : 1) + " " + Math.min(Pcd, Prd));
+        }
         scn.close();
     }
 }
