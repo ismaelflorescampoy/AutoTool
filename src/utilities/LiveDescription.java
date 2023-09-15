@@ -15,14 +15,28 @@ import java.util.TreeMap;
  * @author ismael.flores
  **/
 public class LiveDescription {
+    // The input format for date and time
     private static final String DATE_TIME_INPUT_FORMAT = "dd/MM/yyyy HH:mm:ss";
+    
+    // The output format for date and time
     private static final String OUTPUT_FORMAT = "dd/MM HH:mm";
 
+    // A map of countries and their corresponding time zones
     private HashMap<String, String> countriesTimeZones = new HashMap<>();
+
+    // A map of countries and their corresponding date and time in their respective time zones
     private TreeMap<String, ZonedDateTime> orderedCountriesByDatetime = null;
+
+    // A map of countries and their corresponding flag emojis
     private HashMap<String, String> countriesFlags = new HashMap<>();
+
+    // A boolean flag indicating whether to display the flag emojis
     private boolean hasFlag = false;
-    private boolean hasText = true;
+
+    // A boolean flag indicating whether to display the country names
+    private boolean hasCountryName = true;
+
+    // The current date and time in UTC
     private ZonedDateTime utc = null;
 
     public LiveDescription() {}
@@ -173,13 +187,13 @@ public class LiveDescription {
    public void setCountryTextFormat(String format) {
         if (format.equals("only_flag")) {
             hasFlag = true;
-            hasText = false;
+            hasCountryName = false;
         } else if (format.equals("only_text")) {
             hasFlag = false;
-            hasText = true;
+            hasCountryName = true;
         } else if (format.equals("text_and_flag")) {
             hasFlag = true;
-            hasText = true;
+            hasCountryName = true;
         }
     }
 
@@ -206,14 +220,11 @@ public class LiveDescription {
      * @return country string containing country name and/or flag depending on whether hasFlag and/or hasText are true or false
      */
     private String getCountryString(String countryNameString) {
-        String country_string = "";
         if (!hasFlag)
-            country_string += countryNameString;
-        else if (hasText)
-            country_string += (countryNameString + " " + countriesFlags.get(countryNameString));
-        else
-            country_string += countriesFlags.get(countryNameString);
-        return country_string;
+            return countryNameString;
+        else if (hasCountryName)
+            return countryNameString + " " + countriesFlags.get(countryNameString);
+        return countriesFlags.get(countryNameString);
     }
 
     /**
