@@ -734,4 +734,25 @@ public class CodeChef {
         }
         scn.close();
     }
+    
+    public static void solveCodeChefAIRINDEX() {
+        Scanner scn = new Scanner(System.in);
+        long X = scn.nextLong(); 
+        scn.close();        
+        System.out.println(X < 100 ? "YES" : "NO");
+    }
+    
+    public static void solveCodeChefSURPLUS() {
+        Scanner scn = new Scanner(System.in);
+        long T = scn.nextLong(); 
+        while (T-- > 0) {
+            long A1 = scn.nextLong();
+            long A2 = scn.nextLong();
+            long B1 = scn.nextLong();
+            long B2 = scn.nextLong();
+            long C = (A2 - A1) + (B2 - B1);
+            System.out.println(C > 0 ? "YES" : "NO");
+        }
+        scn.close();
+    }
 }
