@@ -75,6 +75,7 @@ public class Main {
         CODECHEF_FUNCTIONS.put("CRDGAME3", CodeChef.class.getDeclaredMethod("solveCodeChefCRDGAME3"));
         CODECHEF_FUNCTIONS.put("AIRINDEX", CodeChef.class.getDeclaredMethod("solveCodeChefAIRINDEX"));
         CODECHEF_FUNCTIONS.put("SURPLUS", CodeChef.class.getDeclaredMethod("solveCodeChefSURPLUS"));
+        CODECHEF_FUNCTIONS.put("POTATOES", CodeChef.class.getDeclaredMethod("solveCodeChefPOTATOES"));
         
         String problem = getOption(args, 2, "Enter 'CodeChef' code problem to solve :");
         if (!CODECHEF_FUNCTIONS.containsKey(problem))

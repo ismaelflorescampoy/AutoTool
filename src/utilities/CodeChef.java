@@ -9,6 +9,26 @@ import java.util.*;
 public class CodeChef {
 
     /**
+     * Check if 'n' is prime. 'n' must be positive (1 or more)
+     * @param n value to test
+     * @return TRUE if value is primer and FALSE otherwise
+     */
+    private static boolean isPrime(long n) {
+        if (n == 1) {
+            return false;
+        }
+        if (n % 2 == 0) {
+            return n == 2;
+        }
+        for (long i = 3; i <= Math.sqrt(n); i += 2) {
+            if (n % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
      * @brief Check if a year is leap
      * @param y Year
      * @return true if the year is leap, false otherwise
@@ -752,6 +772,46 @@ public class CodeChef {
             long B2 = scn.nextLong();
             long C = (A2 - A1) + (B2 - B1);
             System.out.println(C > 0 ? "YES" : "NO");
+        }
+        scn.close();
+    }
+
+    /**
+     * Problem:
+     * Farmer Feb has three fields with potatoes planted in them. 
+     * He harvested x potatoes from the first field, y potatoes from the second field and is yet to harvest potatoes from the third field. 
+     * Feb is very superstitious and believes that if the sum of potatoes he harvests from the three fields is a prime number 
+     * (http://en.wikipedia.org/wiki/Prime_number), he'll make a huge profit. 
+     * Please help him by calculating for him the minimum number of potatoes that if harvested from the third field will make the sum of potatoes prime. 
+     * At least one potato should be harvested from the third field.
+     * 
+     * Input:
+     * The first line of the input contains an integer T denoting the number of test cases. 
+     * Each of the next T lines contain 2 integers separated by single space: x and y.
+     * 
+     * Output:
+     * For each test case, output a single line containing the answer.
+     * 
+     * Constraints:
+     * 1 <= T <= 1000
+     * 1 <= x <= 1000
+     * 1 <= y <= 1000
+     */
+    public static void solveCodeChefPOTATOES() {
+        Scanner scn = new Scanner(System.in);
+        long T = scn.nextLong(); 
+        while (T-- > 0) {
+            long x = scn.nextLong();
+            long y = scn.nextLong();
+            boolean found = false;
+            long j = 1;
+            while (!found) {
+                if (isPrime(x + y + j)) {
+                    System.out.println(j);
+                    found = true;
+                }
+                j++;
+            }
         }
         scn.close();
     }
