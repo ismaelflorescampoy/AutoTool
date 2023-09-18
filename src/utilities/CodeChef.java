@@ -3,42 +3,11 @@ package utilities;
 import java.util.*;
 
 /**
- * @class CodeChef
+ * @class CodeChef 
+ * @brief A library of solutions for CodeChef problems
  * @author ismael.flores
  */
 public class CodeChef {
-
-    /**
-     * @brief Check if a year is leap
-     * @param y Year
-     * @return true if the year is leap, false otherwise
-     */
-    private static boolean isLeapYear(int y) {
-        return (y % 4 == 0 && y % 100 != 0) || (y % 400 == 0);
-    }
-
-    /**
-     * @brief Check if a date is valid
-     * @param d Day
-     * @param m Month
-     * @param y Year
-     * @return true if the date is valid, false otherwise
-     */
-    private static boolean isValid(int d, int m, int y) {
-        if (d < 1 || d > 31 || m < 1 || m > 12 || y > 2099)
-            return false;
-        if (m == 2) {
-            if (d > 29)
-                return false;
-            if (d == 29 && !isLeapYear(y))
-                return false;
-        }
-        if (m == 4 || m == 6 || m == 9 || m == 11) {
-            if (d > 30)
-                return false;
-        }
-        return true;
-    }
 
     /*
     * Problem:
@@ -53,7 +22,7 @@ public class CodeChef {
     * The first line of each test case contains an integer N denoting the number of days.
     * The second line of each test case contains N space-separated integers, 
     * the ith of which is Ai, representing the problems solved by Om on the ith day.
-    * The third line of each test case contains NN space-separated integers, 
+    * The third line of each test case contains N space-separated integers, 
     * the ith of which is Bi, representing the problems solved by Addy on the ith day.
     * 
     * Output Format:
@@ -188,7 +157,7 @@ public class CodeChef {
      * Level 3 changes to level 4.
      * Level 4 changes to level 1.
      * 
-     * Given the initial state as KK and the number of changes made in the levels as N, find the final state of the torch. 
+     * Given the initial state as K and the number of changes made in the levels as N, find the final state of the torch. 
      * If the final state cannot be determined, print "Ambiguous" instead.
      * 
      * Input Format:
@@ -231,6 +200,37 @@ public class CodeChef {
         scn.close();
     }
 
+    /*
+     * Problem:
+     * Chef is confused by all the different formats dates can be written in. 
+     * Here's a simple problem Chef wants you to solve.
+     * You are given a date string S. 
+     * The date follows the Gregorian calendar, the one used in most parts of the world.
+     * Identify whether it is of the form DD/MM/YYYY or MM/DD/YYYY, or if it can be of both forms.
+     * Here D denotes the 2-digit day, MM denotes the 2-digit month and YYYY denotes the 4-digit year.
+     * It is guaranteed that S is a valid date taking at least one of these forms.
+     * 
+     * For example,
+     * 
+     * 21/05/2001 is of the form DD/MM/YYYY and not MM/DD/YYYY.
+     * 10/15/2069 is of the form MM/DD/YYYY and not DD/MM/YYYY.
+     * 05/11/1999 can be of both forms.
+     * 
+     * Input Format:
+     * The first line contains a single integer T — the number of test cases. Then the test cases follow.
+     * Each test case consists of a single line containing a string of 10 characters S — the date string S, 
+     * which is of the form DD/MM/YYYY or MM/DD/YYYY. 
+     * It is guaranteed that S is a valid date taking at least one of these forms.
+     * 
+     * Output Format:
+     * For each test case, output "BOTH" if the date string satisfies both forms.
+     * Otherwise output "DD/MM/YYYY" if it is of the form DD/MM/YYYY, else "MM/DD/YYYY".
+     * Note that the output may be case-insensitive. So "DD/MM/YYYY", "dd/mm/yyyy" and so on will be considered the same.
+     * 
+     * Constraints:
+     * 1 <= T <= 2023
+     * S is of the form DD/MM/YYYY or MM/DD/YYYY
+     */
     public static void solveCodeChefDDMMORMMDD() {
         Scanner scn = new Scanner(System.in);
         long T = scn.nextLong(); 
@@ -239,8 +239,8 @@ public class CodeChef {
             int D = Integer.parseInt(S.substring(0, 2));
             int M = Integer.parseInt(S.substring(3, 5));
             int Y = Integer.parseInt(S.substring(6, 10));
-            boolean validDDMMYYY = isValid(D, M, Y);
-            boolean validMMDDYYY = isValid(M, D, Y);
+            boolean validDDMMYYY = CodeChefLibrary.isValid(D, M, Y);
+            boolean validMMDDYYY = CodeChefLibrary.isValid(M, D, Y);
             if (validDDMMYYY && validMMDDYYY)
                 System.out.println("BOTH");
             else if (validDDMMYYY)
@@ -251,6 +251,24 @@ public class CodeChef {
         scn.close();
     }
 
+    /*
+     * Problem:
+     * Reverse Polish Notation (RPN) is a mathematical notation where every operator follows all of its operands.
+     * For instance, to add three and four, one would write "3 4 +" rather than "3 + 4".
+     * If there are multiple operations, the operator is given immediately after its second operand; 
+     * so the expression written "3 − 4 + 5" would be written "3 4 − 5 +" first subtract 4 from 3, then add 5 to that.
+     * Transform the algebraic expression with brackets into RPN form.
+     * You can assume that for the test cases below only single letters will be used,
+     * brackets [] will not be used and each expression has only one RPN form (no expressions like a*b*c)
+     * 
+     * Input Format:
+     * The first line contains t, the number of test cases (less then 100).
+     * Followed by t lines, containing an expression to be translated to RPN form, 
+     * where the length of the expression is less then 400.
+     * 
+     * Output Format:
+     * The expressions in RPN form, one per line.
+     */
     public static void solveCodeChefONP() {
         Scanner scn = new Scanner(System.in);
         long T = scn.nextLong(); 
@@ -284,6 +302,24 @@ public class CodeChef {
         scn.close();
     }
     
+    /*
+     * Problem:
+     * Read problem statements in Bengali, Mandarin Chinese, Russian, and Vietnamese as well.
+     * For a given N, find the number of ways to choose an integer x from the range [0, 2^N - 1] 
+     * such that x⊕(x+1) = (x+2)⊕(x+3), where ⊕ denotes the bitwise XOR operator.
+     * Since the number of valid x can be large, output it modulo 10^9+7
+     * 
+     * Input:
+     * The first line contains an integer T, the number of test cases. Then the test cases follow.
+     * The only line of each test case contains a single integer N.
+     * 
+     * Output: 
+     * For each test case, output in a single line the answer to the problem modulo 10^9+7
+     * 
+     * Constraints:
+     * 1 <= T <= 10^5
+     * 1 <= N <= 10^5
+     */
     public static void solveCodeChefXOREQUAL() {
         Scanner scn = new Scanner(System.in);
 
@@ -301,6 +337,24 @@ public class CodeChef {
         scn.close();
     }
 
+    /*
+     * Problem:
+     * Karan likes the number 4 very much.
+     * Impressed by the power of this number, Karan has begun to look for occurrences of four anywhere. 
+     * He has a list of T integers, for each of them he wants to calculate the number of occurrences of
+     * the digit 4 in the decimal representation. He is too busy now, so please help him.
+     * 
+     * Input Format:
+     * The first line of input consists of a single integer T, denoting the number of integers in Karan's list.
+     * Then, there are T lines, each of them contain a single integer from the list.
+     * 
+     * Output Format:
+     * Output T lines. Each of these lines should contain the number of occurrences of the digit 4 
+     * in the respective integer from Karan's list.
+     * 
+     * Constraints:
+     * 1 <= T <= 10^5
+     */
     public static void solveCodeChefLUCKYFR() {
         Scanner scn = new Scanner(System.in);
 
@@ -317,6 +371,33 @@ public class CodeChef {
         scn.close();
     }
 
+    /*
+     * Problem:
+     * Chef had a sequence of positive integers with length N + K. 
+     * He managed to calculate the arithmetic average of all elements of this sequence (let's denote it by V), 
+     * but then, his little brother deleted K elements from it. All deleted elements had the same value.
+     * Chef still knows the remaining N elements — a sequence A1, A2, ..., AN. 
+     * Help him with restoring the original sequence by finding the value of the deleted elements 
+     * or deciding that there is some mistake and the described scenario is impossible.
+     * Note that the if it is possible for the deleted elements to have the same value, 
+     * then it can be proven that it is unique. Also note that this value must be a positive integer.
+     * 
+     * Input:
+     * The first line of the input contains a single integer T denoting the number of test cases. 
+     * The description of T test cases follows.
+     * The first line of each test case contains three space-separated integers N, K and V.
+     * The second line contains N space-separated integers A1, A2, ..., AN.
+     * 
+     * Output:
+     * For each test case, print a single line containing one integer — 
+     * the value of the deleted elements, or -1 if there is a mistake.
+     * 
+     * Constraints:
+     * 1 <= T <= 100
+     * 1 <= N, K <= 100
+     * 1 <= V <= 10^5
+     * 1 <= Ai <= 10^5 for each valid i
+     */
     public static void solveCodeChefAVG() {
         Scanner scn = new Scanner(System.in);
 
@@ -335,6 +416,27 @@ public class CodeChef {
         scn.close();
     }
 
+    /*
+     * Problem:
+     * You are given a sequence A1, A2, ..., AN. 
+     * Find the maximum value of the expression |Ax - Ay| + |Ay - Az| + |Az - Ax|
+     * over all triples of pairwise distinct valid indices (x, y, z).
+     * 
+     * Input:
+     * The first line of the input contains a single integer T denoting the number of test cases. 
+     * The description of T test cases follows.
+     * The first line of each test case contains a single integer N.
+     * The second line contains NN space-separated integers A1, A2, ..., AN.
+     * 
+     * Output:
+     * For each test case, print a single line containing one integer ― 
+     * the maximum value of |Ax - Ay| + |Ay - Az| + |Az - Ax|.
+     * 
+     * Constraints:
+     * 1 <= T <= 5
+     * 3 <= N <= 10^5
+     * |Ai| <= 10^9 for each valid i
+     */
     public static void solveCodeChefMAXFUN() {
         Scanner scn = new Scanner(System.in);
 
@@ -447,8 +549,8 @@ public class CodeChef {
     /*
      * Problem:
      * Finally, a COVID vaccine is out on the market and the Chefland government has asked you to form a plan to distribute it to the public as soon as possible. 
-     * There are a total of NN people with ages a1, a2, ..., aN.
-     * There is only one hospital where vaccination is done and it is only possible to vaccinate up to DD people per day. 
+     * There are a total of N people with ages a1, a2, ..., aN.
+     * There is only one hospital where vaccination is done and it is only possible to vaccinate up to D people per day. 
      * Anyone whose age is >= 80 or <= 9 is considered to be at risk. 
      * On each day, you may not vaccinate both a person who is at risk and a person who is not at risk. 
      * Find the smallest number of days needed to vaccinate everyone.
@@ -456,7 +558,7 @@ public class CodeChef {
      * Input:
      * The first line of the input contains a single integer T denoting the number of test cases. The description of T test cases follows.
      * The first line of each test case contains two space-separated integers N and D.
-     * The second line contains NN space-separated integers a1, a2, ..., aN.
+     * The second line contains N space-separated integers a1, a2, ..., aN.
      * 
      * Output:
      * For each test case, print a single line containing one integer ― the smallest required number of days.
