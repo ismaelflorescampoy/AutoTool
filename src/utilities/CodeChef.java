@@ -1188,4 +1188,64 @@ public class CodeChef {
         }
         scn.close();
     }
+    
+    /*
+    * Problem:
+    * Chef owns an icecream shop in Chefland named scoORZ. There are only three types of coins in Chefland: 
+    * Rs. 5, Rs. 10 and Rs. 15. An icecream costs Rs. 5.
+    * There are N people (numbered 1 through N) standing in a queue to buy icecream from scoORZ. 
+    * Each person wants to buy exactly one icecream. 
+    * For each valid i, the i-th person has one coin with value ai. 
+    * It is only possible for someone to buy an icecream when Chef can give them back their change exactly ― 
+    * for example, if someone pays with a Rs. 10 coin, Chef needs to have a Rs. 5 coin that he gives to this person as change.
+    * Initially, Chef has no money. He wants to know if he can sell icecream to everyone in the queue, in the given order. 
+    * Since he is busy eating his own icecream, can you tell him if he can serve all these people?
+    *
+    * Input:
+    * The first line of the input contains a single integer T denoting the number of test cases. 
+    * The description of T test cases follows.
+    * The first line of each test case contains a single integer N. 
+    * The second line contains N space-separated integers a1, a2, ..., aN.
+    *
+    * Output:
+    * For each test case, print a single line containing the string "YES" if all people can be served or "NO" otherwise (without quotes).
+    *
+    * Constraints:
+    * 1 <= T <= 100
+    * 1 <= N <= 10^3
+    * ai ∈ {5,10,15} for each valid i
+    */
+    public static void solveCodeChefCHFICRM() {
+        Scanner scn = new Scanner(System.in);
+        long T = scn.nextLong(); 
+        while (T-- > 0) {
+            long rs5 = 0;
+            long rs10 = 0;
+            long rs15 = 0;
+            long imposible = 0;
+            long N = scn.nextLong();
+            for (long i = 0; i < N; i++) {
+                long ai = scn.nextLong();
+                if (ai == 5)
+                    rs5++;
+                else if (ai == 10 && rs5 > 0) {
+                    rs5--;
+                    rs10++;
+                }
+                else if (ai == 15 && rs10 > 0) {
+                    rs10--;
+                    rs15++;
+                }
+                else if (ai == 15 && rs5 > 1) {
+                    rs5 -= 2;
+                    rs15++;
+                }
+                else
+                    imposible++;
+            }
+            System.out.println(imposible == 0 ? "YES" : "NO");
+        }
+        scn.close();        
+    }
+        
 }
