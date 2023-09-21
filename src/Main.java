@@ -78,6 +78,11 @@ public class Main {
         CODECHEF_FUNCTIONS.put("POTATOES", CodeChef.class.getDeclaredMethod("solveCodeChefPOTATOES"));
         CODECHEF_FUNCTIONS.put("APPLEORANGE", CodeChef.class.getDeclaredMethod("solveCodeChefAPPLEORANGE"));
         CODECHEF_FUNCTIONS.put("CHFICRM", CodeChef.class.getDeclaredMethod("solveCodeChefCHFICRM"));
+
+        CODECHEF_FUNCTIONS.put("OFFBY1", CodeChef.class.getDeclaredMethod("solveCodeChefOFFBY1"));
+        CODECHEF_FUNCTIONS.put("SMARTER", CodeChef.class.getDeclaredMethod("solveCodeChefSMARTER"));
+        CODECHEF_FUNCTIONS.put("LPC", CodeChef.class.getDeclaredMethod("solveCodeChefLPC"));
+        CODECHEF_FUNCTIONS.put("WARRIORCHEF", CodeChef.class.getDeclaredMethod("solveCodeChefWARRIORCHEF"));
         
         String problem = getOption(args, 2, "Enter 'CodeChef' code problem to solve :");
         if (!CODECHEF_FUNCTIONS.containsKey(problem))

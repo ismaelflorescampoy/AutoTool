@@ -1247,5 +1247,199 @@ public class CodeChef {
         }
         scn.close();        
     }
-        
+
+    /*
+    * Problem:
+    * You just bought a new calculator, but it seems to have a small problem: 
+    * all its results have an extra 1 appended to the end.
+    * For example, if you ask it for 3 + 5, it'll print 81, and 4 + 12 will result in 161.
+    * Given A and B, can you predict what the calculator will print when you ask it for A+B?
+    * 
+    * Input Format:
+    * The first and only line of input will contain two space-separated integers A and B.
+    *
+    * Output Format:
+    * Print a single integer: the calculator's output when you enter A+B into it.
+    *
+    * Constraints:
+    * 1 <= A,B <= 50
+    */
+    public static void solveCodeChefOFFBY1() {
+        Scanner scn = new Scanner(System.in);
+        long A = scn.nextLong(); 
+        long B = scn.nextLong(); 
+        System.out.println((A + B) * 10 + 1);
+        scn.close();        
+    }
+    
+    /*
+    * Problem:
+    * The tortoise and the hare decide to run a race, yet again.
+    * This time around however, the hare has gotten a bit smarter!
+    * The racetrack is a straight line, L meters long.
+    * The tortoise moves at V1 meters per second, while the hare moves at V2 meters per second. 
+    * It is known that V1 < V2, that is, the hare is strictly faster.
+    * The hare still wants to be a bit lazy, so it decides to give the tortoise a headstart - 
+    * the hare will wait for an integer number of seconds before starting to run.
+    * Unfortunately, the animals' measuring devices aren't up to par - 
+    * they can only measure in integer seconds, and will round up — so for example:
+    * If the hare takes 1.57 seconds to finish, the reported time will be 2 seconds.
+    * If the hare takes 3 seconds to finish, the reported time will be 3 seconds.
+    * If the hare takes 3.01 seconds to finish, the reported time will be 4 seconds.
+    * What's the longest time the hare can wait, while still being able to win the race?
+    * Note that to win the race, the hare's reported time must be strictly less than the tortoise's.
+    * If the hare cannot win no matter what, print −1.
+    *
+    * Input Format:
+    * The first line of input will contain a single integer T, denoting the number of test cases.
+    * The first and only line of each test case contains three space-separated integers L1, V1 and V2 -
+    * the length of the racetrack, the tortoise's speed, and the hare's speed.
+    *
+    * Output Format:
+    * For each test case, output on a new line the longest time the hare can wait, 
+    * while still being able to win the race.
+    *
+    * Constraints:
+    * 1 <= T <= 10^4
+    * 1 <= L <= 1000
+    * 1 <= V1 < V2 <= 1000
+    */
+    public static void solveCodeChefSMARTER() {
+        Scanner scn = new Scanner(System.in);
+        long T = scn.nextLong(); 
+        while (T-- > 0) {
+            long L = scn.nextLong();
+            long V1 = scn.nextLong();
+            long V2 = scn.nextLong();
+            long T1 = L / V1 + (L % V1 != 0 ? 1 : 0);
+            long T2 = L / V2 + (L % V2 != 0 ? 1 : 0);
+            System.out.println((T2 == T1) ? -1 : T1 - T2 - 1);
+        }
+        scn.close();        
+    }
+    
+    /*
+    * Problem:
+    * Chef bought a new digital lock, 
+    * but is quite suspicious of its actual strength in keeping out pesky thieves. 
+    * So, he wants to find out how quickly he can open the lock.
+    * The digital lock works as follows:
+    * On its screen, there is a string of digits S of length N.
+    * There is also a secret code K of length M (1 <= M <= 10), which acts as the key to the lock.
+    * The lock will open if K is present anywhere in S as a contiguous substring.
+    * Operating the lock is simple: Chef can choose an index i, 
+    * and either increment Si by 1, or decrement it by 1.
+    * Here, the digits are cyclic, following the order 0 → 1 → 2 → 3 → ... → 8 → 9 → 0 → ...
+    * In particular, incrementing 9 will turn it into 0 
+    * and decrementing 0 will turn it into 9.
+    * You are given S and K. What's the minimum number of moves Chef needs to open the lock?
+    *
+    * Input Format:
+    * The first line of input will contain a single integer T, denoting the number of test cases.
+    * Each test case consists of three lines of input.
+    * The first line of each test case contains two space-separated integers N and M - 
+    * the lengths of the string and the secret code, respectively.
+    * The second line contains a string S of length N, containing only the digits 0-9.
+    * The third line contains a string K of length M, also containing only the digits 0-9.
+    *
+    * Output Format:
+    * For each test case, output on a new line the minimum number of moves Chef needs to open the lock.
+    *
+    * Constraints:
+    * 1 <= T <= 10^4
+    * 1 <= N <= 10^5 
+    * 1 <= M <= min(N,10)
+    * The sum of N across all tests won't exceed 10^5.
+    * Strings S and K will only contain the digits 0-9.
+    */
+    public static void solveCodeChefLPC() {
+        Scanner scn = new Scanner(System.in);
+        long T = scn.nextLong(); 
+        while (T-- > 0) {
+            long N = scn.nextLong();
+            long M = scn.nextLong();
+            String S = scn.next();
+            String K = scn.next();
+            int min_movements = Integer.MAX_VALUE;
+            for (int i = 0; i <= S.length() - K.length(); i++) {
+                int i_movements = 0;
+                for (int j = 0; j < K.length(); j++) {
+                    int dS = Integer.parseInt(S.substring(i + j, i + j + 1));
+                    int dK = Integer.parseInt(K.substring(j, j + 1));
+                    int up_movements = Math.abs(dS - dK);
+                    int down_movements = Math.abs(Math.min(dS, dK) + 10 - Math.max(dS, dK));
+                    i_movements += Math.min(up_movements, down_movements);
+                }
+                if (i_movements < min_movements)
+                    min_movements = i_movements;
+            }
+            System.out.println(min_movements);
+        }
+        scn.close();        
+    }
+    
+    /*
+    * Problem:
+    * Chef is on a solo mission in Chefland, facing N enemies. 
+    * The strength of the ith enemy is denoted by Ai.
+    * Chef starts with an initial strength of H and a resistance level of X.
+    * Here are the rules of the fight:
+    * If an enemy's strength is less than or equal to Chef's resistance (X), 
+    * Chef wins without losing any strength.
+    * If an enemy's strength exceeds Chef's resistance, 
+    * Chef can still win, but only if his strength is strictly greater than the enemy's.
+    * In this case, Chef's strength decreases by the enemy's strength after the battle.
+    * Your task is to find the minimum resistance value (X) that Chef needs to defeat all N enemies 
+    * while ensuring he maintains a positive strength after the last battle.
+    *
+    * Input Format:
+    * The first line of input will contain a single integer T, denoting the number of test cases.
+    * Each test case consists of two lines of input.
+    * The first line of each test case contains two space-separated integers N and H - 
+    * the number of enemies and Chef's initial strength, respectively.
+    * The next line contains N space-separated integers A1, A2, ..., AN - 
+    * the strengths of the N enemies.
+    *
+    * Output Format:
+    * For each test case, output on a new line, the minimum resistance value (X) that Chef needs to defeat 
+    * all N enemies while ensuring he maintains a positive strength after the last battle.
+    *
+    * Constraints:
+    * 1 <= T <= 1000
+    * 1 <= N,H,Ai <= 10^5 
+    * The sum of N over all test cases won't exceed 10^6.
+    */
+    public static void solveCodeChefWARRIORCHEF() {
+        Scanner scn = new Scanner(System.in);
+        long T = scn.nextLong(); 
+        while (T-- > 0) {
+            long N = scn.nextLong();
+            long H = scn.nextLong();
+            long max_strength = 1;
+            TreeSet<Long> ordered_strengths = new TreeSet<>();
+            HashMap<Long, Long> strengths = new HashMap<>();
+            for (long i = 0; i < N; i++) {
+                long Ai = scn.nextLong();
+                max_strength += Ai;
+                if (!strengths.containsKey(Ai)) {
+                    strengths.put(Ai, 1L);
+                    ordered_strengths.add(Ai);
+                }                    
+                else
+                    strengths.put(Ai, strengths.get(Ai) + 1);
+            }
+            if (max_strength <= H)
+                System.out.println(0);
+            else {
+                for (Long Ai : ordered_strengths) {
+                    max_strength -= strengths.get(Ai) * Ai;
+                    if (max_strength <= H) {
+                        System.out.println(Ai);
+                        break;
+                    }
+                }
+            }
+        }
+        scn.close();
+    }
 }
