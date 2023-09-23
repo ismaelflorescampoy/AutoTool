@@ -1442,4 +1442,43 @@ public class CodeChef {
         }
         scn.close();
     }
+    
+    /*
+    * Problem:
+    * Chef is planning a heist in the reserve bank of Chefland. 
+    * They are planning to hijack the bank for D days and print the money. 
+    * The initial rate of printing the currency is P dollars per day and they 
+    * increase the production by Q dollars after every interval of d days.
+    * For example, after d days the rate is P+Q dollars per day, 
+    * and after 2d days the rate is P+2Q dollars per day, and so on. 
+    * Output the amount of money they will be able to print in the given period.
+    *
+    * Input:
+    * The first line contains an integer T, the number of test cases. Then the test cases follow.
+    * Each test case contains a single line of input, four integers D,d,P,Q.
+    *
+    * Output:
+    * For each test case, output in a single line the answer to the problem.
+    *
+    * Constraints:
+    * 1 <= T <= 10^5 
+    * 1 <= d <= D <= 10^6
+    * 1 <= P,Q <= 10^6 
+    */
+    public static void solveCodeChefCHFHEIST() {
+        Scanner scn = new Scanner(System.in);
+        long T = scn.nextLong();
+        while (T-- > 0) {
+            long D = scn.nextLong();
+            long d = scn.nextLong();
+            long P = scn.nextLong();
+            long Q = scn.nextLong();
+            long n = D / d;
+            long Pbox = P * n * d + P * (D % d);
+            long Qstairs = d * Q * ((n - 1) * n) / 2;
+            long Qremain = Q * (D% d) * n;
+            System.out.println(Pbox + Qstairs + Qremain);
+        }
+        scn.close();        
+    }
 }
