@@ -1221,7 +1221,6 @@ public class CodeChef {
         while (T-- > 0) {
             long rs5 = 0;
             long rs10 = 0;
-            long rs15 = 0;
             long imposible = 0;
             long N = scn.nextLong();
             for (long i = 0; i < N; i++) {
@@ -1232,14 +1231,10 @@ public class CodeChef {
                     rs5--;
                     rs10++;
                 }
-                else if (ai == 15 && rs10 > 0) {
+                else if (ai == 15 && rs10 > 0)
                     rs10--;
-                    rs15++;
-                }
-                else if (ai == 15 && rs5 > 1) {
+                else if (ai == 15 && rs5 > 1)
                     rs5 -= 2;
-                    rs15++;
-                }
                 else
                     imposible++;
             }
@@ -1361,9 +1356,9 @@ public class CodeChef {
             String S = scn.next();
             String K = scn.next();
             int min_movements = Integer.MAX_VALUE;
-            for (int i = 0; i <= S.length() - K.length(); i++) {
+            for (int i = 0; i <= N - M; i++) {
                 int i_movements = 0;
-                for (int j = 0; j < K.length(); j++) {
+                for (int j = 0; j < M; j++) {
                     int dS = Integer.parseInt(S.substring(i + j, i + j + 1));
                     int dK = Integer.parseInt(K.substring(j, j + 1));
                     int up_movements = Math.abs(dS - dK);
