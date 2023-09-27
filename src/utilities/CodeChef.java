@@ -1476,4 +1476,77 @@ public class CodeChef {
         }
         scn.close();        
     }
+    
+    /*
+    * Problem:
+    * Chef has started a new job as an insurance agent. 
+    * Each insurance costs X dollars and Chef gets a 20% commission on selling each insurance.
+    * Find the minimum number of insurances Chef needs to sell to earn at least 100 dollars.
+    *
+    * Input Format:
+    * The first line of input will contain a single integer T, denoting the number of test cases.
+    * Each test case consists of a single integer X, the cost of an insurance.
+    * 
+    * Output Format:
+    * For each test case, output on a new line, 
+    * the minimum number of insurances Chef needs to sell to earn at least 100 dollars.
+    *
+    * Constraints:
+    * 1 <= T <= 100
+    * 1 <= X <= 100
+    */
+    public static void solveCodeChefAGENTCHEF() {
+        Scanner scn = new Scanner(System.in);
+        long T = scn.nextLong();
+        while (T-- > 0) {
+            long X = scn.nextLong();
+            long N = 10000 / (X * 20) + (((10000 % (X * 20)) != 0) ? 1 : 0);
+            System.out.println(N);
+        }
+        scn.close();        
+    }
+
+    /*
+    * Problem:
+    * Chef has started learning about the stock market and has already selected a favourite stock.
+    * He traded the stock for N consecutive days. 
+    * Let Ai denotes the profit earned by Chef on the ith day. 
+    * Note that Ai < 0 indicates that Chef had a loss on the ith day.
+    * Chef wants to find the maximum amount of of profit he would have earned, 
+    * if he skipped trading for exactly one day.
+    *
+    * Input Format:
+    * The first line of input will contain a single integer T, denoting the number of test cases.
+    * Each test case consists of multiple lines of input.
+    * The first line of each test case contains N — the number of days.
+    * The next line denotes N space-separated integers, denoting the profit earned by Chef on the ith day.
+    *
+    * Output Format:
+    * For each test case, output on a new line, the maximum amount of of profit he would have earned, 
+    * if he skipped trading for exactly one day.
+    *
+    * Constraints:
+    * 1 <= T <= 1000
+    * 1 <= N <= 10^5
+    * −100 <= Ai <= 100
+    * The sum of N over all test cases won't exceed 10^6.
+    */
+    public static void solveCodeChefSTOCKMARKET() {
+        Scanner scn = new Scanner(System.in);
+        long T = scn.nextLong();
+        while (T-- > 0) {
+            long N = scn.nextLong();
+            long minAi = Long.MAX_VALUE;
+            long sumAi = 0;
+            for (long i = 0; i < N; i++) {
+                long Ai = scn.nextLong();
+                sumAi += Ai;
+                if (Ai < minAi)
+                    minAi = Ai;
+            }
+            System.out.println(sumAi - minAi);
+        }
+        scn.close();        
+    }
+   
 }

@@ -83,6 +83,8 @@ public class Main {
         CODECHEF_FUNCTIONS.put("LPC", CodeChef.class.getDeclaredMethod("solveCodeChefLPC"));
         CODECHEF_FUNCTIONS.put("WARRIORCHEF", CodeChef.class.getDeclaredMethod("solveCodeChefWARRIORCHEF"));
         CODECHEF_FUNCTIONS.put("CHFHEIST", CodeChef.class.getDeclaredMethod("solveCodeChefCHFHEIST"));
+        CODECHEF_FUNCTIONS.put("AGENTCHEF", CodeChef.class.getDeclaredMethod("solveCodeChefAGENTCHEF"));
+        CODECHEF_FUNCTIONS.put("STOCKMARKET", CodeChef.class.getDeclaredMethod("solveCodeChefSTOCKMARKET"));
         
         String problem = getOption(args, 2, "Enter 'CodeChef' code problem to solve :");
         if (!CODECHEF_FUNCTIONS.containsKey(problem))
