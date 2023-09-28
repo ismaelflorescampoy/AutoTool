@@ -1549,4 +1549,27 @@ public class CodeChef {
         scn.close();        
     }
    
+    /*
+     * Problem:
+     * The newspaper in Chefland consists of 1010 pages numbered 11 to 1010.
+     * The last 33 pages of the newspaper are always dedicated to the sports section.
+     * Given a random page number XX, determine whether that page is dedicated to the sports section.
+     * 
+     * Input Format:
+     * The first and only line of input consists of a single integer XX, denoting the page number.
+     * 
+     * Output Format:
+     * Output on a new line, YES, if the given page number is dedicated to the sports section, and NO otherwise.
+     * You may print each character of the string in uppercase or lowercase 
+     * (for example, the strings YES, yEs, yes, and yeS will all be treated as identical).
+     * 
+     * Constraints:
+     * 1 <= X <= 10
+     */
+    public static void solveCodeChefNEWSPAPER() {
+        Scanner scn = new Scanner(System.in);
+        int X = scn.nextInt();
+        System.out.println(X >= 8 ? "YES" : "NO");
+        scn.close();
+    }    
 }
