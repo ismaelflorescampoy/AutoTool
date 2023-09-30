@@ -86,6 +86,7 @@ public class Main {
         CODECHEF_FUNCTIONS.put("AGENTCHEF", CodeChef.class.getDeclaredMethod("solveCodeChefAGENTCHEF"));
         CODECHEF_FUNCTIONS.put("STOCKMARKET", CodeChef.class.getDeclaredMethod("solveCodeChefSTOCKMARKET"));
         CODECHEF_FUNCTIONS.put("NEWSPAPER", CodeChef.class.getDeclaredMethod("solveCodeChefNEWSPAPER"));
+        CODECHEF_FUNCTIONS.put("EVENTUAL", CodeChef.class.getDeclaredMethod("solveCodeChefEVENTUAL"));
         
         String problem = getOption(args, 2, "Enter 'CodeChef' code problem to solve :");
         if (!CODECHEF_FUNCTIONS.containsKey(problem))
