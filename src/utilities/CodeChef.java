@@ -1623,5 +1623,49 @@ public class CodeChef {
         }
         scn.close();        
     }
+
+    /*
+     * Problem:
+     * Read problem statements in Bengali, Mandarin Chinese, Russian, and Vietnamese as well.
+     * There are N seats in a row. You are given a string S with length N; 
+     * for each valid ii, the ii-th character of S is '0' if the ii-th seat is empty or '1' if there is someone sitting in that seat.
+     * 
+     * Two people are friends if they are sitting next to each other. 
+     * Two friends are always part of the same group of friends. Can you find the total number of groups?
+     * 
+     * Input:
+     * The first line of the input contains a single integer T denoting the number of test cases. 
+     * The description of T test cases follows.
+     * The first and only line of each test case contains a single string S.
+     * 
+     * Output:
+     * For each test case, print a single line containing one integer ― the number of groups.
+     * 
+     * Constraints:
+     * 1 <= T <= 50
+     * 1 <= N <= 10^5
+     */
+    public static void solveCodeChefGROUPS() {
+        Scanner scn = new Scanner(System.in);
+        long T = scn.nextLong();
+        while (T-- > 0) {
+            String S = scn.next();
+            long groups = 0;
+            long friends = 0;
+            for (int i = 0; i < S.length(); i++) {
+                if (S.charAt(i) == '0') {
+                    if (friends > 0)
+                        groups++;
+                    friends = 0;
+                }
+                else
+                    friends++;
+            }
+            if (friends > 0)
+                groups++;
+            System.out.println(groups);
+        }
+        scn.close();
+    }
         
 }
