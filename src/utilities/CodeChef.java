@@ -1,10 +1,11 @@
 package utilities;
 
 import java.util.*;
+import java.lang.reflect.*;
 
 /**
  * @class CodeChef 
- * @brief A library of solutions for CodeChef problems
+ * @brief A library of solutions for CodeChef problems. All function names must start with 'solveCodeChef'
  * @author ismael.flores
  */
 public class CodeChef {
@@ -1763,6 +1764,17 @@ public class CodeChef {
             }
             System.out.println(total);
         }
-        scn.close();                
+        scn.close();
+    }
+
+    /*
+     * @brief: Method to show the CodeChef solved problems implemented.
+     * It shows all procedures with name starting with "solveCodeChef".
+     */
+    public static void showCodeChefSolvedProblems() {
+        for (Method m : CodeChef.class.getDeclaredMethods()) {
+            if (m.getName().startsWith("solveCodeChef"))
+                System.out.println(m.getName().substring(13) + " with procedure " + m.getName());
+        }
     }
 }
