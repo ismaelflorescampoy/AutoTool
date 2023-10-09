@@ -1768,6 +1768,35 @@ public class CodeChef {
     }
 
     /*
+     * Problem:
+     * Given an integer NN, determine the number of pairs (A, B)(A,B) such that:
+     * 1 <= A,B <= N
+     * A + B is odd.
+     * 
+     * Input Format:
+     * The first line of input will contain a single integer T, denoting the number of test cases.
+     * Each test case consists of a single integer N.
+     * 
+     * Output Format:
+     * For each test case, output the number of required pairs.
+     * 
+     * Constraints:
+     * 1 <= T <= 100
+     * 1 <= N <= 10^9
+     */
+    public static void solveCodeChefODDPAIRS() {
+        Scanner scn = new Scanner(System.in);
+        long T = scn.nextLong();
+        while (T-- > 0) {
+            long N = scn.nextLong();
+            long pairs = N / 2;
+            long odds = (N % 2 == 0) ? pairs : pairs + 1;
+            System.out.println(pairs * odds * 2);
+        }
+        scn.close();
+    }
+
+    /*
      * @brief: Method to show the CodeChef solved problems implemented.
      * It shows all procedures with name starting with "solveCodeChef".
      */
