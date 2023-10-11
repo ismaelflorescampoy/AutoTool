@@ -1554,10 +1554,10 @@ public class CodeChef {
      * Problem:
      * The newspaper in Chefland consists of 1010 pages numbered 11 to 1010.
      * The last 33 pages of the newspaper are always dedicated to the sports section.
-     * Given a random page number XX, determine whether that page is dedicated to the sports section.
+     * Given a random page number X, determine whether that page is dedicated to the sports section.
      * 
      * Input Format:
-     * The first and only line of input consists of a single integer XX, denoting the page number.
+     * The first and only line of input consists of a single integer X, denoting the page number.
      * 
      * Output Format:
      * Output on a new line, YES, if the given page number is dedicated to the sports section, and NO otherwise.
@@ -1769,7 +1769,7 @@ public class CodeChef {
 
     /*
      * Problem:
-     * Given an integer NN, determine the number of pairs (A, B)(A,B) such that:
+     * Given an integer N, determine the number of pairs (A, B)(A,B) such that:
      * 1 <= A,B <= N
      * A + B is odd.
      * 
@@ -1792,6 +1792,67 @@ public class CodeChef {
             long pairs = N / 2;
             long odds = (N % 2 == 0) ? pairs : pairs + 1;
             System.out.println(pairs * odds * 2);
+        }
+        scn.close();
+    }
+
+    /*
+     * Problem:
+     * You are given an even integer N and an integer K.
+     * Generate an array A of size N such that:
+     * 1 <= Ai <= 10^5 for all 1 <= i <= N;
+     * The number of odd elements in the array is same as the number of even elements.
+     * The sum of all elements of the array is K.
+     * If multiple such arrays exist, print any. If no such array exists, print -1 instead.
+     * 
+     * Input Format:
+     * The first line of input will contain a single integer T, denoting the number of test cases.
+     * Each test case consists of two space-separated integers N and K - the size of the array and the required sum.
+     * 
+     * Output Format:
+     * For each test case, output on a new line, N space-separated integers, 
+     * denoting the array A satisfying the given conditions.
+     * If multiple such arrays exist, print any. If no such array exists, print -1 instead.
+     * 
+     * Constraints:
+     * 1 <= T <= 1000
+     * 2 <= N <= 10^5, N is even
+     * 1 <= K <= 10^9 The sum of N over all test cases won't exceed 10^6
+     */
+    public static void solveCodeChefSUMARRAY() {
+        Scanner scn = new Scanner(System.in);
+        long T = scn.nextLong();
+        while (T-- > 0) {
+            long N = scn.nextLong();
+            long K = scn.nextLong();
+            if ((N / 2) % 2 != K % 2)
+                System.out.println(-1);
+            else if (K < ((3 * N) / 2))
+                System.out.println(-1);
+            else if ((K / (N / 2)) > 199999)
+                System.out.println(-1);
+            else {
+                String S = "";
+                long sum = 3 * (N / 2 - 1);
+                long v1 = (K - sum) / 2;
+                long v2 = K - sum - v1;
+                while (v1 + v2 > 199999) {
+                    S +="99999 100000 ";
+                    N -= 2;
+                    K -= 199999;
+                    sum = 3 * (N / 2 - 1);
+                    v1 = (K - sum) / 2;
+                    v2 = K - sum - v1;
+                }
+                if (v1 < 1 || v2 < 1 || N < 2)
+                    System.out.println(-1);
+                else {
+                    System.out.print(S);
+                    for (long i = 1; i < N / 2; i++)
+                        System.out.print("1 2 ");
+                    System.out.println(v1 + " " + v2);
+                }
+            }
         }
         scn.close();
     }
