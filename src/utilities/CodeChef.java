@@ -1858,6 +1858,123 @@ public class CodeChef {
     }
 
     /*
+     * Problem:
+     * Chef organised a 30 kilometres marathon in Chefland.
+     * The participants receive medals on completing the marathon as following:
+     * If the total time taken is less than 3 hours, they receive a GOLD medal.
+     * If the total time taken is greater than equal to 3 hours but less than 6 hours, they receive a SILVER medal.
+     * If the total time taken is greater than equal to 6 hours, they receive a BRONZE medal.
+     * Chefina participated in the marathon and completed it in X hours. Which medal would she receive?
+     *
+     * Input Format:
+     * The input consists of a single integer X - the number of hours Chefina took to complete the marathon.
+     * 
+     * Output Format:
+     * Output the medal Chefina would recieve.
+     * Note that you may print each character in uppercase or lowercase. 
+     * For example, the strings GOLD, gold, Gold, and gOlD are considered the same.
+     * 
+     * Constraints:
+     * 1 <= X <= 10.
+     */
+    public static void solveCodeChefOCTATHON() {
+        Scanner scn = new Scanner(System.in);
+        long X = scn.nextLong();
+        if (X < 3)
+            System.out.println("GOLD");
+        else if (X < 6)
+            System.out.println("SILVER");
+        else
+            System.out.println("BRONZE");
+        scn.close();        
+    }
+    
+    /*
+     * Problem:
+     * On a sunny Sunday afternoon, Chef prepared a brunch for his 20 neighbours.
+     * Chef prepared a total of X plates. 
+     * However, the meal was so good that the neighbours started taking Y plates each.
+     * Find the maximum number of neighbours Chef can feed completely.
+     *
+     * Input Format:
+     * The first line of input will contain a single integer T, denoting the number of test cases.
+     * Each test case consists of two space-separated integers X and Y - 
+     * the number of plates Chef prepared and the number of plates each person takes respectively.
+     * 
+     * Output Format:
+     * For each test case, output on a new line, the maximum number of neighbours Chef can feed completely.
+     *
+     * Constraints:
+     * 1 <= T <= 405
+     * 20 <= X <= 100
+     * 1 <= Y <= 5
+     */
+    public static void solveCodeChefBRUNCH() {
+        Scanner scn = new Scanner(System.in);
+        long T = scn.nextLong();
+        while (T-- > 0) {
+            long X = scn.nextLong();
+            long Y = scn.nextLong();
+            long total = X / Y;
+            System.out.println(total > 20 ? 20 : total);
+        }
+        scn.close();
+    }
+    
+    /*
+     * Problem:
+     * Alice and Bob are playing a game. Each player rolls a regular six faced dice 3 times.
+     * The score of a player is the maximum number that can be formed using the rolls.
+     * The player with the highest score wins, and the game ends in a tie if both players have the same score.
+     * Find the winner of the game or determine whether it is a tie.
+     *
+     * Input Format:
+     * The first line of input will contain a single integer T, denoting the number of test cases.
+     * Each test case contains six space-separated integers A1,A2,A3,B1,B2 and B3 -
+     * the values Alice gets in her 3 dice rolls, followed by the values which Bob gets in his 3 dice rolls.
+     * 
+     * Output Format:
+     * For each test case, output on a new line Alice if Alice wins, Bob if Bob wins and Tie in case of a tie.
+     * Note that you may print each character in uppercase or lowercase. 
+     * For example, the strings tie, TIE, Tie, and tIe are considered identical.
+     * 
+     * Constraints:
+     * 1 <= T <= 10^4
+     * 1 <= A1,A2,A3,B1,B2,B3 <= 6
+     */
+    public static void solveCodeChefDICENUM() {
+        Scanner scn = new Scanner(System.in);
+        long T = scn.nextLong();
+        while (T-- > 0) {
+            ArrayList<Long> A = new ArrayList<>();
+            ArrayList<Long> B = new ArrayList<>();
+            A.add(scn.nextLong());
+            A.add(scn.nextLong());
+            A.add(scn.nextLong());
+            B.add(scn.nextLong());
+            B.add(scn.nextLong());
+            B.add(scn.nextLong());
+            Collections.sort(A);
+            Collections.sort(B);
+            long MaxA = 0;
+            long MaxB = 0;
+            long pow = 1;
+            for (int i = 0; i < 3; i++) {
+                MaxA = MaxA + A.get(i) * pow;
+                MaxB = MaxB + B.get(i) * pow;
+                pow *= 10;
+            }
+            if (MaxA > MaxB)
+                System.out.println("Alice");
+            else if (MaxB > MaxA)
+                System.out.println("Bob");
+            else
+                System.out.println("Tie");
+        }
+        scn.close();
+    }
+    
+    /*
      * @brief: Method to show the CodeChef solved problems implemented.
      * It shows all procedures with name starting with "solveCodeChef".
      */
