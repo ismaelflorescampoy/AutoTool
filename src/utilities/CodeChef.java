@@ -1973,6 +1973,55 @@ public class CodeChef {
         }
         scn.close();
     }
+
+    /*
+     * Problem:
+     * You are given a binary string S of length N. 
+     * You are allowed to perform the following types of operations on string S:
+     * Delete any one character from S, and concatenate the remaining parts of the string. 
+     * For example, if we delete the third character of S=1101, it becomes S=111.
+     * Flip all the characters of S. 
+     * For example, if we flip all character of S=1101, it becomes S=0010.
+     * Given that you can use either type of operation any number of times, 
+     * find the minimum number of operations required to make all characters of the string S equal to 0.
+     * 
+     * Input Format:
+     * The first line of input will contain a single integer T, denoting the number of test cases.
+     * Each test case consists of multiple lines of input.
+     * The first line of each test case contains an integer N - the length of the string.
+     * The next line contains a binary string S of length N.
+     *
+     * Output Format:
+     * For each test case, output on a new line, 
+     * the minimum number of operations required to make all characters of the string S equal to 0.
+     * 
+     * Constraints:
+     * 1 <= T <= 2000
+     * 1 <= N <= 10^5
+     * S contains 0 and 1 only.
+     * The sum of N over all test cases won't exceed 2*10^5
+     */
+    public static void solveCodeChefZEROSTRING() {
+        Scanner scn = new Scanner(System.in);
+        long T = scn.nextLong();
+        while (T-- > 0) {
+            long N = scn.nextLong();
+            String S = scn.next();
+            long ones = 0;
+            long zeros = 0;
+            for (char c : S.toCharArray()) {
+                if (c == '1')
+                    ones++;
+                else
+                    zeros++;
+            }
+            if (ones > zeros)
+                System.out.println(zeros + 1);
+            else
+                System.out.println(ones);
+        }
+        scn.close();
+    }
     
     /*
      * @brief: Method to show the CodeChef solved problems implemented.
