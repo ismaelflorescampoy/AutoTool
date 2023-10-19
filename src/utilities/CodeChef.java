@@ -2021,8 +2021,65 @@ public class CodeChef {
                 System.out.println(ones);
         }
         scn.close();
+
+    }
+
+    /*
+     * Problem:
+     * Chefina decided to move into Chef's apartment.
+     * Chef was initially paying a rent of X rupees. 
+     * Since Chefina is moving in, the owner decided to double the rent.
+     * Find the final rent Chef needs to pay.
+     * 
+     * Input Format:
+     * The input consists of a single integer X, denoting the rent Chef was initially paying.
+     * 
+     * Output Format:
+     * Output on a new line, the final rent Chef needs to pay.
+     * 
+     * Constraints:
+     * 1 <= X <= 10
+     */
+    public static void solveCodeChefDOUBLERENT() {
+        Scanner scn = new Scanner(System.in);
+        long X = scn.nextLong();
+        System.out.println(X * 2);
+        scn.close();
     }
     
+    /*
+     * Problem:
+     * Chef has a circular pizza and a knife to cut that into pieces. 
+     * He can only cut the pizza in a way such that the knife starts from the boundary of the pizza, 
+     * passes the centre, and ends at the boundary.
+     * Find whether Chef an divide the pizza into N pieces using any (possibly zero) number of cuts.
+     * 
+     * Input Format:
+     * The first line of input will contain a single integer T, denoting the number of test cases.
+     * Each test case consists of a single integer N - denoting the desired number of cuts.
+     * 
+     * Output Format:
+     * For each test case, output on a new line, YES, 
+     * if Chef can divide the pizza into N pieces using any (possibly zero) number of cuts, 
+     * and NO otherwise.
+     * Note that you may print each character in uppercase or lowercase. 
+     * For example, the strings NO, no, No, and nO are considered the same.
+     * 
+     * Constraints:
+     * 1 <= T <= 100
+     * 1 <= N <= 100
+     */
+    public static void solveCodeChefPIZZAC() {
+        Scanner scn = new Scanner(System.in);
+        long T = scn.nextInt();
+        while (T-- > 0) {
+            long N = scn.nextInt();
+            boolean posible = (N % 2 == 0 || N == 1);
+            System.out.println(posible ? "YES" : "NO");
+        }
+        scn.close();
+    }
+
     /*
      * @brief: Method to show the CodeChef solved problems implemented.
      * It shows all procedures with name starting with "solveCodeChef".
