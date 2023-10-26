@@ -2205,6 +2205,69 @@ public class CodeChef {
     }
 
     /*
+     * Problem:
+     * Trick or treat, bags of sweets, ghosts are walking down the street.
+     * It's Halloween and Suri Bhai is out to get his treats.
+     * There are two sectors in his neighborhood, "Bones" and "Blood". 
+     * They have N and M people, respectively.
+     * Each person in "Bones" will hand out X treats, and each person in "Blood" will hand out Y treats.
+     * How many treats does Suri Bhai get from visiting everyone in his neighborhood in total?
+     * 
+     * Input Format:
+     * The first line of input contains two space-separated integers N and M - 
+     * the number of people in "Bones" and "Blood", respectively.
+     * The second line of input contains two space-separated integers X and Y - 
+     * the number of treats handed out by each person in "Bones" and "Blood", respectively.
+     * 
+     * Output Format:
+     * For each test case output a single integer: the total number of treats Suri Bhai will receive.
+     * 
+     * Constraints:
+     * 0 <= N,M <= 100
+     * 0 <= X,Y <= 1000
+     */
+    public static void solveCodeChefBNE_APT() {
+        Scanner scn = new Scanner(System.in);
+        long N = scn.nextLong();
+        long M = scn.nextLong();
+        long X = scn.nextLong();
+        long Y = scn.nextLong();
+        System.out.println(N * X + M * Y);
+        scn.close();
+    }
+
+    /*
+     * Problem:
+     * Eat, drink, and be scary.
+     * There are N spooky days left until Halloween.
+     * Dracula dines at a mysterious restaurant that changes its spooky menu daily.
+     * He particularly enjoys what they serve on Tuesday.
+     * Today is Monday, so he wishes to calculate how many times he can indulge 
+     * in his favourite menu in the next N days (including today) before Halloween.
+     * Note that Dracula follows the standard 7-day calendar, with Tuesday immediately following Monday.
+     * 
+     * Input Format:
+     * The first line of input will contain a single integer T, denoting the number of test cases.
+     * The only line of each test case contains a single integer N, denoting the number of spooky days.
+     * 
+     * Output Format:
+     * For each test case, output on a new line the number of times Dracula would have had his favorite meal after N days.
+     * 
+     * Constraints:
+     * 1 <= T <= 1000
+     * 1 <= N <= 1000
+     */
+    public static void solveCodeChefCHEAT() {
+        Scanner scn = new Scanner(System.in);
+        long T = scn.nextLong();
+        while (T-- > 0) {
+            long N = scn.nextLong();
+            System.out.println((N + 5) / 7);
+        }
+        scn.close();
+    }
+
+    /*
      * @brief: Method to show the CodeChef solved problems implemented.
      * It shows all procedures with name starting with "solveCodeChef".
      */
