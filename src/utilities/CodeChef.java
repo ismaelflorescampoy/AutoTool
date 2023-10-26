@@ -2268,6 +2268,46 @@ public class CodeChef {
     }
 
     /*
+     * Problem:
+     * Read problem statements in Russian and Mandarin Chinese.
+     * A great deal of energy is lost as metabolic heat 
+     * when the organisms from one trophic level are consumed by the next level.
+     * Suppose in Chefland the energy reduces by a factor of K, i.e, if initially, the energy is X, 
+     * then the transfer of energy to the next tropic level is ⌊X/K⌋.
+     * This limits the length of foodchain which is defined to be the highest level receiving non-zero energy.
+     * E is the energy at the lowest tropic level. Given E and K for an ecosystem, find the maximum length of foodchain.
+     * Note: ⌊x⌋ denoted the floor function, and it returns the greatest integer that is less than or equal to x 
+     * (i.e rounds down to the nearest integer). For example, ⌊1.4⌋ = 1, ⌊5⌋ = 5, ⌊−1.5⌋ = −2, ⌊−3⌋ = −3 , ⌊0⌋ = 0.
+     * 
+     * Input Format:
+     * First line will contain T, number of testcases. Then the testcases follow.
+     * Each testcase contains a single line of input, two integers E,K.
+     * 
+     * Output Format:
+     * For each testcase, output in a single line answer to the problem.
+     * 
+     * Constraints:
+     * 1 <= T <= 10^4
+     * 1 <= E <= 10^9
+     * 2 <= K <= 10^9
+     */
+    public static void solveCodeChefFODCHAIN() {
+        Scanner scn = new Scanner(System.in);
+        long T = scn.nextLong();
+        while (T-- > 0) {
+            long E = scn.nextLong();
+            long K = scn.nextLong();
+            long levels = 0;
+            while (E > 0) {
+                E /= K;
+                levels++;
+            }
+            System.out.println(levels);
+        }
+        scn.close();
+    }
+
+    /*
      * @brief: Method to show the CodeChef solved problems implemented.
      * It shows all procedures with name starting with "solveCodeChef".
      */
