@@ -2312,9 +2312,10 @@ public class CodeChef {
      * It shows all procedures with name starting with "solveCodeChef".
      */
     public static void showCodeChefSolvedProblems() {
+        String prefix = "solveCodeChef";
         for (Method m : CodeChef.class.getDeclaredMethods()) {
-            if (m.getName().startsWith("solveCodeChef"))
-                System.out.println(m.getName().substring(13) + " with procedure " + m.getName());
+            if (m.getName().startsWith(prefix))
+                System.out.println(m.getName().substring(prefix.length()) + " with procedure " + m.getName());
         }
     }
 }

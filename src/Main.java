@@ -1,6 +1,8 @@
 import java.io.*;
 import java.lang.reflect.*;
 import java.util.*;
+
+import utilities.AdventOfCode;
 import utilities.CodeChef;
 import utilities.LiveDescription;
 
@@ -41,7 +43,7 @@ public class Main {
     }
     
     /**
-     * Code to solve codeChef problemsCo
+     * Code to solve codeChef problems
      * @param args command line arguments
      */
     public static void solveCodeChef(String[] args) throws Exception {
@@ -50,8 +52,30 @@ public class Main {
             Method procedure = CodeChef.class.getDeclaredMethod("solveCodeChef" + problem);
             procedure.invoke(null);
         } catch (NoSuchMethodException e) {
-            System.out.println("Error: solution for CodeChef problem '" + problem + "' not found! Available solutions:");
+            if (problem.length() > 0)
+                System.out.println("Error: solution for CodeChef problem '" + problem + "' not found! Available solutions:");
+            else
+                System.out.println("Error: No problem provided! Available solutions:");
             CodeChef.showCodeChefSolvedProblems();
+            return;
+        }
+    }
+
+    /**
+     * Code to solve Advent Of Code problems
+     * @param args command line arguments
+     */
+    public static void solveAdventOfCode(String[] args) throws Exception {
+        String problem = getOption(args, 2, "Enter 'AdventOfCode' code problem to solve (URL after 'https://adventofcode.com/' without '/'. i.e: 2015day1 for 'https://adventofcode.com/2015/day/1') :");
+        try {
+            Method procedure = AdventOfCode.class.getDeclaredMethod("solveAdventOfCode" + problem);
+            procedure.invoke(null);
+        } catch (NoSuchMethodException e) {
+            if (problem.length() > 0)
+                System.out.println("Error: solution for Advent Of Code problem '" + problem + "' not found! Available solutions:");
+            else
+                System.out.println("Error: No problem provided! Available solutions:");
+            AdventOfCode.showAdventOfCodeSolvedProblems();
             return;
         }
     }
@@ -97,10 +121,11 @@ public class Main {
     public static void main (String[] args) throws java.lang.Exception
     {
         System.setOut(new PrintStream(System.out, true, "UTF8"));
-        String tool = getOption(args, 1, "Error: No tool defined. Please, select tool 'SpaceXStorm' or 'CodeChef':");
+        String tool = getOption(args, 1, "Error: No tool defined. Please, select tool 'SpaceXStorm', 'CodeChef' or 'AdventOfCode':");
         switch (tool) {
             case "SpaceXStorm" -> doSpaceXStormTask(args);
             case "CodeChef" -> solveCodeChef(args);
+            case "AdventOfCode" -> solveAdventOfCode(args);
             default -> System.out.println("Error: Unknown task " + tool);
         }
     }
