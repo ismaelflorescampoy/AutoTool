@@ -12,19 +12,28 @@ public class AdventOfCode {
 
     /**
      * @brief Solves the "2015day1" problem on Advent of Code (part 1).
+     * @param part the part of the problem to solve (1 or 2)
      * @see <a href="https://adventofcode.com/2015/day/1">https://adventofcode.com/2015/day/1</a>
      */
-    public static void solveAdventOfCode2015day1() {
+    public static void solveAdventOfCode2015day1(String part) {
         Scanner scn = new Scanner(System.in);
         String S = scn.next();
         long floor = 0;
+        long position = 1;
+        long basement_position = 0;
         for (char c : S.toCharArray()) {
             if (c == '(')
                 floor++;
             else
                 floor--;
+            if (floor == -1 && basement_position == 0)
+                basement_position = position;
+            position++;
         }
-        System.out.println(floor);
+        if (part.equals("1"))
+            System.out.println(floor);
+        else
+            System.out.println(basement_position);
         scn.close();
     }
 

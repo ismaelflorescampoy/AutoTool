@@ -48,14 +48,16 @@ public class Main {
      */
     public static void solveCodeChef(String[] args) throws Exception {
         String problem = getOption(args, 2, "Enter 'CodeChef' code problem to solve :");
+        if (problem.length() == 0) {
+            System.out.println("Error: No problem provided! Available solutions:");
+            CodeChef.showCodeChefSolvedProblems();
+            return;
+        }
         try {
             Method procedure = CodeChef.class.getDeclaredMethod("solveCodeChef" + problem);
             procedure.invoke(null);
         } catch (NoSuchMethodException e) {
-            if (problem.length() > 0)
-                System.out.println("Error: solution for CodeChef problem '" + problem + "' not found! Available solutions:");
-            else
-                System.out.println("Error: No problem provided! Available solutions:");
+            System.out.println("Error: solution for CodeChef problem '" + problem + "' not found! Available solutions:");
             CodeChef.showCodeChefSolvedProblems();
             return;
         }
@@ -67,14 +69,19 @@ public class Main {
      */
     public static void solveAdventOfCode(String[] args) throws Exception {
         String problem = getOption(args, 2, "Enter 'AdventOfCode' code problem to solve (URL after 'https://adventofcode.com/' without '/'. i.e: 2015day1 for 'https://adventofcode.com/2015/day/1') :");
+        if (problem.length() == 0) {
+            System.out.println("Error: No problem provided! Available solutions:");
+            AdventOfCode.showAdventOfCodeSolvedProblems();
+            return;
+        }
         try {
-            Method procedure = AdventOfCode.class.getDeclaredMethod("solveAdventOfCode" + problem);
-            procedure.invoke(null);
+            String part = getOption(args, 3, "Enter 'AdventOfCode' part for problem " + problem + " to solve to (by default is '1', the first part):");
+            if (part.length() == 0)
+                part = "1";
+            Method procedure = AdventOfCode.class.getDeclaredMethod("solveAdventOfCode" + problem, String.class);
+            procedure.invoke(null, part);
         } catch (NoSuchMethodException e) {
-            if (problem.length() > 0)
-                System.out.println("Error: solution for Advent Of Code problem '" + problem + "' not found! Available solutions:");
-            else
-                System.out.println("Error: No problem provided! Available solutions:");
+            System.out.println("Error: solution for Advent Of Code problem '" + problem + "' not found! Available solutions:");
             AdventOfCode.showAdventOfCodeSolvedProblems();
             return;
         }
