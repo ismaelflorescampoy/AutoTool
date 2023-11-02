@@ -2308,6 +2308,109 @@ public class CodeChef {
     }
 
     /*
+    * Problem:
+    * Chef Sports conducted a fan poll to find out who their fans thought was the best captain.
+    * The three players nominated were Dhoni, Rohit, and Kohli. 
+    * They received A, B, and C votes, respectively.
+    * Find out whether Dhoni won the poll, i.e, if he received the maximum number of votes.
+    * Note: It is guaranteed that no two players received the same number of votes.
+    *
+    * Input Format:
+    * The only line of input contains three space-separated integers A, B, and C -
+    * the number of votes obtained by Dhoni, Rohit, and Kohli, respectively.
+    * 
+    * Output Format:
+    * Print the answer on a single line: "Yes" (without quotes) if Dhoni won the poll, 
+    * and "No" (without quotes) otherwise.
+    * Each character of the output may be printed in either uppercase or lowercase, 
+    * i.e, the strings No, no, nO, and NO` will all be treated as equivalent.
+    *
+    * Constraints:
+    * 1 <= A <= 1000
+    * 1 <= B <= 1000
+    * 1 <= C <= 1000
+    * A != B, A != C, and B != C
+    */
+    public static void solveCodeChefFIZZBUZZ2301() {
+        Scanner scn = new Scanner(System.in);
+        long A = scn.nextLong();
+        long B = scn.nextLong();
+        long C = scn.nextLong();
+        boolean dhoni = (A == Math.max(A, Math.max(B, C)));
+        System.out.println(dhoni ? "Yes" : "No");
+        scn.close();
+    }
+    
+    /*
+    * Problem:
+    * The apocalypse has arrived, and Alice and her 4 other family members 
+    * (a total of 5 people) are now stuck in a shopping mall from where they have nowhere to run.
+    * Fortunately, the place where they are stuck has frozen buns which they can eat and survive.
+    * There are N buns in the mall, and each member of the family needs to eat X buns everyday to survive.
+    * After the food supply runs out, the family can survive for a further D days.
+    * How many days can Alice and family survive under these conditions?
+    * Note: If there aren't enough buns to feed the whole family, nobody will eat anything. 
+    * The samples below showcase an example of this.
+    *
+    * Input Format:
+    * The first line of input will contain a single integer T, denoting the number of test cases.
+    * The first and only line of each test case contains three space-separated integers N, X, and D -
+    * the total number of frozen buns, the number of buns every member needs everyday, 
+    * and the number of days everyone can survive after food gets exhausted, respectively.
+    * 
+    * Output Format:
+    * For each test case, output on a new line the total number of days Alice and family can survive.
+    *
+    * Constraints:
+    * 1 <= T <= 10^5
+    * 0 <= N < 500
+    * 1 <= X <= 10
+    * 0 <= D < 20
+    */
+    public static void solveCodeChefFIZZBUZZ23_2() {
+        Scanner scn = new Scanner(System.in);
+        long T = scn.nextLong();
+        while (T-- > 0) {
+            long N = scn.nextLong();
+            long X = scn.nextLong();
+            long D = scn.nextLong();
+            long days = D + N / (5 * X);
+            System.out.println(days);
+        }
+        scn.close();        
+    }
+    
+    /*
+    * Problem:
+    * All of Chef's friends are playing fantasy cricket based upon the ODI World Cup, and Chef would like to join them.
+    * For a certain cricket match, Chef has decided upon his team of 11 players. 
+    * However, he hasn't yet decided who should be the captain and who should be the vice-captain.
+    * He's narrowed his decision down to N players out of the 11, 
+    * from which he'll choose one to be the captain and one to be the vice captain.
+    * How many different choices does he have?
+    *
+    * Input Format:
+    * The first line of input will contain a single integer T, denoting the number of test cases.
+    * The first and the only line of each testcase contains a single integer N, the number of players Chef is considering.
+    *
+    * Output Format:
+    * For each test case, output on a new line the number of possible choices of captain and vice-captain.
+    * 
+    * Constraints:
+    * 1 <= T <= 10
+    * 2 <= N <= 11
+    */
+    public static void solveCodeChefFIZZBUZZ2303() {
+        Scanner scn = new Scanner(System.in);
+        long T = scn.nextLong();
+        while (T-- > 0) {
+            long N = scn.nextLong();
+            System.out.println(N * (N - 1));
+        }
+        scn.close();
+    }
+            
+    /*
      * @brief: Method to show the CodeChef solved problems implemented.
      * It shows all procedures with name starting with "solveCodeChef".
      */
