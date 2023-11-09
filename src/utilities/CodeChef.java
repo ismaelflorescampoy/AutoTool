@@ -2409,7 +2409,129 @@ public class CodeChef {
         }
         scn.close();
     }
-            
+
+    /*
+    * Problem:
+    * Chef classifies a day to be either rainy, cloudy, or clear.
+    * In a particular week, Chef finds X days to be rainy and Y days to be cloudy.
+    * Find the number of clear days in the week.
+    *
+    * Input Format:
+    * The first and only line of input will contain two space-separated integers X and Y, 
+    * denoting the number of rainy and cloudy days in the week.
+    *
+    * Output Format:
+    * Output the number of clear days in the week.
+    *
+    * Constraints:
+    * 0 <= X,Y <= 7
+    * 0 <= X + Y <= 7
+    */
+    public static void solveCodeChefCLEARDAY() {
+        Scanner scn = new Scanner(System.in);
+        long X = scn.nextLong();
+        long Y = scn.nextLong();
+        System.out.println(7 - X - Y);
+        scn.close();
+    }
+    
+    /*
+    * Problem:
+    * Chef and Chefina are playing the famous game of Rock, Paper, Scissors.
+    * The game consists of N rounds. 
+    * In each round, both players choose one of the three moves: Rock, Paper, or Scissors, denoted by R, P, and S respectively.
+    * If both players play the same move, the current round ends in a draw and neither of them gets a point.
+    * If one of the players plays Rock and the other plays Scissors, the player who played Rock wins the round and gets a point.
+    * If one of the players plays Scissors and the other plays Paper, the player who played Scissors wins the round and gets a point.
+    * If one of the players plays Paper and the other plays Rock, the player who played Paper wins the round and gets a point.
+    * The winner of the game is the player who gets the maximum number of points after playing all the rounds. 
+    * If both players have the same number of points, then the game ends in a draw.
+    * You are given two strings A and B, each of length N, 
+    * consisting of uppercase English letters R, P, and S, 
+    * where Ai denotes the move made by Chef in the ith round and Bi denotes the move made by Chefina in the ith round.
+    * Find the minimum number of rounds Chef should have played differently to have won the game.
+    *
+    * Input Format:
+    * The first line of input will contain a single integer T, denoting the number of test cases.
+    * Each test case consists of multiple lines of input.
+    * The first line of each test case contains an integer N - the number of rounds.
+    * The second line contains string A of length N denoting the moves played by Chef.
+    * The third line contains string B of length N denoting the moves played by Chefina.
+    *
+    * Output Format:
+    * For each test case, output on a new line, the minimum number of rounds Chef should have played differently to have won the game.
+    *
+    * Constraints:
+    * 1 <= T <= 7.10^4
+    * 1 <= N <= 1000
+    * Ai, Bi ∈ {R, P, S}
+    * The sum of N over all test cases won't exceed 4.10^5
+    */
+    public static void solveCodeChefPASCRO() {
+        Scanner scn = new Scanner(System.in);
+        long T = scn.nextLong();
+        while (T-- > 0) {
+            long N = scn.nextLong();
+            String A = scn.next();
+            String B = scn.next();
+            long score_A = 0;
+            long score_B = 0;
+            for (int i = 0; i < N; i++) {
+                if (A.charAt(i) == 'R' && B.charAt(i) == 'S')
+                    score_A++;
+                else if (A.charAt(i) == 'S' && B.charAt(i) == 'P')
+                    score_A++;
+                else if (A.charAt(i) == 'P' && B.charAt(i) == 'R')
+                    score_A++;
+                else if (A.charAt(i) != B.charAt(i))
+                    score_B++;
+            }
+            long difference = score_B - score_A;
+            if (difference < 0)
+                System.out.println(0);
+            else
+                System.out.println(difference / 2 + 1);
+        }
+        scn.close();
+    }
+
+    /*
+    * Problem:
+    * Chef has finally decided to complete all of his pending assignments.
+    * There are X assignments where each assignment takes Y minutes to complete.
+    * Find whether Chef would be able to complete all the assignments in Z days.
+    *
+    * Input Format:
+    * The first line of input will contain a single integer T, denoting the number of test cases.
+    * Each test case consists three space-separated integers X, Y, and Z - 
+    * the number of assignments, time taken in minutes to complete each assignment, 
+    * and the number of days in which Chef wants to complete the assignments.
+    *
+    * Output Format:
+    * For each test case, output on a new line, YES, if Chef would be able to complete all the assignments in Z days. 
+    * Otherwise, print NO.
+    * You may print each character of the string in uppercase or lowercase 
+    * (for example, the strings YES, yEs, yes, and yeS will all be treated as identical).
+    *
+    * Constraints:
+    * 1 <= T <= 10^5
+    * 1<= X, Y <= 100
+    * 1 <= Z <= 10
+    */
+    public static void solveCodeChefASSIGNMNT() {
+        Scanner scn = new Scanner(System.in);
+        long T = scn.nextLong();
+        while (T-- > 0) {
+            long X = scn.nextLong();
+            long Y = scn.nextLong();
+            long Z = scn.nextLong();
+            long needed = X * Y;
+            long remainded = Z * 24 * 60;
+            System.out.println(remainded >= needed ? "YES" : "NO");
+        }
+        scn.close();
+    }
+
     /*
      * @brief: Method to show the CodeChef solved problems implemented.
      * It shows all procedures with name starting with "solveCodeChef".
