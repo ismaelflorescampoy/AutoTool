@@ -1161,9 +1161,9 @@ public class CodeChef {
      * 
      * Note that every fruit with Rushitote must be distributed, there cannot be any left over.
      * 
-     * For example, 22 apples and 44 oranges can be distributed equally to two contestants, 
-     * where each one receives 11 apple and 22 oranges.
-     * However, 22 apples and 55 oranges can only be distributed equally to one contestant.
+     * For example, 2 apples and 4 oranges can be distributed equally to two contestants, 
+     * where each one receives 1 apple and 2 oranges.
+     * However, 2 apples and 5 oranges can only be distributed equally to one contestant.
      * 
      * Input Format:
      * The first line of input will contain a single integer T, denoting the number of test cases.
@@ -1552,8 +1552,8 @@ public class CodeChef {
    
     /*
      * Problem:
-     * The newspaper in Chefland consists of 1010 pages numbered 11 to 1010.
-     * The last 33 pages of the newspaper are always dedicated to the sports section.
+     * The newspaper in Chefland consists of 10 pages numbered 1 to 10.
+     * The last 3 pages of the newspaper are always dedicated to the sports section.
      * Given a random page number X, determine whether that page is dedicated to the sports section.
      * 
      * Input Format:
@@ -2532,44 +2532,48 @@ public class CodeChef {
         scn.close();
     }
 
+    /*
+     * Problem:
+     * Given an integer N, find a permutation of size N such that:
+     * 
+     * A(i) != A(i-1)|A(i-2) for all 3 <= i <= N, where | denotes the bitwise or operation.
+     * 
+     * It is guaranteed that such permutation always exists. 
+     * If multiple such permutations exist, you may print any.
+     * Note that a permutation of size N consists of all integers from 1 to N exactly once.
+     * 
+     * Input Format:
+     * The first line of input will contain a single integer T, denoting the number of test cases.
+     * Each test case consists a single integer N — the size of the permutation.
+     * 
+     * Output Format:
+     * For each test case, output on a new line, 
+     * N space-separated integers denoting the permutation satisfying the given conditions.
+     * It is guaranteed that such permutation always exists. If multiple such permutations exist, you may print any.
+     * 
+     * Constraints:
+     * 1 <= T <= 10^5
+     * 3 <= N <= 10^5
+     * The sum of N over all test cases won't exceed 10^6
+     */
     public static void solveCodeChefPERMOR() {
         Scanner scn = new Scanner(System.in);
-        TreeMap<Integer, String> p3 = new TreeMap<>();
-        TreeMap<Integer, String> p = new TreeMap<>();
-        int[] pattern3 = {1, 3, 2, 4};
-        int[] pattern = {1, 2, 4, 3};
-        int step = 100;
-        long T = scn.nextInt();
+        long[] pattern3 = {1, 3, 2, 4};
+        long[] pattern = {1, 2, 4, 3};
+        long T = scn.nextLong();
         while (T-- > 0) {
-            int N = scn.nextInt();
-            if (p3.floorKey(N) == null || p3.floorKey(N) < N) {
-                String s3 = ((p3.floorKey(N) != null) ? (p3.get(p3.floorKey(N)) + " ") : "");
-                int base3 = (p3.floorKey(N) == null ? 0 : p3.floorKey(N));
-                for (int i = base3; i < N; i++) {
-                    s3 += (4 * (i / 4) + pattern3[i % 4]);
-                    if ((i + 1) % step == 0)
-                        p3.put(i + 1, s3);
-                    if (i < N - 1)
-                        s3 += " ";
+            long N = scn.nextLong();
+            if (N % 4 == 3) {
+                for (long i = 0; i < N; i++) {
+                    System.out.print((4 * (i / 4) + pattern3[(int)i % 4]) + " ");
                 }
-                p3.put(N, s3);
             }
-            if (p.floorKey(N) == null || p.floorKey(N) < N) {
-                String s = ((p.floorKey(N) != null) ? (p.get(p.floorKey(N)) + " ") : "");
-                int base = (p.floorKey(N) == null ? 0 : p.floorKey(N));
-                for (int i = base; i < N; i++) {
-                    s += (4 * (i / 4) + pattern[i % 4]);
-                    if ((i + 1) % step == 0)
-                        p.put(i + 1, s);
-                    if (i < N - 1)
-                        s += " ";
+            else {
+                for (long i = 0; i < N; i++) {
+                    System.out.print((4 * (i / 4) + pattern[(int)i % 4]) + " ");
                 }
-                p.put(N, s);
             }
-            if (N % 4 == 3)
-                System.out.println(p3.get(N));
-            else
-                System.out.println(p.get(N));
+            System.out.println();
         }
         scn.close();
     }
