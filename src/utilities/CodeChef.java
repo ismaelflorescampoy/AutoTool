@@ -2409,7 +2409,49 @@ public class CodeChef {
         }
         scn.close();
     }
-            
+      
+    public static void solveCodeChefPERMOR() {
+        Scanner scn = new Scanner(System.in);
+        TreeMap<Integer, String> p3 = new TreeMap<>();
+        TreeMap<Integer, String> p = new TreeMap<>();
+        int[] pattern3 = {1, 3, 2, 4};
+        int[] pattern = {1, 2, 4, 3};
+        int step = 100;
+        long T = scn.nextInt();
+        while (T-- > 0) {
+            int N = scn.nextInt();
+            if (p3.floorKey(N) == null || p3.floorKey(N) < N) {
+                String s3 = ((p3.floorKey(N) != null) ? (p3.get(p3.floorKey(N)) + " ") : "");
+                int base3 = (p3.floorKey(N) == null ? 0 : p3.floorKey(N));
+                for (int i = base3; i < N; i++) {
+                    s3 += (4 * (i / 4) + pattern3[i % 4]);
+                    if ((i + 1) % step == 0)
+                        p3.put(i + 1, s3);
+                    if (i < N - 1)
+                        s3 += " ";
+                }
+                p3.put(N, s3);
+            }
+            if (p.floorKey(N) == null || p.floorKey(N) < N) {
+                String s = ((p.floorKey(N) != null) ? (p.get(p.floorKey(N)) + " ") : "");
+                int base = (p.floorKey(N) == null ? 0 : p.floorKey(N));
+                for (int i = base; i < N; i++) {
+                    s += (4 * (i / 4) + pattern[i % 4]);
+                    if ((i + 1) % step == 0)
+                        p.put(i + 1, s);
+                    if (i < N - 1)
+                        s += " ";
+                }
+                p.put(N, s);
+            }
+            if (N % 4 == 3)
+                System.out.println(p3.get(N));
+            else
+                System.out.println(p.get(N));
+        }
+        scn.close();
+    }
+
     /*
      * @brief: Method to show the CodeChef solved problems implemented.
      * It shows all procedures with name starting with "solveCodeChef".
