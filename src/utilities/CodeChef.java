@@ -2577,6 +2577,123 @@ public class CodeChef {
         }
         scn.close();
     }
+
+    /*
+    * Problem:
+    * Dominater and Everule are very competitive, 
+    * and keep trying to show that they are better at competitive programming than the other. 
+    * What better measure is there than their rating?
+    * Both of them participated in a contest. 
+    * Before the contest, Dominater's rating was R1 and Everule's rating was R2.
+    * Dominater's rating changed by D1 in the contest, and Everule's rating changed by D2.
+    * Who has the higher final rating after the contest?
+    * Print "Dominater" if his rating is higher, and "Everule" if his rating is higher (without the quotes).
+    * It is guaranteed they do not have equal ratings at the end of the contest.
+    *
+    * Input Format:
+    * The first line of input will contain two space-separated integers R1 and R2, 
+    * denoting the initial ratings of Dominater and Everule.
+    * The second line of input will contain two space-separated integers D1 and D2,
+    * denoting the rating changes of Dominater and Everule.
+    *
+    * Output Format:
+    * Output Dominater or Everule, depending on who has a higher rating at the end.
+    * Each character of the output may be printed in either uppercase or lowercase, 
+    * i.e, Everule, EVERULE, and evERuLe will all be treated as equivalent.
+    *
+    * Constraints:
+    * 1 <= R1, R2 <= 3000
+    * -200 <= D1, D2 <= 200
+    * It is guaranteed Dominater and Everule have different final ratings.
+    */
+    public static void solveCodeChefCPRIVAL() {
+        Scanner scn = new Scanner(System.in);
+        long R1 = scn.nextLong();
+        long R2 = scn.nextLong();
+        long D1 = scn.nextLong();
+        long D2 = scn.nextLong();
+        long dominater = R1 + D1;
+        long everule = R2 + D2;
+        System.out.println(dominater > everule ? "Dominater" : "Everule");
+        scn.close();
+    }
+    
+    /*
+    * Problem:
+    * You are hosting a chess tournament with 2N people. 
+    * Exactly X of them are rated players, and the remaining 2N − X are unrated players.
+    * Your job is to distribute the players into N pairs, 
+    * where every player plays against the person paired up with them.
+    * Since you want the rated players to have an advantage, you want to pair them with unrated players. 
+    * Thus, you want to minimize the number of rated players whose opponent is also rated.
+    * Print the minimum number of rated players whose opponents are also rated, among all possible pairings.
+    *
+    * Input Format:
+    * The first line of input will contain a single integer T, denoting the number of test cases.
+    * Each test case consists of 1 line containing 2 space-separated integers N and X, 
+    * meaning there are 2N players, and X of them are rated.
+    *
+    * Output Format:
+    * For each test case, output on a new line the minimum number of rated players who will have rated opponents.
+    * 
+    * Constraints:
+    * 1 <= T <= 2600
+    * 1 <= N <= 50
+    * 0 <= X <= 2 * N
+    */
+    public static void solveCodeChefCHESS_PAIR() {
+        Scanner scn = new Scanner(System.in);
+        long T = scn.nextLong();
+        while (T-- > 0) {
+            long N = scn.nextLong();
+            long X = scn.nextLong();
+            long unrated = 2 * N - X;
+            System.out.println((X <= unrated) ? 0 : (X - unrated));
+        }
+        scn.close();
+    }
+
+    /*
+    * Problem:
+    * A palindromic prime number is a positive integer that is both a prime number (meaning it has exactly two divisors:
+    * 1 and itself) and a palindrome in base 10 (meaning it reads the same both backwards and forwards).
+    * Leading zeros are not considered when determining if a number is a palindrome 
+    * (so 20 is not a palindrome, even though it can be written as 020).
+    * You are given an integer N. Consider the first N palindromic prime numbers. 
+    * How many of them have an even number of digits, and how many of them have an odd number of digits?
+    *
+    * Some examples:
+    * 2,7, and 11 are palindromic primes.
+    * 22 and 121 are palindromes that are not primes.
+    * 17 and 37 are primes that are not palindromes.
+    * 42 is neither a palindrome nor a prime.
+    *
+    * Input Format:
+    * The first line of input will contain a single integer T, denoting the number of test cases.
+    * The first and only line of each test case contains a single integer N -
+    * meaning you must consider the first N palindromic prime numbers.
+    *
+    * Output Format:
+    * For each test case, output on a new line two space-separated integers: 
+    * among the first N palindromic primes, the number of them that have an even number of digits
+    * and the number of them that have an odd number of digits, respectively.
+    *
+    * Constraints:
+    * 1 <= T <= 10^5
+    * 1 <= N <= 10^5
+    */
+    public static void solveCodeChefMD_RIEV() {
+        Scanner scn = new Scanner(System.in);
+        long T = scn.nextLong();
+        while (T-- > 0) {
+            long N = scn.nextLong();
+            if (N < 5)
+                System.out.println("0 " + N);
+            else
+                System.out.println("1 " + (N - 1));
+        }
+        scn.close();
+    }
     
     /*
      * @brief: Method to show the CodeChef solved problems implemented.
