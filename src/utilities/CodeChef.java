@@ -769,7 +769,7 @@ public class CodeChef {
      * A new patisserie has opened up to rave reviews. 
      * You, in your quest for deliciousness, are going to visit it.
      * The patisserie has N pastries. With your trained eye, 
-     * you judge that the ii-th of them has deliciousness Ai.
+     * you judge that the i-th of them has deliciousness Ai.
      * Of course, you want to eat pastries whose total deliciousness is as high as possible. 
      * Unfortunately, you can't just buy everything out.
      * There are K customers in the store, including you. 
@@ -1629,7 +1629,7 @@ public class CodeChef {
      * Problem:
      * Read problem statements in Bengali, Mandarin Chinese, Russian, and Vietnamese as well.
      * There are N seats in a row. You are given a string S with length N; 
-     * for each valid ii, the ii-th character of S is '0' if the ii-th seat is empty or '1' if there is someone sitting in that seat.
+     * for each valid i, the i-th character of S is '0' if the i-th seat is empty or '1' if there is someone sitting in that seat.
      * 
      * Two people are friends if they are sitting next to each other. 
      * Two friends are always part of the same group of friends. Can you find the total number of groups?
@@ -2695,6 +2695,59 @@ public class CodeChef {
         scn.close();
     }
     
+    /*
+     * Problem:
+     * Chef Ada is preparing N dishes (numbered 1 through N). For each valid i, 
+     * it takes Ci minutes to prepare the i-th dish. The dishes can be prepared in any order.
+     * Ada has a kitchen with two identical burners. 
+     * For each valid i, to prepare the i-th dish, she puts it on one of the burners and after Ci minutes, 
+     * removes it from this burner; the dish may not be removed from the burner before those Ci minutes pass, 
+     * because otherwise it cools down and gets spoiled. 
+     * Any two dishes may be prepared simultaneously, 
+     * however, no two dishes may be on the same burner at the same time. 
+     * Ada may remove a dish from a burner and put another dish on the same burner at the same time.
+     * What is the minimum time needed to prepare all dishes, 
+     * i.e. reach the state where all dishes are prepared?
+     * 
+     * Input:
+     * The first line of the input contains a single integer T denoting the number of test cases. 
+     * The description of T test cases follows.
+     * The first line of each test case contains a single integer N.
+     * The second line contains N space-separated integers C1, C2, ..., CN.
+     * 
+     * Output:
+     * For each test case, print a single line containing one integer - 
+     * the minimum number of minutes needed to prepare all dishes.
+     * 
+     * Constraints:
+     * 1 <= T <= 1000
+     * 1 <= N <= 4
+     * 1 <= Ci <= 5 for each valid i
+     */
+    public static void solveCodeChefADADISH() {
+        Scanner scn = new Scanner(System.in);
+        long T = scn.nextLong();
+        while (T-- > 0) {
+            ArrayList<Long> Ci = new ArrayList<>();
+            long N = scn.nextLong();
+            while (N > 0) {
+                Ci.add(scn.nextLong());
+                N--;
+            }
+            Collections.sort(Ci, Collections.reverseOrder());
+            long burner1 = 0;
+            long burner2 = 0;
+            for (long C : Ci) {
+                if (burner1 < burner2)
+                    burner1 += C;
+                else
+                    burner2 += C;
+            }
+            System.out.println(Math.max(burner1, burner2));
+        }
+        scn.close();
+    }
+
     /*
      * @brief: Method to show the CodeChef solved problems implemented.
      * It shows all procedures with name starting with "solveCodeChef".
