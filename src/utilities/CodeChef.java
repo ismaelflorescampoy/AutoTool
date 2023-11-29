@@ -2851,7 +2851,202 @@ public class CodeChef {
         }
         scn.close();
     }
+
+    /*
+    * Problem:
+    * Chef decides to go to the water park to play. To enter the water slide, 
+    * a person must have a weight of at most W Kg and a height of at least H cm.
+    * Chef weighs 60 Kg and his height is 130 cm.
+    * Is Chef allowed to enter the water slide?
+    *
+    * Input Format:
+    * The first and only line of input will contain two space-separated integers W and H.
+    *
+    * Output Format:
+    * Output YES if Chef can enter the waterslide and NO if he cannot.
+    * You may print each character of the string in either uppercase or lowercase 
+    * (for example, the strings YES, yEs, yes, and yeS will all be treated as identical).
+    *
+    * Constraints:
+    * 1 <= W, H <= 1000
+    */
+    public static void solveCodeChefSPCP1() {
+        Scanner scn = new Scanner(System.in);
+        long W = scn.nextLong();
+        long H = scn.nextLong();
+        System.out.println((W >= 60 && H <= 130) ? "YES" : "NO");
+        scn.close();
+    }
+
+    /*
+    * Problem:
+    * An airline operates X aircraft every day. Each aircraft can carry up to 100 passengers.
+    * One day, N passengers would like to travel to the same destination. 
+    * What is the minimum number of new planes that the airline must buy to carry all N passengers?
+    *
+    * Input Format:
+    * The first line of input will contain a single integer T, denoting the number of test cases.
+    * Each test case consists of a single line containing two space-separated integers X and N - 
+    * the number of aircraft the airline owns and the number of passengers travelling, respectively.
+    *
+    * Output Format:
+    * For each test case, output the minimum number of planes the airline needs to purchase.
+    *
+    * Constraints:
+    * 1 <= T <= 1000
+    * 1 <= X <= 10 
+    * 1 <= N <= 10 
+    */
+    public static void solveCodeChefSPCP2() {
+        Scanner scn = new Scanner(System.in);
+        long T = scn.nextLong();
+        while (T-- > 0) {
+            long X = scn.nextLong();
+            long N = scn.nextLong();
+            long remaining = N - X * 100;
+            System.out.println((remaining <= 0) ? 0 : ((remaining - 1) / 100 + 1));
+        }
+        scn.close();
+    }
+
+    /*
+    * Problem:
+    * A school has organized a field trip for a class of N students, 
+    * of which X students are boys, and the remaining students are girls.
+    * Everyone is excited to go trekking, and must form groups of size exactly K to do so. 
+    * However, boys will only form groups among themselves, and girls will only form groups among themselves.
+    * Both boys and girls will form as many groups as possible.
+    * The remaining students can either dance around a bonfire, or just read books.
+    * Dancing around the bonfire requires a pair of one girl and one boy, while reading is done alone.
+    * Reading is much more boring than dancing, so students will try to avoid it.
+    * What's the minimum number of students who will be engaged in reading?
+    *
+    * Input Format:
+    * The first line of input will contain a single integer T, denoting the number of test cases.
+    * The only line of each test case contains three space-separated integers N, X and K -
+    * the total number of students, the number of boys and the number of students in each trekking group.
+    *
+    * Output Format:
+    * For each test case, output on a new line the the minimum number of students engaged in reading.
+    *
+    * Constraints:
+    * 1 <= T <= 1000
+    * 1 <= N, K <= 10 
+    * 1 <= X <= N
+    */
+    public static void solveCodeChefSPCP4() {
+        Scanner scn = new Scanner(System.in);
+        long T = scn.nextLong();
+        while (T-- > 0) {
+            long N = scn.nextLong();
+            long X = scn.nextLong();
+            long K = scn.nextLong();
+            long girls = N - X;
+            long boys_not_in_group = X - (X / K) * K;
+            long girls_not_in_group = girls - (girls / K) * K;
+            long pairs = Math.min(boys_not_in_group, girls_not_in_group);
+            System.out.println(boys_not_in_group + girls_not_in_group - pairs * 2);
+        }
+        scn.close();
+    }
     
+    /*
+    * Problem:
+    * Chef has A marbles, and his friend has B. They want to redistribute the marbles among themselves such that after redistributing:
+    * Chef and his friend both have at least one marble each; 
+    * The number of marbles with Chef is divisible by the number of marbles with his friend.
+    * What's the minimum number of marbles that need to be transferred from one person to another to achieve this?
+    *
+    * Input Format:
+    * The first line of input will contain a single integer T, denoting the number of test cases.
+    * The only line of each test case contains two space-separated integers A and B - 
+    * the number of marbles with Chef and the number of marbles with his friend, respectively.
+    *
+    * Output Format:
+    * For each test case, output on a new line the minimum number of marbles to be transferred.
+    *
+    * Constraints:
+    * 1 <= T <= 1000
+    * 1 <= A, B <= 1000
+    */
+    public static void solveCodeChefSPCP3() {
+        Scanner scn = new Scanner(System.in);
+        long T = scn.nextLong();
+        while (T-- > 0) {
+            long A = scn.nextLong();
+            long B = scn.nextLong();
+            long moved1 = 0;
+            long Aa = A;
+            long Bb = B;
+            while (Aa % Bb != 0) {
+                Aa++;
+                Bb--;
+                moved1++;
+            }
+            long moved2 = 0;
+            Aa = A;
+            Bb = B;
+            while (Aa % Bb != 0 && Aa > Bb) {
+                Aa--;
+                Bb++;
+                moved2++;
+            }
+            if (Aa < Bb)
+                moved2 = Long.MAX_VALUE;
+            System.out.println(Math.min(moved1, moved2));
+        }
+        scn.close();
+    }
+
+    /*
+    * Problem:
+    * Ben is fighting a monster with a health of H. He starts with an attack power of 1.
+    * Ben has two types of moves:
+    * He can use a regular attack, which damages the monster by his current attack power.
+    * After this, his attack power doubles.
+    * He can use a special move: choose a prime number P such that P <= H (H being the current health of the monster), 
+    * and deal P damage to the monster. This move can be done at most once.
+    * Note that this special move doesn't affect his attack power: it doesn't double, and remains the same.
+    * To kill the monster, Ben must deal exactly H damage to it.
+    * Find the minimum number of moves needed for Ben to kill the monster, or print −1 if it's impossible to kill it no matter what.
+    *
+    * Input Format:
+    * The first line of input will contain a single integer T, denoting the number of test cases.
+    * Each of the next T lines contains one integer H - the initial health of monster.
+    *
+    * Output Format:
+    * For each test case, output on a new line the minimum number of moves Ben will perform 
+    * to kill the monster (if he's able to do so at all). If he is unable to kill the monster no matter what, output −1 instead.
+    *
+    * Constraints:
+    * 1 <= T <= 1000
+    * 1 <= H <= 10^6
+    */
+    public static void solveCodeChefSPCP5() {
+        Scanner scn = new Scanner(System.in);
+        long T = scn.nextLong();
+        while (T-- > 0) {
+            long H = scn.nextLong();
+            long pow = 0;
+            long moves = 0;
+            while (H > pow) {
+                if (!CodeChefLibrary.isPrime(H - pow)) {
+                    pow += Math.pow(2, moves);
+                    moves++;
+                }
+                else
+                    break;
+            }
+            if (H > pow)
+                System.out.println(moves + 1);
+            else if (H == pow)
+                System.out.println(moves);
+            else 
+                System.out.println(-1);                
+        }
+        scn.close();
+    }
+
     /*
      * @brief: Method to show the CodeChef solved problems implemented.
      * It shows all procedures with name starting with "solveCodeChef".
