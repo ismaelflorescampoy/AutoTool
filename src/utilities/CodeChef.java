@@ -3048,6 +3048,237 @@ public class CodeChef {
     }
 
     /*
+     * Problem:
+     * You're a bit all over the place as a college student. 
+     * You used to eat out at expensive restaurants almost every day until your parents gave you a talking-to about being irresponsible. 
+     * Now, you've got to control your eating and spending habits.
+     * So, here's the plan: you'll stick to the college mess for your meals every day, except Sundays. 
+     * On Sundays, you're treating yourself to those fancy restaurant meals.
+     * The cost is Rs. X for the mess food each day, and Rs. Y for the restaurant splurges.
+     * Now, what's the cost of food per week? Note that you don't have to pay for the mess on Sundays.
+     * A week has seven days, as usual.
+     * 
+     * Input Format:
+     * The first and only line of input contains 2 space-separated integers, X and Y.
+     * 
+     * Output Format:
+     * Output a single integer: the weekly cost of food.
+     * 
+     * Constraints:
+     * 1 <= X < Y <= 1000
+     */
+    public static void solveCodeChefFOODCOST() {
+        Scanner scn = new Scanner(System.in);
+        long X = scn.nextLong();
+        long Y = scn.nextLong();
+        System.out.println(X * 6 + Y);
+        scn.close();
+    }
+
+    /*
+     * Problem:
+     * Christmas is celebrated on 25th December every year.
+     * You are given a day X in December. Determine whether it is Christmas.
+     * Print CHRISTMAS if it is Christmas. Otherwise print ORDINARY.
+     * 
+     * Input Format:
+     * The input consists of a single integer X, denoting a day in December.
+     * 
+     * Output Format:
+     * Output on a new line CHRISTMAS, if it is Christmas and ORDINARY otherwise.
+     * You may print each character in uppercase or lowercase. 
+     * For example the strings CHRISTMAS, christmas, Christmas are all considered identical.
+     * 
+     * Constraints:
+     * 1 <= X <= 31
+     */
+    public static void solveCodeChefCHRISTGREET() {
+        Scanner scn = new Scanner(System.in);
+        long X = scn.nextLong();
+        System.out.println(X == 25 ? "CHRISTMAS" : "ORDINARY");
+        scn.close();
+    }
+
+    /*
+     * Problem:
+     * You are given an integer N.
+     * Print THALA if N = 7, otherwise print SADGE.
+     * 
+     * Input Format:
+     * The only line of input contains an integer N.
+     * 
+     * Output Format:
+     * Output a single string, print THALA if N = 7, otherwise print SADGE.
+     * You may print each character of the string in uppercase or lowercase 
+     * (for example, the strings THALA, thALa, thala, and tHalA will all be treated as identical).
+     * 
+     * Constraints:
+     * 1 <= N <= 10
+     */
+    public static void solveCodeChefTHALA7() {
+        Scanner scn = new Scanner(System.in);
+        long N = scn.nextLong();
+        System.out.println(N == 7 ? "THALA" : "SADGE");
+        scn.close();
+    }
+
+    /*
+     * Problem:
+     * Chef's website has a specific response mechanism based on the HTTP status code received:
+     * If the response code is 404, the website will return NOT FOUND.
+     * For any other response code different from 404, the website will return FOUND.
+     * Given the response code as XX, determine the website response.
+     * 
+     * Input Format:
+     * The first and only line of input contains a response code X.
+     * 
+     * Output Format:
+     * Output on a new line NOT FOUND, if the response code is 404. Otherwise print FOUND.
+     * You may print each character of the string in uppercase or lowercase 
+     * (for example, the strings FOUND, fouND, FouND, and found will all be treated as identical).
+     * 
+     * Constraints:
+     * 100 <= X <= 999
+     */
+    public static void solveCodeChefERROR404() {
+        Scanner scn = new Scanner(System.in);
+        long N = scn.nextLong();
+        System.out.println(N == 404 ? "NOT FOUND" : "FOUND");
+        scn.close();
+    }
+
+    /*
+     * Problem:
+     * In Chefland, there are X schools, and each school has Y students.
+     * The year end results are in and a total of Z students passed the exams.
+     * Assuming that all students appeared for the exams, 
+     * find whether the number of students who passed in Chefland was strictly greater than 50%.
+     * 
+     * Input Format:
+     * The first line of input will contain a single integer T, denoting the number of test cases.
+     * Each test case consists of three space-separated integers X, Y and Z, as mentioned in the statement.
+     * 
+     * Output Format:
+     * For each test case, output on a new line, YES, 
+     * if the total number of students who passed in Chefland was strictly greater than 50%, otherwise print NO.
+     * You may print each character of the string in uppercase or lowercase 
+     * (for example, the strings YES, yEs, yes, and yeS will all be treated as identical).
+     * 
+     * Constraints:
+     * 1 <= T <= 2 * 10^4
+     * 1 <= X <= 5
+     * 1 <= Y <= 50
+     * 0 <= Z <= X * Y
+     */
+    public static void solveCodeChefEXAMCHEF() {
+        Scanner scn = new Scanner(System.in);
+        long T = scn.nextLong();
+        while (T-- > 0) {
+            long X = scn.nextLong();
+            long Y = scn.nextLong();
+            long Z = scn.nextLong();
+            long notZ = Z - X * Y;
+            System.out.println(Z > notZ ? "YES" : "NO");
+        }
+        scn.close();
+    }
+
+    /*
+     * Problem:
+     * Chef wants to decorate his house by painting the walls this Christmas. Each wall has a dimension of X * Y m.
+     * If the cost of paint is 2 rupees per m^2, find the maximum number of walls Chef can paint completely with Z rupees.
+     * 
+     * Input Format:
+     * The first line of input will contain a single integer T, denoting the number of test cases.
+     * Each test case consists of three space-separated integers X, Y and Z - 
+     * where X and Y denote the dimensions of each wall in metres and Z denotes the money Chef has.
+     * 
+     * Output Format:
+     * For each test case, output on a new line, the maximum number of walls Chef can paint completely with Z rupees.
+     * 
+     * Constraints:
+     * 1 <= T <= 10 
+     * 1 <= X, Y <= 10
+     * 1 <= Z <= 100
+     */
+    public static void solveCodeChefPAINTCHRIS() {
+        Scanner scn = new Scanner(System.in);
+        long T = scn.nextLong();
+        while (T-- > 0) {
+            long X = scn.nextLong();
+            long Y = scn.nextLong();
+            long Z = scn.nextLong();
+            System.out.println(Z / (2 * X * Y));
+        }
+        scn.close();
+    }
+
+    /*
+     * Problem:
+     * You and K of your friends gather for dinner at a restaurant, 
+     * and the total bill is Rs. NN. You pay the entire bill, 
+     * and since everyone shared the food equally, 
+     * the bill needs to be split evenly among you all.
+     * After asking your friends to reimburse their fair shares, each person pays you back. 
+     * However, if the amount to be paid back wasn't an integer, they round down to the previous integer value.
+     * For example, if each friend should have paid Rs. 13.2, they instead pay Rs. 13. 
+     * Even if they should have paid Rs. 13.79, they still only pay Rs. 13, rounding down.
+     * Calculate the net amount that you ended up paying after everyone settles their debts.
+     * 
+     * Input Format:
+     * The first line of input will contain a single integer T, denoting the number of test cases.
+     * Each test case consists of one line of input, containing two space-separated integers N and K.
+     * 
+     * Output Format:
+     * For each test case, output on a new line the net amount you paid.
+     * 
+     * Constraints:
+     * 1 <= T <= 10^4
+     * 1 <= N <= 10^3
+     * 1 <= K <= 10
+     */
+    public static void solveCodeChefFAIRSHARE() {
+        Scanner scn = new Scanner(System.in);
+        long T = scn.nextLong();
+        while (T-- > 0) {
+            long N = scn.nextLong();
+            long K = scn.nextLong();
+            long P = N / (K + 1);
+            System.out.println(N - P * K);
+        }
+        scn.close();
+    }
+
+    /*
+     * Problem:
+     * You are given a positive integer N. In one operation you can:
+     * Either subtract 3 or subtract 4 from N.
+     * Can you make N zero by performing any number of operations?
+     * 
+     * Input Format:
+     * The first line contains a single integer T, denoting the number of test cases.
+     * The only line of each test case contains a positive integer N, denoting the integer which you need to make zero.
+     * 
+     * Output Format:
+     * For each test case, output YES if you can make N zero using any number of operations. Otherwise, print NO.
+     * You may print each character of the string in uppercase or lowercase 
+     * (for example, the strings YES, yEs, yes, and yeS will all be treated as identical).
+     * 
+     * Constraints:
+     * 1 <= T <= 10^4
+     * 1 <= N <= 10^4
+     */
+    public static void solveCodeChefMAKENZERO() {
+        Scanner scn = new Scanner(System.in);
+        long T = scn.nextLong();
+        while (T-- > 0) {
+            long N = scn.nextLong();
+            System.out.println((N < 3 || N == 5) ? "NO" : "YES");
+        }
+        scn.close();
+    }
+
+    /*
      * @brief: Method to show the CodeChef solved problems implemented.
      * It shows all procedures with name starting with "solveCodeChef".
      */
