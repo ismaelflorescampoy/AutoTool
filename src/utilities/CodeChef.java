@@ -3279,6 +3279,49 @@ public class CodeChef {
     }
 
     /*
+     * Problem:
+     * Chef embarks on a journey starting from a town named S, containing a string of 8 uppercase English alphabets. 
+     * His objective is to reach the destination known as CODETOWN.
+     * If Chef is currently in town T1, then, with each move, Chef can transition to another town named T2, provided that either:
+     * T2 is derived from T1 by replacing a consonant with another consonant, or;
+     * T2 is derived from T1 by replacing a vowel with another vowel.
+     * Find whether Chef can reach CODETOWN in any number of moves.
+     * Note that in the english alphabet, letters A, E, I, O, and U are considered as vowels and rest are considered as consonants.
+     * 
+     * Input Format:
+     * The first line of input will contain a single integer TT, denoting the number of test cases.
+     * Each test case consists of a string SS, of length 88 consisting of uppercase english alphabets.
+     * 
+     * Output Format:
+     * For each test case, output on a new line, YES, if Chef can reach CODETOWN, and NO otherwise.
+     * You may print each character of the string in uppercase or lowercase 
+     * (for example, the strings YES, yEs, yes, and yeS will all be treated as identical).
+     * 
+     * Constraints:
+     * 1 <= T <= 10^4
+     * |S| = 8
+     * S consists of uppercase english alphabets.
+     */    
+    public static void solveCodeChefCODETOWN() {
+        Scanner scn = new Scanner(System.in);
+        long T = scn.nextLong();
+        while (T-- > 0) {
+            String S = scn.next();
+            String S1 = "CODETOWN";
+            boolean compatible = true;
+            int i = 0;
+            while (compatible && i < S.length()) {
+                if (CodeChefLibrary.isVowel(S.charAt(i)) && !CodeChefLibrary.isVowel(S1.charAt(i)) || 
+                    !CodeChefLibrary.isVowel(S.charAt(i)) && CodeChefLibrary.isVowel(S1.charAt(i)))
+                    compatible = false;
+                i++;
+            }
+            System.out.println(compatible ? "YES" : "NO");
+        }
+        scn.close();
+    }
+
+    /*
      * @brief: Method to show the CodeChef solved problems implemented.
      * It shows all procedures with name starting with "solveCodeChef".
      */

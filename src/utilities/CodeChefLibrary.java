@@ -10,6 +10,16 @@ import java.util.HashMap;
 public class CodeChefLibrary {
 
     /**
+     * @brief Check if a character is a vowel
+     * @param c Character to check
+     * @return true if the character is a vowel, false otherwise
+     */
+    public static boolean isVowel(char c) {
+        return c == 'A' || c == 'E' || c == 'I' || c == 'O' || c == 'U' ||
+               c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u';
+    }
+
+    /**
      * @brief Check if a year is leap
      * @param y Year
      * @return true if the year is leap, false otherwise
