@@ -3322,6 +3322,145 @@ public class CodeChef {
     }
 
     /*
+     * Problem: Codechef Round
+     * Codechef rounds are held on every Wednesday now, and not on any other days.
+     * You are wondering whether there is a Codechef round today. 
+     * You know it is the Nth day of the week (Sunday is 1st, Monday is 2nd, Tuesday is 3rd, Wednesday is 4th and so on).
+     * Can you tell whether there is a Codechef round today?
+     * 
+     * Input Format:
+     * The first and only line of input contains a single integer N, the day of the week.
+     * 
+     * Output Format:
+     * Output YES if there is a Codechef round today, else NO.
+     * You may print each character of the string in uppercase or lowercase 
+     * (for example, the strings YES, yEs, yes, and yeS will all be treated as identical).
+     * 
+     * Constraints:
+     * 1 <= N <= 7
+     */
+    public static void solveCodeChefCODECHEF() {
+        Scanner scn = new Scanner(System.in);
+        long N = scn.nextLong();
+        System.out.println(N == 4 ? "YES" : "NO");
+        scn.close();
+    }
+
+    /*
+     * Problem: Advitiya
+     * IIT Ropar is hosting its tech fest, Advitiya, on the 16-th, 17-th, and 18-th of February.
+     * Mehul, looking for a vacation, decides to visit Ropar in the month of February.
+     * Mehul learned of Advitiya, and found out that there are no registration fees -
+     * even accommodation is being provided to the participants for free!
+     * Team Advitiya is very welcoming, so Mehul definitely wants to attend the fest.
+     * Mehul will visit Ropar on date NN (which is between 1 and 18) of February. Will he be able to enjoy the fest?
+     * Print "ADVITIYA" if NN is one of the days on which Advitiya is running, and "WAITING FOR ADVITIYA" otherwise.
+     * 
+     * Input Format:
+     * The first line contains a single integer NN, the date on which Mehul decided to visit Ropar.
+     * 
+     * Output Format:
+     * Print a single line containing the answer: "ADVITIYA" if Mehul visits on the right date, and "WAITING FOR ADVITIYA" otherwise.
+     * Both strings are to be printed without the quotes.
+     * Each character of the output may be printed in either uppercase or lowercase, 
+     * i.e, the strings ADVITIYA, advitiya, and AdViTiYa will all be treated as equivalent.
+     * 
+     * Constraints:
+     * 1 <= N <= 18
+     */
+    public static void solveCodeChefADVITIYA1() {
+        Scanner scn = new Scanner(System.in);
+        long N = scn.nextLong();
+        System.out.println(N < 16 ? "WAITING FOR ADVITIYA" : "ADVITIYA");
+        scn.close();
+    }
+
+    /*
+     * Problem: Minimum Wage
+     * The minimum wage in Chefland is 11 dollars per hour.
+     * Given that Chef earns X dollars per hour, find whether his income is strictly above the minimum wage.
+     * 
+     * Input Format:
+     * The first and only line contains an integer XX, denoting the income of Chef per hour.
+     * 
+     * Output Format:
+     * Output on a new line, YES, if Chef's income is strictly above the minimum wage. Otherwise, output NO.
+     * You may print each character of the string in uppercase or lowercase 
+     * (for example, the strings YES, yEs, yes, and yeS will all be treated as identical).
+     * 
+     * Constraints:
+     * 1 <= X <= 20
+     */
+    public static void solveCodeChefMINWAGE() {
+        Scanner scn = new Scanner(System.in);
+        long X = scn.nextLong();
+        System.out.println(X > 11 ? "YES" : "NO");
+        scn.close();
+    }
+
+    /*
+     * Problem: International Education Day!
+     * On the occasion of International Education Day, a fair is held in Chefland.
+     * Both Chef and Chefina have set up their stalls.
+     * Chef sells each item at his stall for A rupees and Chefina sells each item at her store for B rupees.
+     * If both of them sell exactly C items, find the maximum amount in sales amongst Chef and Chefina.
+     * 
+     * Input Format:
+     * The input consists of three space-separated integers A, B, and C denoting the cost of each item at Chef's and Chefina's 
+     * stall and the number of items they sell respectively.
+     * 
+     * Output Format:
+     * Output the the maximum amount in sales amongst Chef and Chefina.
+     * 
+     * Constraints:
+     * 1 <= A, B, C <= 10
+     * A != B
+     */
+    public static void solveCodeChefIED() {
+        Scanner scn = new Scanner(System.in);
+        long A = scn.nextLong();
+        long B = scn.nextLong();
+        long C = scn.nextLong();
+        System.out.println(A > B ? A * C : B * C);
+        scn.close();
+    }
+
+/*
+    public static void solveCodeChefPRIMEREVERSE() {
+        Scanner scn = new Scanner(System.in);
+        long T = scn.nextLong();
+        while (T-- > 0) {
+            long N = scn.nextLong();
+            String A = scn.next();
+            String B = scn.next();
+            boolean equals = true;
+            int j = 0;
+            int i = 0;
+            while (i < N) {
+                if (A.charAt(i) != B.charAt(i) && equals) {
+                    equals = false;
+                    j = i;
+                }
+                else if (A.charAt(i) != B.charAt(i) && !equals) {
+                    while (j >= 0 && i < N && !equals) {
+                        String reversed = new StringBuilder(A.substring(j, i + 1)).reverse().toString();
+                        if (CodeChefLibrary.isPrime(i - j + 1) && reversed.equals(B.substring(j, i + 1)))
+                            equals = true;
+                        else {
+                            j--;
+                            i++;
+                        }
+                    }
+                }
+                i++;
+            }
+            System.out.println(equals ? "YES" : "NO");
+        }
+        scn.close();
+    }
+*/
+
+    /*
      * @brief: Method to show the CodeChef solved problems implemented.
      * It shows all procedures with name starting with "solveCodeChef".
      */
