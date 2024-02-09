@@ -3323,6 +3323,7 @@ public class CodeChef {
 
     /*
      * Problem: Codechef Round
+     * 
      * Codechef rounds are held on every Wednesday now, and not on any other days.
      * You are wondering whether there is a Codechef round today. 
      * You know it is the Nth day of the week (Sunday is 1st, Monday is 2nd, Tuesday is 3rd, Wednesday is 4th and so on).
@@ -3348,6 +3349,7 @@ public class CodeChef {
 
     /*
      * Problem: Advitiya
+     * 
      * IIT Ropar is hosting its tech fest, Advitiya, on the 16-th, 17-th, and 18-th of February.
      * Mehul, looking for a vacation, decides to visit Ropar in the month of February.
      * Mehul learned of Advitiya, and found out that there are no registration fees -
@@ -3377,6 +3379,7 @@ public class CodeChef {
 
     /*
      * Problem: Minimum Wage
+     * 
      * The minimum wage in Chefland is 11 dollars per hour.
      * Given that Chef earns X dollars per hour, find whether his income is strictly above the minimum wage.
      * 
@@ -3400,6 +3403,7 @@ public class CodeChef {
 
     /*
      * Problem: International Education Day!
+     * 
      * On the occasion of International Education Day, a fair is held in Chefland.
      * Both Chef and Chefina have set up their stalls.
      * Chef sells each item at his stall for A rupees and Chefina sells each item at her store for B rupees.
@@ -3422,6 +3426,163 @@ public class CodeChef {
         long B = scn.nextLong();
         long C = scn.nextLong();
         System.out.println(A > B ? A * C : B * C);
+        scn.close();
+    }
+
+    /*
+     * Problem: Judged
+     * The tech fest of IIT Ropar, Advitiya, has a talent show as part of the festivities.
+     * The preliminary round of the talent show has participants being evaluated by 5 judges, 
+     * and only those participants whose performance was liked by at least 4 judges will qualify for the next round.
+     * Anuj participated in the talent show, and now wants to know if he'll qualify or not.
+     * You are given the responses of all 5 judges - help Anuj decide whether he qualified!
+     * Each judge's response is given to you as a binary integer, where:
+     * 0 means the judge didn't like Anuj's performance.
+     * 1 means the judge liked Anuj's performance.
+     * 
+     * Input Format:
+     * The first line of input contains a single integer T, denoting the number of test cases.
+     * Each test case consists of a single line containing 5 space-separated integers R1, R2, R3, R4, R5 - the responses of the judges.
+     * 
+     * Output Format:
+     * For each test case, output a single line containing the string "YES" (without quotes) 
+     * if Anuj qualifies for the next round, and "NO" (without quotes) if he doesn't qualify.
+     * Each letter of the output may be printed in either uppercase or lowercase, 
+     * i.e, the strings NO, no, No, and nO will all be treated as equivalent.
+     * 
+     * Constraints:
+     * 1 <= T \<= 100
+     * 0 <= R1, R2, R3, R4, R5 <= 1
+     */
+    public static void solveCodeChefADVITIYA2() {
+        Scanner scn = new Scanner(System.in);
+        long T = scn.nextLong();
+        while (T-- > 0) {
+            long score = 0;
+            for (int i = 0; i < 5; i++) {
+                score += scn.nextLong();
+            }
+            System.out.println(score > 3 ? "YES" : "NO");
+        }
+        scn.close();
+    }
+
+    /*
+     * Problem: Literacy Rate
+     * You are given two positive integers P and L denoting the total population of Chefland 
+     * and the total number of literate people in Chefland.
+     * Find whether the literacy rate of Chefland is greater than or equal to 75%.
+     * Note that the literacy rate is calculated as (L / P) * 100 % 
+     * 
+     * Input Format:
+     * The first line of input will contain a single integer T, denoting the number of test cases.
+     * Each test case consists of two space-separated integers P and L - 
+     * the total population and the total number of literate people in Chefland respectively.
+     * 
+     * Output Format:
+     * For each test case, output on a new line, YES, if the literacy rate of Chefland 
+     * is greater than or equal to 75%. Otherwise, output NO.
+     * You may print each character of the string in uppercase or lowercase 
+     * (for example, the strings YES, yEs, yes, and yeS will all be treated as identical).
+     * 
+     * Constraints:
+     * 1 <= T <= 6000
+     * 1 <= L <= P <= 100
+     */
+    public static void solveCodeChefLITRATE() {
+        Scanner scn = new Scanner(System.in);
+        long T = scn.nextLong();
+        while (T-- > 0) {
+            long P = scn.nextLong();
+            long L = scn.nextLong();
+            System.out.println(L * 100 >= 75 * P ? "YES" : "NO");
+        }
+        scn.close();
+    }
+
+    /*
+     * Problem: Valentines Contest
+     * 
+     * Chef knows that a starters will be organised on next Wednesday, i.e., Valentine's day.
+     * Since it is Starters 120120 today, starters 121121 is likely to be organised on Valentine's day.
+     * Given an integer N, find whether starters N is likely to be organised on Valentine's day.
+     * 
+     * Input Format:
+     * The input will contain a single integer N.
+     * 
+     * Output Format:
+     * Output Likely if starters NN is likely to be organised on Valentine's day. Otherwise, output Unlikely.
+     * You may print each character of the string in uppercase or lowercase 
+     * (for example, the strings LIKELY, likely, Likely, and lIkElY will all be treated as identical).
+     * 
+     * Constraints:
+     * 120 <= N <= 123
+     */
+    public static void solveCodeChefVAL114() {
+        Scanner scn = new Scanner(System.in);
+        long N = scn.nextLong();
+        System.out.println(N == 121 ? "Likely" : "Unlikely");
+        scn.close();
+    }
+
+    /*
+     * Problem: Yearly Phone
+     * 
+     * Chef is interested by buying a new phone, and is in the process of researching what's available on the market.
+     * His favorite brand, Kitchen Telecom, just released their latest model.
+     * Kitchen Telecom releases a new phone every year, and so names its phones based upon the year of release: 
+     * the name of the phone model launched in year X is K (the letter) followed by the last two digits of X.
+     * For instance, the phone model launched in the year 2024 is named K24.
+     * 
+     * The current year is X. What's the latest phone model launched by Kitchen Telecom?
+     * 
+     * Input Format:
+     * The first and only line of input contains a single integer X, the current year.
+     * 
+     * Output Format:
+     * Print the name of Kitchen Telecom's phone launched in year X.
+     * 
+     * Constraints:
+     * 1973 <= X <= 2024
+     */
+    public static void solveCodeChefPHONEYR() {
+        Scanner scn = new Scanner(System.in);
+        long X = scn.nextLong();
+        System.out.println(String.format("K%02d", (X % 100)));
+        scn.close();
+    }
+
+    /*
+     * Problem: Chocolate Distribution
+     * 
+     * Christmas is the season of giving. 
+     * As a part of celebrating the New Year, you decided to give away chocolates to the poor children in your neighbourhood.
+     * Some of them even asked for 2 chocolates and being the kind soul that you are, you always gave them if you could. 
+     * They never asked for more than 2 though because they are not greedy.
+     * 
+     * Now, you have forgotten exactly how many children you gave chocolates to. 
+     * However, you remember that you started with NN chocolates and distributed all of them by the end.
+     * Find the minimum and maximum number of possible children that you gave chocolates to.
+     * 
+     * Input Format:
+     * The first line of input will contain a single integer TT, denoting the number of test cases.
+     * Each test case consists of one integer NN, the number of chocolates you started with.
+     * 
+     * Output Format:
+     * For each test case, output on a new line, two space-separated integers, 
+     * the minimum possible number of children and the maximum possible number (in this order).
+     * 
+     * Constraints:
+     * 1 <= T <= 1000
+     * 1 <= N <= 1000
+     */
+    public static void solveCodeChefCHOCDISTRIB() {
+        Scanner scn = new Scanner(System.in);
+        long T = scn.nextLong();
+        while (T-- > 0) {
+            long N = scn.nextLong();
+            System.out.println(((N + 1) / 2) + " " + N);
+        }
         scn.close();
     }
 
