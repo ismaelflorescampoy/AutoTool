@@ -3586,6 +3586,162 @@ public class CodeChef {
         scn.close();
     }
 
+    /*
+     * Problem: Valentine Gifts
+     * 
+     * Chef is planning to gift something to Chefina on each of the 7 days of valentine week. He has a total budget of X rupees.
+     * Find whether he can plan a series of gifts such that:
+     * Each gift has a positive value;
+     * The value of a gift is at least twice the value of previous gift.
+     * Note that we do not consider any previous gift for the first gift, and thus the first gift can be of any positive value.
+     * 
+     * Input Format:
+     * The first line of input will contain a single integer T, denoting the number of test cases.
+     * Each test case consists of a single integer X, denoting the budget of Chef.
+     * 
+     * Output Format:
+     * For each test case, output on a new line, YES, 
+     * if Chef can plan a series of gifts such that each gift is at least twice the value of previous gift. 
+     * Otherwise, print NO.
+     * You may print each character of the string in uppercase or lowercase 
+     * (for example, the strings YES, yEs, yes, and yeS will all be treated as identical).
+     * 
+     * Constraints:
+     * 1 <= T <= 500
+     * 1 <= X <= 500
+     */
+    public static void solveCodeChefVAL142() {
+        Scanner scn = new Scanner(System.in);
+        long T = scn.nextLong();
+        while (T-- > 0) {
+            long X = scn.nextLong();
+            long MIN = (long)Math.pow(2, 7) - 1;
+            System.out.println(X >= MIN ? "YES" : "NO");
+        }
+        scn.close();
+    }
+
+    /*
+     * Problem: Hattrick
+     * 
+     * In a cricket match, the retiring of three batsmen with three consecutive balls is termed as a hattrick.
+     * Let A, B, C, D, E and F denote the batsman's score for each ball in order in an over.
+     * Each of these variables can be an integer less than equal to 66 denoting the runs scored by the batsman, or W denoting a wicket.
+     * Find whether there was a hattrick in this over.
+     * 
+     * Input Format:
+     * The first line of input will contain a single integer T, denoting the number of test cases.
+     * Each test case consists of six space-separated integers (or 'W') 
+     * A, B, C, D, E, F, denoting the batsman's score for each ball in the over.
+     * 
+     * Output Format:
+     * For each test case, output on a new line, YES, if there was a hattrick in the over, and NO otherwise.
+     * You may print each character of the string in uppercase or lowercase 
+     * (for example, the strings YeS, yEs, yes and YES will all be treated as identical).
+     * 
+     * Constraints:
+     * 1 <= T <= 5*10^4
+     * A, B, C, D, E, F in {0, 1, 2, 4, 6, W}
+     */
+    public static void solveCodeChefHATTRICK() {
+        Scanner scn = new Scanner(System.in);
+        long T = scn.nextLong();
+        while (T-- > 0) {
+            boolean hattrick = false;
+            long wickets = 0; 
+            for (int i = 0; i < 6; i++) {
+                String over = scn.next();
+                if (over.equals("W"))
+                    wickets++;
+                else
+                    wickets = 0;
+                if (wickets >= 3)
+                    hattrick = true;
+            }
+            System.out.println(hattrick ? "YES" : "NO");
+        }
+        scn.close();
+    }
+
+    /*
+     * Problem: Find maximum in an Array
+     * 
+     * Given a list of NN integers, representing height of mountains. Find the height of the tallest mountain.
+     * 
+     * Input:
+     * First line will contain T, number of testcases. Then the testcases follow.
+     * The first line in each testcase contains one integer, N.
+     * The following N lines of each test case each contain one integer: the height of a new mountain.
+     * 
+     * Output:
+     * For each testcase, output one line with one integer: the height of the tallest mountain for that test case.
+     * 
+     * Constraints:
+     * 1 <= T <= 10
+     * 1 <= N <= 100000
+     * 0 <= height of each mountain <= 10^9
+     * 
+     */
+    public static void solveCodeChefUWCOI20A() {
+        Scanner scn = new Scanner(System.in);
+        long T = scn.nextLong();
+        while (T-- > 0) {
+            long N = scn.nextLong();
+            long tallest = 0;
+            for (long i = 0; i < N; i++) {
+                long H = scn.nextLong();
+                tallest = (H > tallest) ? H : tallest;
+            }
+            System.out.println(tallest);
+        }
+        scn.close();
+    }
+
+    /*
+     * Problem: Difficulty Rating Order
+     * 
+     * Our Chef has some students in his coding class who are practicing problems.
+     * Given the difficulty of the problems that the students have solved in order, 
+     * help the Chef identify if they are solving them in non-decreasing order of difficulty. 
+     * Non-decreasing means that the values in an array is either increasing or remaining the same, but not decreasing. 
+     * That is, the students should not solve a problem with difficulty d1, and then later a problem with difficulty d2, where d1 > d2.
+     * Output “Yes” if the problems are attempted in non-decreasing order of difficulty rating and “No” if not.
+     * 
+     * Input Format:
+     * The first line of input will contain a single integer T, denoting the number of test cases. 
+     * The description of the test cases follows. Each test case consists of 2 lines of input.
+     * The first line contains a single integer N, the number of problems solved by the students
+     * The second line contains N space-separate integers, the difficulty ratings of the problems attempted by the students in order.
+     * 
+     * Output Format:
+     * For each test case, output in a new line “Yes” if the problems are attempted in non-decreasing order 
+     * of difficulty rating and “No” if not. The output should be printed without the quotes.
+     * Each letter of the output may be printed in either lowercase or uppercase. 
+     * For example, the strings yes, YeS, and YES will all be treated as equivalent.
+     * 
+     * Constraints:
+     * 1 <= T <= 100
+     * 2 <= N <= 100
+     * 1 <= difficulty of each problem <= 5000
+     */
+    public static void solveCodeChefRATINGINPRAC() {
+        Scanner scn = new Scanner(System.in);
+        long T = scn.nextLong();
+        while (T-- > 0) {
+            long N = scn.nextLong();
+            long lastDifficulty = 0;
+            boolean decreasing = false;
+            for (long i = 0; i < N; i++) {
+                long difficulty = scn.nextLong();
+                if (difficulty < lastDifficulty)
+                    decreasing = true;
+                lastDifficulty = difficulty;
+            }
+            System.out.println(decreasing ? "NO" : "YES");
+        }
+        scn.close();
+    }
+
 /*
     public static void solveCodeChefPRIMEREVERSE() {
         Scanner scn = new Scanner(System.in);
