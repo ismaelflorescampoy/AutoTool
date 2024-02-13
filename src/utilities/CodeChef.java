@@ -3742,6 +3742,148 @@ public class CodeChef {
         scn.close();
     }
 
+    /*
+     * Problem: Largest K
+     * 
+     * You are given integers X and Y (2 <= X, Y <= 10^9).
+     * Find the largest integer K such that there exists a binary string S, where:
+     * The count of 0s in S is X;
+     * The count of 1s in S is Y;
+     * There are atleast K 1s between any two occurrences of 0s in S.
+     * 
+     * Input Format:
+     * The first line contains a single integer T, denoting the number of test cases.
+     * The first line of each test case contains two integers X and Y -− the number of 0s and 1s in S.
+     * 
+     * Output Format:
+     * For each test case, output on a new line, the largest integer K, such that a binary string satisfies given conditions.
+     * 
+     * Constraints:
+     * 1 <= T <= 10^5
+     * 2 <= X, Y <= 10^9
+     */
+    public static void solveCodeChefLARGESTK343() {
+        Scanner scn = new Scanner(System.in);
+        long T = scn.nextLong();
+        while (T-- > 0) {
+            long X = scn.nextLong();
+            long Y = scn.nextLong();
+            System.out.println(Y / (X - 1));
+        }
+        scn.close();
+    }
+
+    /*
+     * Problem: Cookie Day
+     * 
+     * A very caring mother has NN cookie jars with her. Each jar contains a different type of cookie.
+     * There are Ai cookies in the ith jar.
+     * The mother wanted to give some cookies to her K children, 
+     * and she decided to only distribute cookies of a single type. 
+     * That is, she'll choose exactly one of the NN jars and distribute the cookies within it.
+     * She'd like to ensure a couple of things:
+     * Each child should receive at least 1 cookie.
+     * Each child should also receive an equal number of cookies, in the spirit of fairness.
+     * Under the above two conditions, what is the minimum number of "wasted" cookies, 
+     * i.e, cookies that remain in the chosen jar after distribution?
+     * If it is not possible to give out any cookies at all, print -1 instead.
+     * 
+     * Input Format:
+     * The first line of input contains a single integer T, denoting the number of test cases.
+     * Each test case consists of two lines of input.
+     * The first line of each test case contains two space-separated integers N and K - 
+     * the number of cookie jars and the number of children.
+     * The second line contains N space-separated integers A1, A2, ..., AN - 
+     * where Ai is the number of cookies in the ith jar.
+     * 
+     * Output Format:
+     * For each test case, output on a new line a single integer denoting the minimum number of cookies that will go to waste.
+     * If it is not possible to distribute the cookies at all, output −1 instead.
+     * 
+     * Constraints:
+     * 1 <= T <= 100
+     * 1 <= N <= 100
+     * 1 <= Ai, K <= 10^9
+     */
+    public static void solveCodeChefADVITIYA3() {
+        Scanner scn = new Scanner(System.in);
+        long T = scn.nextLong();
+        while (T-- > 0) {
+            long N = scn.nextLong();
+            long K = scn.nextLong();
+            long minWasted = Long.MAX_VALUE;
+            for (long i = 0; i < N; i++) {
+                long Ai = scn.nextLong();
+                long cookies = Ai / K;
+                if (cookies > 0)
+                    minWasted = Math.min(minWasted, Ai % K);
+            }
+            System.out.println(minWasted == Long.MAX_VALUE ? -1 : minWasted);
+        }
+        scn.close();
+    }
+
+    /*
+     * Problem: Sub or Swp
+     * 
+     * You are given two positive integers X and Y.
+     * Repeat the following operation until X is not 0:
+     * If X > Y, swap X and Y;
+     * Otherwise, set X = (Y - X) and Y = X.
+     * Output the final value of YY after all operations.
+     * 
+     * Input Format:
+     * The first line of input will contain a single integer T, denoting the number of test cases.
+     * Each test case consists of one line of input, two space-separated integers X and Y.
+     * 
+     * Output Format:
+     * For each test case, output on a new line, the final value of Y after all operations.
+     * 
+     * Constraints:
+     * 1 <= T <= 10^5
+     * 1 <= X, Y <= 10^9
+     */
+    public static void solveCodeChefASM120() {
+        Scanner scn = new Scanner(System.in);
+        long T = scn.nextLong();
+        while (T-- > 0) {
+            long X = scn.nextLong();
+            long Y = scn.nextLong();
+            while (X > 0) {
+                if (X <= Y) {
+                    long steps = (Y - X) / X;
+                    if (steps > 0)
+                        Y -= (steps * X);
+                    else {
+                        long auxX = X;
+                        X = Y - X;
+                        Y = auxX;
+                    }
+                }
+                else {
+                    long auxX = X;
+                    X = Y;
+                    Y = auxX;
+                }
+            }
+            System.out.println(Y);
+        }
+        scn.close();
+    }
+
+
+//    1, 10000
+//    9999, 1 -> 1, 9999
+//    9998, 1 -> 1, 9998
+
+//    2, 10000
+//    9998, 2 -> 2, 9998
+//    9996, 2 -> 2, 9996
+
+//    1000, 10000
+//    9000, 1000 -> 1000, 9000
+//    8000, 1000 -> 1000, 8000
+
 /*
     public static void solveCodeChefPRIMEREVERSE() {
         Scanner scn = new Scanner(System.in);
