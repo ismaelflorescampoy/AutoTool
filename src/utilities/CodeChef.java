@@ -3871,20 +3871,98 @@ public class CodeChef {
         scn.close();
     }
 
+    /*
+     * Problem: Leg Space
+     * 
+     * There are N students including Chef in a school. 
+     * The school bus has M seats, and every student in the school travels on the bus.
+     * It is guaranteed that N <= M, so that everyone will have a seat.
+     * Chef is happy when the school bus is not full.
+     * Given N and M, your task is to find out whether Chef will be happy.
+     * 
+     * Input Format:
+     * The only line of input will contain two space-separated integers N and M, 
+     * denoting the number of students in the school and the number of seats in the school bus respectively.
+     * 
+     * Output Format:
+     * For each test case, output on a new line the answer: YES, if Chef will be happy, and NO otherwise.
+     * 
+     * You may print each character of the string in uppercase or lowercase 
+     * (for example, the strings YeS, yEs, yes, and YES will all be treated as identical).
+     * 
+     * Constraints:
+     * 1 <= N <= M <= 10
+     */
+    public static void solveCodeChefLEGSP() {
+        Scanner scn = new Scanner(System.in);
+        long N = scn.nextLong();
+        long M = scn.nextLong();
+        System.out.println(N == M ? "NO" : "YES");
+        scn.close();
+    }
 
-//    1, 10000
-//    9999, 1 -> 1, 9999
-//    9998, 1 -> 1, 9998
+    /*
+     * Problem: The Man Code
+     * 
+     * In Chefland, it is illegal for two people to use adjacent urinals at the same time (as it should be).
+     * It is also obviously illegal for them to use the same urinal at the same time (as it definitely should be).
+     * There are N urinals in a row in Chefland.
+     * Find both the maximum and the minimum number of people that can use these N urinals simultaneously, 
+     * such that there is no place for another person to join.
+     * 
+     * Input Format:
+     * The first input line will contain a single integer T, denoting the number of test cases.
+     * The first and only line of each test case contains a single integer N, denoting the number of urinals.
+     * 
+     * Output Format:
+     * For each test case, output on a new line two space-separated integers: 
+     * the maximum and the minimum number of people that can simultaneously use N urinals, 
+     * such that there is no place for another person to join.
+     * 
+     * Constraints:
+     * 1 <= T <= 100
+     * 1 <= N <= 1000
+     */
+    public static void solveCodeChefMANCODE() {
+        Scanner scn = new Scanner(System.in);
+        long T = scn.nextLong();
+        while (T-- > 0) {
+            long N = scn.nextLong();
+            long max = (N + 1) / 2;
+            long min = (N - 1) / 3 + 1;
+            System.out.println(max + " " + min);
+        }
+        scn.close();
+    }
 
-//    2, 10000
-//    9998, 2 -> 2, 9998
-//    9996, 2 -> 2, 9996
-
-//    1000, 10000
-//    9000, 1000 -> 1000, 9000
-//    8000, 1000 -> 1000, 8000
-
-/*
+    /*
+     * Problem: Prime Reversal
+     * 
+     * You are given two binary strings A and B, each of length N. 
+     * You can perform the following operation on string A any number of times:
+     * Select a prime number X.
+     * Choose any substring of string A having length X and reverse the substring.
+     * Determine whether you can make the string A equal to BB using any (possibly zero) number of operations.
+     * A substring is obtained by deleting some (possibly zero) elements from the beginning and some (possibly zero) 
+     * elements from the end of the string.
+     * 
+     * Input Format:
+     * The first line of input will contain a single integer T, denoting the number of test cases.
+     * Each test case consists of multiple lines of input.
+     * The first line of each test case contains an integer N - the length of the strings A and B.
+     * The second line contains the binary string A.
+     * The third line contains the binary string B.
+     * 
+     * Output Format:
+     * For each test case, output on a new line, YES, if you can make the string A equal to B using any number of operations and NO otherwise.
+     * You can print each character in uppercase or lowercase. For example, YES, yes, Yes, and yES are all identical.
+     * 
+     * Constraints:
+     * 1 <= T <= 100
+     * 1 <= N <= 10^5
+     * Ai and Bi contain 00 and 11 only.
+     * The sum of N over all test cases won't exceed 10^5
+     */
     public static void solveCodeChefPRIMEREVERSE() {
         Scanner scn = new Scanner(System.in);
         long T = scn.nextLong();
@@ -3892,32 +3970,20 @@ public class CodeChef {
             long N = scn.nextLong();
             String A = scn.next();
             String B = scn.next();
-            boolean equals = true;
-            int j = 0;
-            int i = 0;
+            long onesA = 0;
+            long onesB = 0;
+            long i = 0;
             while (i < N) {
-                if (A.charAt(i) != B.charAt(i) && equals) {
-                    equals = false;
-                    j = i;
-                }
-                else if (A.charAt(i) != B.charAt(i) && !equals) {
-                    while (j >= 0 && i < N && !equals) {
-                        String reversed = new StringBuilder(A.substring(j, i + 1)).reverse().toString();
-                        if (CodeChefLibrary.isPrime(i - j + 1) && reversed.equals(B.substring(j, i + 1)))
-                            equals = true;
-                        else {
-                            j--;
-                            i++;
-                        }
-                    }
-                }
+                if (A.charAt((int)i) == '1')
+                    onesA++;
+                if (B.charAt((int)i) == '1')
+                    onesB++;
                 i++;
             }
-            System.out.println(equals ? "YES" : "NO");
+            System.out.println(onesA == onesB ? "YES" : "NO");
         }
         scn.close();
     }
-*/
 
     /*
      * @brief: Method to show the CodeChef solved problems implemented.
