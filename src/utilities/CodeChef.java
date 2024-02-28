@@ -4120,6 +4120,55 @@ public class CodeChef {
     }
 
     /*
+     * Problem: Strong Language
+     * 
+     * Read problem statements in Bengali, Mandarin Chinese, Russian, and Vietnamese as well.
+     * A string is said to be using strong language if it contains at least K consecutive characters '*'.
+     * You are given a string SS with length N. Determine whether it uses strong language or not.
+     * 
+     * Input:
+     * The first line of the input contains a single integer T denoting the number of test cases. 
+     * The description of T test cases follows.
+     * The first line of each test case contains two space-separated integers N and K.
+     * The second line contains a single string S with length N.
+     * 
+     * Output:
+     * Print a single line containing the string "YES" if the string contains strong language or "NO" if it does not (without quotes).
+     * You may print each character of each string in uppercase or lowercase 
+     * (for example, the strings "yEs", "yes", "Yes" and "YES" will all be treated as identical).
+     * 
+     * Constraints:
+     * 1 <= T <= 10
+     * 1 <= K <= N <= 10^6
+     * S contains only lowercase English letters and characters '*'
+     * Sum of N over all testcases is atmost 10^6
+     */
+    public static void solveCodeChefSSCRIPT() {
+        Scanner scn = new Scanner(System.in);
+        long T = scn.nextLong();
+        while (T-- > 0) {
+            long N = scn.nextLong();
+            long K = scn.nextLong();
+            String S = scn.next();
+            long consecutive = 0;
+            boolean strong = false;
+            for (int i = 0; i < N; i++) {
+                if (S.charAt(i) == '*') {
+                    consecutive++;
+                    if (consecutive >= K) {
+                        strong = true;
+                        break;
+                    }
+                }
+                else
+                    consecutive = 0;
+            }
+            System.out.println(strong ? "YES" : "NO");
+        }
+        scn.close();
+    }
+
+    /*
      * @brief: Method to show the CodeChef solved problems implemented.
      * It shows all procedures with name starting with "solveCodeChef".
      */
