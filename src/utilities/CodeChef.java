@@ -3986,6 +3986,140 @@ public class CodeChef {
     }
 
     /*
+     * Problem: Healthy Sleep
+     * 
+     * At IIITA, students have diverse sleep patterns, and there isn't a fixed duration for their daily sleep.
+     * Typical scientific recommendations suggest that the duration of a healthy sleep is 88 hours per day.
+     * As you begin your journey as a programmer, you've been tasked by the renowned programmer of IIITA, 
+     * Pavitra Pandey, with your first project.
+     * Your assignment is to write a program that takes as input the number of hours a student sleeps per day, 
+     * and judges how good their sleep schedule is. Specifically,
+     * If the student sleeps for strictly less than 88 hours, the program should output LESS.
+     * If the student sleeps for exactly 88 hours, the program should output PERFECT.
+     * If the student sleeps for strictly more than 88 hours, the program should output MORE.
+     * Can you write such a program?
+     * 
+     * Input Format:
+     * The only line of input contains a single integer HH, denoting the number of hours a student sleeps per day.
+     * 
+     * Output Format:
+     * Output a single string containing the answer:
+     * LESS if the student doesn't get enough sleep.
+     * PERFECT if the student sleeps the perfect amount of time.
+     * MORE if the student sleeps too much.
+     * Each character of the output may be printed in either uppercase or lowercase, 
+     * i.e, the strings LESS, less, LeSs, and lesS will all be treated as equivalent.
+     * 
+     * Constraints:
+     * 1 <= H <= 24
+     */
+    public static void solveCodeChefHEALSE() {
+        Scanner scn = new Scanner(System.in);
+        long H = scn.nextLong();
+        if (H < 8)
+            System.out.println("LESS");
+        else if (H == 8)
+            System.out.println("PERFECT");
+        else
+            System.out.println("MORE");
+        scn.close();
+    }
+
+    /*
+     * Problem: Problem Reviews
+     * 
+     * Om Khangat has come up with a problem that he thinks can be used in a CodeChef contest, 
+     * and has submitted his proposal for review.
+     * CodeChef's review panel has NN judges, each of whom will give Om's problem a point value between 1 and 10, 
+     * denoting how good they think it is (1 being the lowest, and 10 the highest).
+     * A problem is considered good if and only if every judge gives it a score that's strictly greater than 4.
+     * You know the point values given by each judge to Om's problem. Can you tell whether his problem is good?
+     * 
+     * Input Format:
+     * The first line of input will contain a single integer T, denoting the number of test cases.
+     * Each test case consists of two lines of input.
+     * The first line of each test case contains one integer N - the number of judges.
+     * The next line contains NN space-separated integers S1, S2, S3, ... ,SN - 
+     * where Si denotes the score given to Om's problem by the i-th judge.
+     * 
+     * Output Format:
+     * For each test case, print the answer on a new line: YES if Om's problem is good, and NO otherwise.
+     * Each character of the output may be printed in either uppercase or lowercase, 
+     * i.e, the strings YES, yes, YeS, and yES will all be treated as equivalent.
+     * 
+     * Constraints:
+     * 1 <= T <= 1000
+     * 1 <= N <= 1000
+     * 1 <= Si <= 10
+     * The sum of N across all tests won't exceed 2000.
+     */
+    public static void solveCodeChefPBREV() {
+        Scanner scn = new Scanner(System.in);
+        long T = scn.nextLong();
+        while (T-- > 0) {
+            long N = scn.nextLong();
+            long min = Long.MAX_VALUE;
+            while (N > 0) {
+                long Si = scn.nextLong();
+                min = Math.min(min, Si);
+                N--;
+            }
+            System.out.println(min < 5 ? "NO" : "YES");
+        }
+        scn.close();
+    }
+
+    /*
+     * Problem: Man of the Match
+     * 
+     * In a cricket match, there are two teams, each comprising 11 players.
+     * The scorecard of the match lists the runs scored and wickets taken by each of these 22 players.
+     * To determine the "Man of the Match", we assess each player's performance. Points are awarded to a player as follows:
+     * Each run scored earns 1 point.
+     * Every wicket taken earns 20 points.
+     * The player with the highest total points is awarded the "Man of the Match" title.
+     * You are given the scorecard of a cricket match, listing the contributions of all 22 players.
+     * The players are numbered from 11 to 22. Find the "Man of the Match".
+     * It is guaranteed that for all inputs to this problem, the "Man of the Match" is unique.
+     * Note: A player who belongs to the losing team can also win the "Man of the Match" award.
+     * 
+     * Input Format:
+     * The first line of input will contain a single integer T, denoting the number of test cases.
+     * Each test case consists of 22 lines of input. The i-th of these 22 lines contains two space-separated integers Ai and Bi - 
+     * respectively, the runs scored and wickets taken by the ii-th player.
+     * 
+     * Output Format:
+     * For each test case, output on a new line a single integer i (1 <= i <= 22) 
+     * denoting the index of the player with the maximum score.
+     * The tests for this problem are designed such that there will be exactly one player with the maximum score.
+     * 
+     * Constraints:
+     * 1 <= T <= 1000
+     * 0 <= A <= 200
+     * 0 <= B <= 10
+     * There will be exactly 1 player with the maximum score.
+     */
+    public static void solveCodeChefMATCH_ALK() {
+        Scanner scn = new Scanner(System.in);
+        long T = scn.nextLong();
+        while (T-- > 0) {
+            long max_points = Long.MIN_VALUE;
+            long man_of_the_match = 0;
+            for (long i = 1; i <= 22; i++) {
+                long Ai = scn.nextLong();
+                long Bi = scn.nextLong();
+                long points = Ai + Bi * 20;
+                if (points > max_points) {
+                    max_points = points;
+                    man_of_the_match = i;
+                }
+            }
+            System.out.println(man_of_the_match);
+        }
+        scn.close();
+    }
+
+    /*
      * @brief: Method to show the CodeChef solved problems implemented.
      * It shows all procedures with name starting with "solveCodeChef".
      */
