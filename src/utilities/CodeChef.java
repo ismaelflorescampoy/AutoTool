@@ -4169,6 +4169,70 @@ public class CodeChef {
     }
 
     /*
+     * Problem: Algomaniac Finals
+     * 
+     * Algomaniac finals, a part of Convolution Fest of Jadavpur University, will be held on March 17.
+     * Shreyan can only go to Jadavpur University on March X.
+     * Print YAY if he can attend the Algomaniac finals and NO if he cannot.
+     * 
+     * Input Format:
+     * The first and only line of input contains one integer, X, the day of march Shreyan can go to Jadavpur University.
+     * 
+     * Output Format:
+     * Output YAY if Shreyan can attend Algomaniac finals, and NO otherwise.
+     * You may print each character of the string in uppercase or lowercase 
+     * (for example, the strings YAY, yaY, yay, and Yay will all be treated as identical).
+     * 
+     * Constraints:
+     * 1 <= X <= 31
+     */
+    public static void solveCodeChefALGOFINALS() {
+        Scanner scn = new Scanner(System.in);
+        long X = scn.nextLong();
+        System.out.println(X == 17 ? "YAY" : "NO");
+        scn.close();
+    }
+
+    /*
+     * Problem: Room Allocation
+     * 
+     * Jadavpur University wants to find out the number of rooms they need to accommodate the teams coming for their fest.
+     * A total of N colleges are coming, where, the ith college has a team of Ai members.
+     * Each room can accommodate at most 2 people. Moreover, people from different colleges dislike staying together.
+     * Find the minimum number of rooms Jadavpur University will have to use to accommodate everyone, 
+     * such that a room never contains people from different colleges.
+     * 
+     * Input Format:
+     * The first line of input will contain a single integer T, denoting the number of test cases.
+     * Each test case consists of multiple lines of input.
+     * The first line of each test case contains one integer, N, the number of colleges coming for the fest.
+     * The next line contains NN space-separated integers, A1, A2, ..., AN, the number of people coming from each college.
+     * 
+     * Output Format:
+     * For each test case, output on a new line, the minimum number of rooms needed to accommodate all students, 
+     * such that a room never contains people from different colleges.
+     * 
+     * Constraints:
+     * 1 <= T <= 100
+     * 1 <= N <= 100
+     * 1 <= Ai <= 100
+     */
+    public static void solveCodeChefROOMALLOC() {
+        Scanner scn = new Scanner(System.in);
+        long T = scn.nextLong();
+        while (T-- > 0) {
+            long N = scn.nextLong();
+            long sum = 0;
+            for (int i = 0; i < N; i++) {
+                long Ai = scn.nextLong();                
+                sum += (Ai / 2 + Ai % 2);
+            }
+            System.out.println(sum);
+        }
+        scn.close();
+    }
+
+    /*
      * @brief: Method to show the CodeChef solved problems implemented.
      * It shows all procedures with name starting with "solveCodeChef".
      */
