@@ -4233,6 +4233,71 @@ public class CodeChef {
     }
 
     /*
+     * Problem: Problem Difficulties
+     * 
+     * Read problem statements in Bengali, Mandarin Chinese, Russian, and Vietnamese as well.
+     * You have prepared four problems. The difficulty levels of the problems are A1, A2, A3, A4 respectively. 
+     * A problem set comprises at least two problems and no two problems in a problem set should have the same difficulty level. 
+     * A problem can belong to at most one problem set. 
+     * Find the maximum number of problem sets you can create using the four problems.
+     * 
+     * Input Format:
+     * The first line of the input contains a single integer T denoting the number of test cases. 
+     * The description of T test cases follows.
+     * The first and only line of each test case contains four space-separated integers A1, A2, A3, A4, 
+     * denoting the difficulty level of four problems.
+     * 
+     * Output Format:
+     * For each test case, print a single line containing one integer - 
+     * the maximum number of problem sets you can create using the four problems.
+     * 
+     * Constraints:
+     * 1 <= T <= 1000
+     * 1 <= A1, A2, A3, A4 <= 10
+     */
+    public static void solveCodeChefPROBDIFF() {
+        Scanner scn = new Scanner(System.in);
+        long T = scn.nextLong();
+        while (T-- > 0) {
+/*            long A1 = scn.nextLong();
+            long A2 = scn.nextLong();
+            long A3 = scn.nextLong();
+            long A4 = scn.nextLong();
+            if (A1 == A2 && A2 == A3 && A3 == A4)
+                System.out.println(0);
+            else if ((A1 == A2 && A2 == A3) || (A2 == A3 && A3 == A4) || (A3 == A4 && A4 == A1) || (A4 == A1 && A1 == A2))
+                System.out.println(1);
+            else
+                System.out.println(2);*/
+            HashMap<Long, Long> hashMap = new HashMap<>();
+            for (int i = 0; i < 4; i++) {
+                long Ai = scn.nextLong();
+                hashMap.put(Ai, hashMap.getOrDefault(Ai, 0L) + 1);
+            }
+            LinkedList<Long> listaOrdenada = new LinkedList<>();
+            for (Map.Entry<Long, Long> entry : hashMap.entrySet())
+                listaOrdenada.add(entry.getValue());
+            Collections.sort(listaOrdenada);
+            Collections.reverse(listaOrdenada);
+            long problem_sets = 0;
+            long last = 0;
+            for (long v : listaOrdenada) {
+                if (last >= v) {
+                    problem_sets += v;
+                    last -= v;
+                }
+                else {
+                    if (last > 0)
+                        problem_sets += last;
+                    last = v - last;
+                }
+            }
+            System.out.println(problem_sets);
+        }
+        scn.close();
+    }
+
+    /*
      * @brief: Method to show the CodeChef solved problems implemented.
      * It shows all procedures with name starting with "solveCodeChef".
      */
