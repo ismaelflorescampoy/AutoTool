@@ -3127,7 +3127,7 @@ public class CodeChef {
      * Chef's website has a specific response mechanism based on the HTTP status code received:
      * If the response code is 404, the website will return NOT FOUND.
      * For any other response code different from 404, the website will return FOUND.
-     * Given the response code as XX, determine the website response.
+     * Given the response code as X, determine the website response.
      * 
      * Input Format:
      * The first and only line of input contains a response code X.
@@ -3216,7 +3216,7 @@ public class CodeChef {
     /*
      * Problem:
      * You and K of your friends gather for dinner at a restaurant, 
-     * and the total bill is Rs. NN. You pay the entire bill, 
+     * and the total bill is Rs. N. You pay the entire bill, 
      * and since everyone shared the food equally, 
      * the bill needs to be split evenly among you all.
      * After asking your friends to reimburse their fair shares, each person pays you back. 
@@ -3289,7 +3289,7 @@ public class CodeChef {
      * Note that in the english alphabet, letters A, E, I, O, and U are considered as vowels and rest are considered as consonants.
      * 
      * Input Format:
-     * The first line of input will contain a single integer TT, denoting the number of test cases.
+     * The first line of input will contain a single integer T, denoting the number of test cases.
      * Each test case consists of a string SS, of length 88 consisting of uppercase english alphabets.
      * 
      * Output Format:
@@ -3355,11 +3355,11 @@ public class CodeChef {
      * Mehul learned of Advitiya, and found out that there are no registration fees -
      * even accommodation is being provided to the participants for free!
      * Team Advitiya is very welcoming, so Mehul definitely wants to attend the fest.
-     * Mehul will visit Ropar on date NN (which is between 1 and 18) of February. Will he be able to enjoy the fest?
-     * Print "ADVITIYA" if NN is one of the days on which Advitiya is running, and "WAITING FOR ADVITIYA" otherwise.
+     * Mehul will visit Ropar on date N (which is between 1 and 18) of February. Will he be able to enjoy the fest?
+     * Print "ADVITIYA" if N is one of the days on which Advitiya is running, and "WAITING FOR ADVITIYA" otherwise.
      * 
      * Input Format:
-     * The first line contains a single integer NN, the date on which Mehul decided to visit Ropar.
+     * The first line contains a single integer N, the date on which Mehul decided to visit Ropar.
      * 
      * Output Format:
      * Print a single line containing the answer: "ADVITIYA" if Mehul visits on the right date, and "WAITING FOR ADVITIYA" otherwise.
@@ -3384,7 +3384,7 @@ public class CodeChef {
      * Given that Chef earns X dollars per hour, find whether his income is strictly above the minimum wage.
      * 
      * Input Format:
-     * The first and only line contains an integer XX, denoting the income of Chef per hour.
+     * The first and only line contains an integer X, denoting the income of Chef per hour.
      * 
      * Output Format:
      * Output on a new line, YES, if Chef's income is strictly above the minimum wage. Otherwise, output NO.
@@ -3511,7 +3511,7 @@ public class CodeChef {
      * The input will contain a single integer N.
      * 
      * Output Format:
-     * Output Likely if starters NN is likely to be organised on Valentine's day. Otherwise, output Unlikely.
+     * Output Likely if starters N is likely to be organised on Valentine's day. Otherwise, output Unlikely.
      * You may print each character of the string in uppercase or lowercase 
      * (for example, the strings LIKELY, likely, Likely, and lIkElY will all be treated as identical).
      * 
@@ -3561,12 +3561,12 @@ public class CodeChef {
      * They never asked for more than 2 though because they are not greedy.
      * 
      * Now, you have forgotten exactly how many children you gave chocolates to. 
-     * However, you remember that you started with NN chocolates and distributed all of them by the end.
+     * However, you remember that you started with N chocolates and distributed all of them by the end.
      * Find the minimum and maximum number of possible children that you gave chocolates to.
      * 
      * Input Format:
-     * The first line of input will contain a single integer TT, denoting the number of test cases.
-     * Each test case consists of one integer NN, the number of chocolates you started with.
+     * The first line of input will contain a single integer T, denoting the number of test cases.
+     * Each test case consists of one integer N, the number of chocolates you started with.
      * 
      * Output Format:
      * For each test case, output on a new line, two space-separated integers, 
@@ -3666,7 +3666,7 @@ public class CodeChef {
     /*
      * Problem: Find maximum in an Array
      * 
-     * Given a list of NN integers, representing height of mountains. Find the height of the tallest mountain.
+     * Given a list of N integers, representing height of mountains. Find the height of the tallest mountain.
      * 
      * Input:
      * First line will contain T, number of testcases. Then the testcases follow.
@@ -3776,11 +3776,11 @@ public class CodeChef {
     /*
      * Problem: Cookie Day
      * 
-     * A very caring mother has NN cookie jars with her. Each jar contains a different type of cookie.
+     * A very caring mother has N cookie jars with her. Each jar contains a different type of cookie.
      * There are Ai cookies in the ith jar.
      * The mother wanted to give some cookies to her K children, 
      * and she decided to only distribute cookies of a single type. 
-     * That is, she'll choose exactly one of the NN jars and distribute the cookies within it.
+     * That is, she'll choose exactly one of the N jars and distribute the cookies within it.
      * She'd like to ensure a couple of things:
      * Each child should receive at least 1 cookie.
      * Each child should also receive an equal number of cookies, in the spirit of fairness.
@@ -3830,7 +3830,7 @@ public class CodeChef {
      * Repeat the following operation until X is not 0:
      * If X > Y, swap X and Y;
      * Otherwise, set X = (Y - X) and Y = X.
-     * Output the final value of YY after all operations.
+     * Output the final value of Y after all operations.
      * 
      * Input Format:
      * The first line of input will contain a single integer T, denoting the number of test cases.
@@ -4030,7 +4030,7 @@ public class CodeChef {
      * 
      * Om Khangat has come up with a problem that he thinks can be used in a CodeChef contest, 
      * and has submitted his proposal for review.
-     * CodeChef's review panel has NN judges, each of whom will give Om's problem a point value between 1 and 10, 
+     * CodeChef's review panel has N judges, each of whom will give Om's problem a point value between 1 and 10, 
      * denoting how good they think it is (1 being the lowest, and 10 the highest).
      * A problem is considered good if and only if every judge gives it a score that's strictly greater than 4.
      * You know the point values given by each judge to Om's problem. Can you tell whether his problem is good?
@@ -4039,7 +4039,7 @@ public class CodeChef {
      * The first line of input will contain a single integer T, denoting the number of test cases.
      * Each test case consists of two lines of input.
      * The first line of each test case contains one integer N - the number of judges.
-     * The next line contains NN space-separated integers S1, S2, S3, ... ,SN - 
+     * The next line contains N space-separated integers S1, S2, S3, ... ,SN - 
      * where Si denotes the score given to Om's problem by the i-th judge.
      * 
      * Output Format:
@@ -4206,7 +4206,7 @@ public class CodeChef {
      * The first line of input will contain a single integer T, denoting the number of test cases.
      * Each test case consists of multiple lines of input.
      * The first line of each test case contains one integer, N, the number of colleges coming for the fest.
-     * The next line contains NN space-separated integers, A1, A2, ..., AN, the number of people coming from each college.
+     * The next line contains N space-separated integers, A1, A2, ..., AN, the number of people coming from each college.
      * 
      * Output Format:
      * For each test case, output on a new line, the minimum number of rooms needed to accommodate all students, 
@@ -4293,6 +4293,119 @@ public class CodeChef {
                 }
             }
             System.out.println(problem_sets);
+        }
+        scn.close();
+    }
+
+    /*
+     * Problem: Summer Time
+     * 
+     * Mamalesh likes to drink mango lassi when it's hot, and only when it's hot. 
+     * If (and only if) the temperature on a given day is strictly greater than 35 degrees, Mamalesh will drink mango lassi.
+     * Mamalesh sees that today's temperature is X degrees Celsius. Will he drink mango lassi today?
+     * Print "Yes" if he will, and "No" otherwise (without quotes).
+     * 
+     * Input Format:
+     * The only line of input will contain a single integer X, denoting today's temperature.
+     * 
+     * Output Format:
+     * Print "YES" if Mamalesh will drink mango lassi today, and "NO" otherwise (without quotes).
+     * 
+     * Each letter of the output may be printed in either uppercase or lowercase, 
+     * i.e, the strings NO, no, No, and nO will all be treated as equivalent.
+     * 
+     * Constraints:
+     * 1 <= X <= 50
+     */
+    public static void solveCodeChefMANGOLASSI() {
+        Scanner scn = new Scanner(System.in);
+        long X = scn.nextLong();
+        System.out.println(X > 35 ? "YES" : "NO");
+        scn.close();
+    }
+
+    /*
+     * Problem: Cricket Tournament
+     * 
+     * Udyam'24 is organizing a cricket tournament, in which N teams are participating.
+     * This tournament is a knockout tournament, 
+     * meaning that the loser of each match will be knocked out of the tournament and won't play any more matches.
+     * The winner of the tournament is whichever team remains in the end without being knocked out.
+     * The tournament will proceed as follows:
+     * If there is only one team remaining, that team will be declared the winner, and the tournament finishes.
+     * Otherwise, some two teams will play against each other; with the loser being knocked out.
+     * You think that the tournament will be interesting if at least M matches will be played before the winner is decided.
+     * Given N and M, is it possible for the tournament to be interesting?
+     * 
+     * Input Format:
+     * The first line of input will contain a single integer T, denoting the number of test cases.
+     * Each test case consists of a single line containing two space-separated integers N and M - 
+     * the number of teams and the minimum number of matches for an interesting tournament.
+     * 
+     * Output Format:
+     * For each test case, output on a new line the answer: 
+     * "YES" if the tournament can be interesting, and "NO" otherwise (without quotes).
+     * Each letter of the output may be printed in either uppercase or lowercase, 
+     * i.e, the strings NO, no, No, and nO will all be treated as equivalent.
+     * 
+     * Constraints:
+     * 1 <= T <= 10^4
+     * 1 <= N, M <= 100
+     */
+    public static void solveCodeChefCRICKETUDYAM() {
+        Scanner scn = new Scanner(System.in);
+        long T = scn.nextLong();
+        while (T-- > 0) {
+            long N = scn.nextLong();
+            long M = scn.nextLong();
+            long m = 0;
+            while (N > 1) {
+                m += N / 2;
+                N = N / 2 + N % 2;
+            }
+            System.out.println((m >= M) ? "YES" : "NO");
+        }
+        scn.close();
+    }
+
+    /*
+     * Problem: Binary Parity
+     * 
+     * The binary parity of an integer N is defined as follows:
+     * First, write N in binary. For example, N = 13 is written as 1101 in binary, and N = 5 is written as 101.
+     * Compute SN, the sum of the binary digits of N.
+     * For example, from the earlier examples, S13 = 1 + 1 + 0 + 1 = 3 and S5 = 1 + 0 + 1 = 2.
+     * The binary parity of N is then the parity of SN. 
+     * S13 = 3 is odd, so 13 is said to have odd binary parity (*);
+     * while S6 = 2 is even, so 55 has even binary parity.
+     * Given an integer N, find its binary parity.
+     * (*) The parity of an integer is, quite simply, whether it's even or odd.
+     * We say an integer has even parity if it is a multiple of 2, and odd parity otherwise.
+     * 
+     * Input Format:
+     * The first line of input will contain a single integer T, denoting the number of test cases.
+     * The first and only line of each test case will contain a single integer N.
+     * 
+     * Output Format:
+     * For each test case, output on a new line the binary parity of N - either "EVEN" or "ODD" (without quotes).
+     * Each character of the output may be printed in either lowercase or uppercase, i.e, 
+     * the strings Odd, ODD, oDd, and ODd will all be treated as equivalent.
+     * 
+     * Constraints:
+     * 1 <= T <= 10^5
+     * 1 <= N <= 10^9
+     */
+    public static void solveCodeChefBINPARITY() {
+        Scanner scn = new Scanner(System.in);
+        long T = scn.nextLong();
+        while (T-- > 0) {
+            String N = Long.toBinaryString(scn.nextLong());
+            long ones = 0;
+            for (char c : N.toCharArray()) {
+                if (c == '1')
+                    ones++;
+            }            
+            System.out.println((ones % 2 == 1) ? "ODD" : "EVEN");
         }
         scn.close();
     }
