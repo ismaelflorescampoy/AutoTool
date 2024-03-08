@@ -4404,8 +4404,49 @@ public class CodeChef {
             for (char c : N.toCharArray()) {
                 if (c == '1')
                     ones++;
-            }            
+            }
             System.out.println((ones % 2 == 1) ? "ODD" : "EVEN");
+        }
+        scn.close();
+    }
+
+    /*
+     * Problem: Equal Elements
+     * 
+     * You are given an array A of size N. In one operation, you can do the following:
+     * Select indices i and j (i != j) and set Ai = Aj.
+     * Find the minimum number of operations required to make all elements of the array equal.
+     * 
+     * Input Format:
+     * The first line of input will contain a single integer T, denoting the number of test cases.
+     * Each test case consists of multiple lines of input.
+     * The first line of each test case contains an integer N - the size of the array.
+     * The next line contains N space-separated integers, denoting the array A.
+     * 
+     * Output Format:
+     * For each test case, output on a new line, the minimum number of operations required to make all elements of the array equal.
+     * 
+     * Constraints:
+     * 1 <= T <= 1000
+     * 1 <= N <= 2*10^5
+     * 1 <= Ai <= N
+     * The sum of N over all test cases won't exceed 2*10^5
+     */
+    public static void solveCodeChefEQUALELE() {
+        Scanner scn = new Scanner(System.in);
+        long T = scn.nextLong();
+        while (T-- > 0) {
+            long N = scn.nextLong();
+            long maxOccurrences = 0;
+            HashMap<Long, Long> hashMap = new HashMap<>();
+            for (long j = 0; j < N; j++) {
+                long Ai = scn.nextLong();
+                long occurrences = hashMap.getOrDefault(Ai, 0L) + 1;
+                hashMap.put(Ai, occurrences);
+                if (occurrences > maxOccurrences)
+                    maxOccurrences = occurrences;
+            }
+            System.out.println(N - maxOccurrences);
         }
         scn.close();
     }
