@@ -4531,6 +4531,59 @@ public class CodeChef {
     }
 
     /*
+     * Problem: Join States
+     * 
+     * To curb the declining literacy in Chefland, the government has come up with a new plan.
+     * You are given an array A of size N denoting the initial count of literate people in each of the N states of Chefland.
+     * The government wants the count of literate people in each state to be at least M.
+     * To do this, the government can combine two or more consecutive states to represent a new state.
+     * The number of literate people in the new state will be equal to the sum of literate people 
+     * in the individual consecutive states that were combined to create this new state.
+     * Find the maximum number of states the government can have while maintaining the condition 
+     * that at least M literate people are present in each state.
+     * Note that it is guaranteed that M is not more than the sum of Ai.
+     * 
+     * Input Format:
+     * The first line of input will contain a single integer T, denoting the number of test cases.
+     * Each test case consists of multiple lines of input.
+     * The first line of each test case contains two space-separated integers N and M - 
+     * the number of states initially and and the minimum number of literate people required in each state.
+     * The next line consists of N space-separated integers denoting the initial count of literate people in each state.
+     * 
+     * Output Format:
+     * For each test case, output on a new line, the maximum number of states the government can have 
+     * while maintaining the condition of at least M literate people in each state.
+     * 
+     * Constraints:
+     * 1 <= T <= 10^5
+     * 1 <= N <= 10^5
+     * 1 <= M <= 10^5
+     * 1 <= Ai <= 100
+     * The sum of N over all test cases does not exceed 2 * 10^5.
+     * It is guaranteed that M is not more than the sum of Ai.
+     */
+    public static void solveCodeChefJOINSTATE() {
+        Scanner scn = new Scanner(System.in);
+        long T = scn.nextLong();
+        while (T-- > 0) {
+            long N = scn.nextLong();
+            long M = scn.nextLong();
+            long aM = 0;
+            long states = 0;
+            while (N-- > 0) {
+                long Ai = scn.nextLong();
+                aM += Ai;
+                if (aM >= M) {
+                    aM = 0;
+                    states++;
+                }
+            }
+            System.out.println(states);
+        }
+        scn.close();
+    }
+
+    /*
      * @brief: Method to show the CodeChef solved problems implemented.
      * It shows all procedures with name starting with "solveCodeChef".
      */
