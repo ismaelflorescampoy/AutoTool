@@ -4828,6 +4828,126 @@ public class CodeChef {
     }
 
     /*
+    * Problem: Overspeeding
+    *
+    * Alice is going for a drive. During her drive, she reached a maximum speed of S km/hr.
+    * As per the rules of the government, the speed of the vehicle must not exceed 40 km/hr, 
+    * otherwise the person will be fined.
+    * You need to tell whether Alice will be fined or not.
+    * 
+    * Input Format:
+    * The only line of input will contain a single integer S - 
+    * denoting the maximum speed Alice reached while driving.
+    *
+    * Output Format:
+    * Print YES if Alice will be fined , otherwise print NO.
+    * You may print each character of the string in uppercase or lowercase 
+    * (for example, the strings YES, yEs, yes, and yeS will all be treated as identical).
+    *
+    * Constraints:
+    * 1 <= S <= 50
+    */
+    public static void solveCodeChefCCOV() {
+        Scanner scn = new Scanner(System.in);
+        long S = scn.nextLong();
+        System.out.println(S > 40 ? "YES" : "NO");
+        scn.close();
+    }
+
+    /*
+    * Problem: 50-50 Rule
+    *
+    * Schools of Chefland use the 50 - 50 rule to grade their students. As per the rule , students are awarded :
+    * Z grade, if their attendance is strictly less than 50%.
+    * F grade, if they score strictly less than 50% marks, given that their attendance is greater than or equal to 50%.
+    * A grade, otherwise.
+    * You are given two integers, X and Y, denoting the percentage of attendance and percentage of marks obtained by Alice. 
+    * What grade will Alice get?
+    *
+    * Input Format:
+    * The first line of input will contain a single integer T, denoting the number of test cases.
+    * Each test case consists of two space-separated integers X and Y - 
+    * the percentage of attendance and percentage of marks obtained by Alice.
+    *
+    * Output Format:
+    * For each test case, output on a new line, the grade awarded to Alice.
+    * Note that you may print the grade in lowercase or uppercase.
+    * 
+    * Constraints:
+    * 1 <= T <= 10^4 
+    * 1 <= X, Y <= 100
+    */
+    public static void solveCodeChefNGRS() {
+        Scanner scn = new Scanner(System.in);
+        long T = scn.nextLong();
+        while (T-- > 0) {
+            long X = scn.nextLong();
+            long Y = scn.nextLong();
+            if (X < 50)
+                System.out.println("Z");
+            else if (Y < 50)
+                System.out.println("F");
+            else
+                System.out.println("A");
+        }
+        scn.close();
+    }
+
+    /*
+    * Problem: Fake Certificate
+    *
+    * You are given a binary string S of length N, representing the attendance sheet of Alice.
+    * For the days when Alice went to school, Si=1, otherwise, Si=0.
+    * Alice wanted to increase her attendance. She can perform the following operation at most once :
+    * Choose any substring of S where Alice was absent everyday. 
+    * She can then give a medical certificate for this period and will be marked present for the whole period.
+    * Note that a substring is a contiguous subsegment of a string. 
+    * For example, acab is a substring of abacaba, but aa or d aren't substrings of this string. In other words, 
+    * substring S[l,r]=S(l)S(l+1)...S(r).
+    * You need to find the maximum number of days Alice will be marked present after performing the operation at most once.
+    *
+    * Input Format:
+    * The first line of input will contain a single integer T, denoting the number of test cases.
+    * Each test case consists of multiple lines of input.
+    * The first line of each test case contains an integer N - the length of the string .
+    * The second line of each test case contains a binary string S.
+    *
+    * Output Format:
+    * For each test case, output on a new line the maximum number of days Alice will be marked present after at most one operation.
+    *
+    * Constraints:
+    * 1 <= T <= 10 
+    * 1 <= N <= 2*10^5
+    * S is a Binary String 
+    * The sum of N over all test cases won't exceed 2*10^5.
+    */
+    public static void solveCodeChefFKMC() {
+        Scanner scn = new Scanner(System.in);
+        long T = scn.nextLong();
+        while (T-- > 0) {
+            long N = scn.nextLong();
+            String S = scn.next();
+            long max_zeroes = 0;
+            long zeroes = 0;
+            long ones = 0;
+            for (char c : S.toCharArray()) {
+                if (c == '1') {
+                    if (zeroes > max_zeroes)
+                        max_zeroes = zeroes;
+                    zeroes = 0;
+                    ones++;
+                }
+                else
+                    zeroes++;
+            }
+            if (zeroes > max_zeroes)
+                max_zeroes = zeroes;
+            System.out.println(ones + max_zeroes);
+        }
+        scn.close();
+    }
+    
+    /*
      * @brief: Method to show the CodeChef solved problems implemented.
      * It shows all procedures with name starting with "solveCodeChef".
      */
