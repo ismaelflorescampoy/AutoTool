@@ -3290,7 +3290,7 @@ public class CodeChef {
      * 
      * Input Format:
      * The first line of input will contain a single integer T, denoting the number of test cases.
-     * Each test case consists of a string SS, of length 88 consisting of uppercase english alphabets.
+     * Each test case consists of a string S, of length 88 consisting of uppercase english alphabets.
      * 
      * Output Format:
      * For each test case, output on a new line, YES, if Chef can reach CODETOWN, and NO otherwise.
@@ -4124,7 +4124,7 @@ public class CodeChef {
      * 
      * Read problem statements in Bengali, Mandarin Chinese, Russian, and Vietnamese as well.
      * A string is said to be using strong language if it contains at least K consecutive characters '*'.
-     * You are given a string SS with length N. Determine whether it uses strong language or not.
+     * You are given a string S with length N. Determine whether it uses strong language or not.
      * 
      * Input:
      * The first line of the input contains a single integer T denoting the number of test cases. 
@@ -4925,7 +4925,7 @@ public class CodeChef {
         Scanner scn = new Scanner(System.in);
         long T = scn.nextLong();
         while (T-- > 0) {
-            long N = scn.nextLong();
+            scn.nextLong();
             String S = scn.next();
             long max_zeroes = 0;
             long zeroes = 0;
@@ -4947,6 +4947,65 @@ public class CodeChef {
         scn.close();
     }
     
+    /*
+     * Problem: AC Please
+     * 
+     * Chef is feeling the heat this summer and wants to switch on the Air Conditioning all the time,
+     * but since he doesn't want to harm the environment much, 
+     * he only switches it on when the room temperature is strictly greater than 30 degrees celsius.
+     * Given the room temperature, you need to find whether Chef will switch on the air conditioning or not.
+     * 
+     * Input Format:
+     * The only line of input will contain a single integer T - denoting the room temperature.
+     * 
+     * Output Format:
+     * Print YES if Chef will turn the Air Conditioning on, otherwise print NO.
+     * You may print each character of the string in uppercase or lowercase 
+     * (for example, the strings YES, yEs, yes, and yeS will all be treated as identical).
+     * 
+     * Constraints:
+     * 1 <= T <= 50
+     */
+    public static void solveCodeChefACPLZ() {
+        Scanner scn = new Scanner(System.in);
+        long T = scn.nextLong();
+        System.out.println(T > 30 ? "YES" : "NO");
+        scn.close();
+    }
+
+    /*
+     * Problem: Dice Game 3
+     * 
+     * Chef is playing a game consisting of N rounds. In each round he rolls a regular six faced dice.
+     * He starts with an initial score of 0. Let the number rolled by him in a particular round be X.
+     * If this is not the first round and the previous number rolled was 1, 
+     * Chef will add 2 * X to his score, otherwise he will add X to his score.
+     * For example, if the game has 66 rounds and the rolls are [2, 1, 6, 1, 1, 4] in the given order, 
+     * his score will be 2 + 1 + (2 * 6) + 1 + (2 * 1) + (2 * 4) = 26.
+     * Find the maximum possible score he can obtain after N rounds.
+     * 
+     * Input Format:
+     * The first line of input will contain a single integer T, denoting the number of test cases.
+     * Each test case consists of a single integer N the number of rounds.
+     * 
+     * Output Format:
+     * For each test case, output on a new line the maximum score that Chef can get.
+     * 
+     * Constraints:
+     * 1 <= T <= 10^5
+     * 1 <= N <= 10^5
+     */
+    public static void solveCodeChefDICEGAME3() {
+        Scanner scn = new Scanner(System.in);
+        long T = scn.nextLong();
+        while (T-- > 0) {
+            long N = scn.nextLong();
+            System.out.println((N / 2) * 13 + (N % 2) * 6);
+
+        }
+        scn.close();
+    }
+
     /*
      * @brief: Method to show the CodeChef solved problems implemented.
      * It shows all procedures with name starting with "solveCodeChef".
