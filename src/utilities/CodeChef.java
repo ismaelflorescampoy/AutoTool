@@ -5054,6 +5054,97 @@ public class CodeChef {
     }
 
     /*
+     * Problem: Chef and Fruits
+     * 
+     * Today is Chef's birthday. His mom has surprised him with truly fruity gifts: 2 fruit baskets. 
+     * The first basket contains N apples, and the second one contains M oranges. 
+     * Chef likes apples and oranges very much but he likes them equally, and therefore, 
+     * wants to have the minimum possible difference between the number of apples and oranges he has. 
+     * To do so, he can purchase 1 apple or 1 orange by paying exactly 1 gold coin (that's some expensive fruit, eh?). 
+     * Chef can purchase fruits at most K times (as he has only K gold coins in his pocket) to make the difference the minimum possible.
+     * Our little Chef is busy in celebrating his birthday to the fullest, and therefore, 
+     * he has handed this job to his best friend - you.
+     * Can you help him by finding the minimum possible difference he can achieve between the number of apples and orange he owns?
+     * 
+     * Input:
+     * The first line of input contains a single integer T denoting the number of test cases. 
+     * The first and only line of each test case contains 3 space separated integers - N, M and K - 
+     * denoting the number of apples, number of oranges, and number of gold coins our little Chef has.
+     * 
+     * Output:
+     * For each test case, output the minimum possible difference between the number of apples and oranges that Chef can achieve.
+     * 
+     * Constraints:
+     * 1 <= T <= 100
+     * 1 <= N, M, K <= 100
+     */
+    public static void solveCodeChefFRUITS() {
+        Scanner scn = new Scanner(System.in);
+        long T = scn.nextLong();
+        while (T-- > 0) {
+            long N = scn.nextLong();
+            long M = scn.nextLong();
+            long K = scn.nextLong();
+            long diff = Math.abs(N - M) - K;
+            System.out.println(diff <= 0 ? 0 : diff);
+        }
+        scn.close();
+    }
+
+    /*
+     * Problem: Maximise Adjacent Sum
+     * 
+     * You are given an array A of size N (N >= 2).
+     * We define f(A) = Sum from {i = 1} to {N - 1} of (Ai + A(i + 1)).
+     * Find the maximum value of f(A) you can obtain by rearranging the elements of A in any arbitrary order.
+     * 
+     * Input Format:
+     * The first line of input will contain a single integer T, denoting the number of test cases.
+     * Each test case consists of multiple lines of input.
+     * The first line of each test case contains one integer, N, the size of the array.
+     * The next line contains NN space-separated integers, A1, A2, ..., AN.
+     * 
+     * Output Format:
+     * For each test case, output on a new line, 
+     * the maximum value of f(A) you can obtain by rearranging the elements of A in any arbitrary order.
+     * 
+     * Constraints_
+     * 1 <= T <= 2*10^4
+     * 2 <= N <= 10^5
+     * 1 <= Ai <= 10^4
+     * The sum of N over all test cases does not exceed 10^5.
+     */
+    public static void solveCodeChefMAXADJSUM() {
+        Scanner scn = new Scanner(System.in);
+        long T = scn.nextLong();
+        while (T-- > 0) {
+            long N = scn.nextLong();
+            long min1 = Long.MAX_VALUE;
+            long min2 = Long.MAX_VALUE;
+            long max = 0;
+            while (N-- > 0) {
+                long Ai = scn.nextLong();
+                if (Ai < min1) {
+                    if (min2 != Long.MAX_VALUE)
+                        max += (min2 * 2);
+                    min2 = min1;
+                    min1 = Ai;
+                }
+                else if (Ai < min2) {
+                    if (min2 != Long.MAX_VALUE)
+                        max += (min2 * 2);
+                    min2 = Ai;
+                }
+                else
+                    max += (Ai * 2);
+            }   
+            System.out.println(max + min1 + min2);
+        }
+        scn.close();
+    }
+
+
+    /*
      * @brief: Method to show the CodeChef solved problems implemented.
      * It shows all procedures with name starting with "solveCodeChef".
      */
